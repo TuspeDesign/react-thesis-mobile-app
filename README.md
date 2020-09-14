@@ -2,7 +2,7 @@
 
 The app is designed to provide an easier way to follow latest news and videos from certain sport clubs. From fans to fans. The application is a simplified version of the clubs' own websites developed by Dataline Group Oy and it is not part of any commercial deals. However, all the sport clubs which use Dataline's sport platform and want participants will be added to the feed.
 
-The application was created by [Tero Kerkkänen](https://github.com/TeroKerkkanen), [Karelia](https://www.karelia.fi/en/), as a thesis in 2020. The result of the work is open source and can be used for studying and teaching. The code must not be made a closed version. Everyone can participate in the development in the future.
+The application was created by [Tero Kerkkänen](https://github.com/TeroKerkkanen), [Karelia](https://www.karelia.fi/en/), as a thesis in 2020. The result of the work is open source and can be used for studying and teaching. The code must not be made a closed version. Everyone can participate in the development in the future. Please, read the [license](https://github.com/TuspeDesign/Sport-Hybrid/blob/master/LICENSE).
 
 ## How the feed works
 
