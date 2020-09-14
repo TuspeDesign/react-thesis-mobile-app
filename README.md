@@ -6,8 +6,7 @@ The application was created by [Tero Kerkkänen](https://github.com/TeroKerkkane
 
 ## How the feed works
 
-The feed is protected by [Cloudflare](https://www.cloudflare.com/) and uses a security cookie for all the requests.  
-Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed.
+The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed. The feed is currently public.
 
 **Base url**  
 api.timoanttila.com/sport/ (https only)
