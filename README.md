@@ -12,7 +12,7 @@ The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is 
 api.timoanttila.com/sport/ (https only)
 
 **?type=sites**  
-Returns all the sport sites developed and maintained by Dataline Group Oy. The visitor selects the desired sport club, after which the club id number is included in each search. Other searches cannot be made without the club number.
+Returns all the sport sites developed and maintained by Dataline Group Oy. The visitor selects the desired sport club, after which the club id number is included in each search. Other searches cannot be made without the club number. The app stores that number in the phone's memory so that visitors do not have to select a sport club each time they use the app.
 
 **?team=number&type=home**  
 Returns all available home page elements.
