@@ -13,11 +13,14 @@ api.timoanttila.com/sport/ (https only)
 
 The visitor selects the desired sport club, after which the club id number is included in each search. Other searches cannot be made without the club number. The app stores that number in the phone's memory so that visitors do not have to select a sport club each time they use the app.
 
+Required values are team and type.
+
 ### team 
-Official sport ID or 0 for query type sites. Required.
+Official sport ID or 0 for query type sites.
 
 ### type
-The type tells the feed what kind of content is needed. Available values are sites, home, page, player, nav. Required.
+The type tells the feed what kind of content is needed.
+
 
 | type | info |
 | :--- | :---|
