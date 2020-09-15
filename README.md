@@ -6,13 +6,24 @@ The application was created by [Tero Kerkkänen](https://github.com/TeroKerkkane
 
 ## How the feed works
 
-The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed. The feed is currently public.
+The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed. All requests are sent in POST format and the query must include an Auth code in the header.
 
 **Base url**  
 api.timoanttila.com/sport/ (https only)
 
-**?type=sites**  
-Returns all the sport sites developed and maintained by Dataline Group Oy. The visitor selects the desired sport club, after which the club id number is included in each search. Other searches cannot be made without the club number. The app stores that number in the phone's memory so that visitors do not have to select a sport club each time they use the app.
+The visitor selects the desired sport club, after which the club id number is included in each search. Other searches cannot be made without the club number. The app stores that number in the phone's memory so that visitors do not have to select a sport club each time they use the app.
 
-**?team=number&type=home**  
-Returns all available home page elements.
+### team 
+Official sport ID or 0 for query type sites. Required.
+
+### type
+The type tells the feed what kind of content is needed. Available values are sites, home, page, player, nav. Required.
+
+| type | info |
+| :--- | :---|
+| sites | List of all available sports clubs with their logos. |
+| nav | Navigation of a specific sports club. |
+| home | Elements needed for the front page. |
+| page | Page content based on page number. |
+| players | All the players and their helpers. |
+| partners | Partners with logos and links. |
