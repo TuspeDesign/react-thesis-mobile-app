@@ -8,7 +8,7 @@ The application was created by [Tero Kerkkänen](https://github.com/TeroKerkkane
 
 The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed. All requests are sent in POST format and the query must include an Auth code in the header.
 
-**Base url**  
+### Base url  
 api.timoanttila.com/sport/ (https only)
 
 The visitor selects the desired sport club, after which the club id number is included in each search. Other searches cannot be made without the club number. The app stores that number in the phone's memory so that visitors do not have to select a sport club each time they use the app.
