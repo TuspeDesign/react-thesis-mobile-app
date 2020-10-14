@@ -1,22 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image } from 'react-native';
+import Home from './views/Home';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>React Sport app</Text>
-	   <Text>Testing...</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+
+function App() {
+	return (
+
+		<Home/>
+
+	);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+
+
+
+
+
+
