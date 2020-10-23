@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+
 
 
 export default class home extends React.Component {
@@ -15,29 +16,27 @@ export default class home extends React.Component {
 
 		};
 	}
-	
-componentDidMount(){
-			fetch('https://api.timoanttila.com/sport/?type=sites')
-				.then((response) => response.json())
-				.then((data) => {
 
-					this.setState({
-						isLoading: false,
-						teams: data.teams,
-						image_url: data.logo.url,
-						image_format: data.logo.ext,
-					})
+	componentDidMount() {
+		fetch('https://api.timoanttila.com/sport/?type=sites')
+			.then((response) => response.json())
+			.then((data) => {
+
+				this.setState({
+					isLoading: false,
+					teams: data.teams,
+					image_url: data.logo.url,
+					image_format: data.logo.ext,
 				})
+			})
 
-				.catch((error) => {
-					console.log(error)
+			.catch((error) => {
+				console.log(error)
 
-				});
-				
-}
+			});
+
+	}
 	render() {
-		
-		
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container}>
@@ -46,23 +45,23 @@ componentDidMount(){
 			)
 
 		} else {
-			
-
 			const url = this.state.image_url
 			const format = this.state.image_format
 
 			let teams = this.state.teams.map((val, key) => {
 				return <View key={key} style={styles.item}>
-					<Text style={[styles.tc, styles.h4]}>{val.name}</Text>
+					<Button style={[styles.tc, styles.h4]} title={val.name} onPress={() => this.props.navigation.navigate(val.name)} />
 					<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
 				</View>
 
 			});
-
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }}>
+
 						{teams}
+
+
 					</ScrollView>
 				</View>
 
