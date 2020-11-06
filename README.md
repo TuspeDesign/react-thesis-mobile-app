@@ -14,7 +14,7 @@ The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is 
 api.sportti.org/sites (https only)
 
 ### How to use API
-api.sportti.org/sites/[teamId]/[query]
+api.sportti.org/sites/[teamId]/[query]  
 api.sportti.org/sites/928640177/players
 
 Official sport team ID and search query are required values if not fetching all the teams (only /sites).
