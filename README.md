@@ -15,6 +15,7 @@ api.sportti.org/sites (https only)
 
 ### How to use API
 api.sportti.org/sites/[teamId]/[query]
+api.sportti.org/sites/928640177/players
 
 Official sport team ID and search query are required values if not fetching all the teams (only /sites).
 
@@ -27,5 +28,6 @@ The type tells the feed what kind of content is needed.
 | nav | Navigation of a specific sports club. |
 | home | Elements needed for the front page. |
 | page | Page content based on page number. |
+| player | One player and his/hers information. |
 | players | All the players and their helpers. |
 | partners | Partners with logos and links. |
