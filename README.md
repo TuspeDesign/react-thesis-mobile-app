@@ -13,13 +13,16 @@ The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is 
 ### Base url
 api.sportti.org/sites (https only)
 
+Official sport team ID and search query are required values if not fetching all the teams (only /sites).
+
 ### How to use API
 api.sportti.org/sites/[teamId]/[query]  
 
-#### Kiekko-Vantaa's players
+#### All the players
 api.sportti.org/sites/928640177/players
 
-Official sport team ID and search query are required values if not fetching all the teams (only /sites).
+#### Fetch one page from the website
+api.sportti.org/sites/928640177/8664
 
 ### type
 The type tells the feed what kind of content is needed.
@@ -27,9 +30,8 @@ The type tells the feed what kind of content is needed.
 | query | info |
 | :--- | :---|
 | none | List of all available sports clubs with their logos. |
-| nav | Navigation of a specific sports club. |
+| menu | Navigation of a specific sports club. |
 | home | Elements needed for the front page. |
-| page | Page content based on page number. |
-| player | One player and his/hers information. |
 | players | All the players and their helpers. |
 | partners | Partners with logos and links. |
+| number | All the content of the certain page or player. |
