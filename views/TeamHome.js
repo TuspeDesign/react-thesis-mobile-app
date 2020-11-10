@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import home from './Home';
+import { createDrawer } from "./Home";
+
 
 
 
 class Kiekkopojat extends React.Component {
-
-
 	render() {
-
-
 
 		return (
 
@@ -27,21 +25,80 @@ class Kiekkopojat extends React.Component {
 }
 
 class Kiekkovantaa extends React.Component {
+	constructor(props) {
+
+		super(props);
+		this.state = {
+			news: null,
+			partners: null,
+			games: null,
+			isLoading: true,
+		};
+	}
+	componentDidMount() {
+		fetch('https://api.sportti.org/sites/928640177/home')
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					isLoading: false,
+					partners: data.partners,
+					news: data.news,
+					games: data.games.upcoming,
+				})
+			})
+			.catch((error) => {
+				console.log(error)
+			});
 
 
+	}
 	render() {
 
+		if (this.state.isLoading) {
+			return (
+				<View style={styles.container}>
+					<ActivityIndicator />
+				</View>
+			)
+		} else {
 
+			let news = this.state.news.map((val, key) => {
+				return <View key={key} style={styles.item, styles.mb3}>
+					<Button style={[styles.tc, styles.h4]} title={val.title} />
+				</View>
+			});
 
-		return (
+			let partners = this.state.partners.map((val, key) => {
+				return <View key={key} style={styles.item}>
+					<Image style={styles.logo} source={{ uri: val.img }} />
+				</View>
 
-			<View style={styles.container}>
-				<Text style={[styles.tc, styles.h4]} >Kiekko-Vantaa</Text>
+			});
 
+			let games = this.state.games.map((val, key) => {
+				return <View key={key} style={styles.item}>
+					<Text style={[styles.tc, styles.mb3]}>{val.time}</Text>
+					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
+				</View>
 
-			</View>
+			});
 
-		);
+			return (
+				<View style={styles.container}>
+					<ScrollView style={{ width: "100%" }}>
+						<Text style={[styles.tc, styles.h4, styles.mb3]}>Uutiset</Text>
+						{news}
+						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>
+						{games}
+						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Yhteistyökumppanit</Text>
+						{partners}
+
+					</ScrollView>
+				</View>
+
+			);
+
+		}
 
 	}
 
@@ -157,15 +214,25 @@ const styles = StyleSheet.create({
 
 
 	logo: {
-		height: 150,
-		width: 150,
 		alignSelf: 'center',
+		flex: 1,
+		width: 150,
+		height: 150,
+		resizeMode: 'contain'
 
 	},
 
 	h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
+	},
+
+	mt3: {
+		marginTop: 30,
+	},
+
+	mb3: {
+		marginBottom: 30,
 	}
 
 

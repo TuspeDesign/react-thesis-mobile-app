@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 
-
-
 export default class home extends React.Component {
 
 	constructor(props) {
@@ -16,12 +14,10 @@ export default class home extends React.Component {
 
 		};
 	}
-
 	componentDidMount() {
-		fetch('https://api.timoanttila.com/sport/?type=sites')
+		fetch('https://api.sportti.org/sites')
 			.then((response) => response.json())
 			.then((data) => {
-
 				this.setState({
 					isLoading: false,
 					teams: data.teams,
@@ -29,10 +25,8 @@ export default class home extends React.Component {
 					image_format: data.logo.ext,
 				})
 			})
-
 			.catch((error) => {
 				console.log(error)
-
 			});
 
 	}
@@ -58,10 +52,7 @@ export default class home extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }}>
-
 						{teams}
-
-
 					</ScrollView>
 				</View>
 
