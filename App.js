@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { ActivityIndicator, Image, Button } from 'react-native';
 import Home from './views/Home';
-import { Kiekkopojat, Kiekkovantaa, Roki, Kurra, Kapulanpallo, Pallokerhokeskiuusimaa } from './views/TeamHome'
+import { Etusivu } from './views/TeamHome'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -12,25 +10,24 @@ const Stack = createStackNavigator();
 
 export default class App extends React.Component {
 
-	createHomeStack = () =>
-		<Stack.Navigator>
+	createHomeStack = () => {
+
+		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} />
-			<Stack.Screen name='Joensuun Kiekko-Pojat' component={Kiekkopojat} />
-			<Stack.Screen name='Kiekko-Vantaa' children={this.createDrawer} />
-			<Stack.Screen name='RoKi Hockey' component={Roki} />
-			<Stack.Screen name='Kurra' component={Kurra} />
-			<Stack.Screen name='Käpylän Pallo' component={Kapulanpallo} />
-			<Stack.Screen name='Pallokerho Keski-Uusimaa' component={Pallokerhokeskiuusimaa} />
+			<Stack.Screen name='Joensuun Kiekko-Pojat' children={this.createDrawer} />
+			<Stack.Screen name='Kiekko-Vantaa' children={this.createDrawer} options={{ title: 'Etusivu' }} />
+			<Stack.Screen name='RoKi Hockey' children={this.createDrawer} />
+			<Stack.Screen name='Kurra' children={this.createDrawer} />
+			<Stack.Screen name='Käpylän Pallo' children={this.createDrawer} />
+			<Stack.Screen name='Pallokerho Keski-Uusimaa' children={this.createDrawer} />
 		</Stack.Navigator>
+	}
 
-
-
-	createDrawer = () =>
-		<Drawer.Navigator>
-			<Drawer.Screen name='Etusivu' component={Kiekkovantaa} />
+	createDrawer = (props) => {
+		return <Drawer.Navigator>
+			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
 		</Drawer.Navigator>
-
-
+	}
 
 	render() {
 		return (
@@ -41,6 +38,9 @@ export default class App extends React.Component {
 		);
 	}
 }
+
+
+
 
 
 

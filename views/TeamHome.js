@@ -1,42 +1,21 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import home from './Home';
-import { createDrawer } from "./Home";
 
 
 
-
-class Kiekkopojat extends React.Component {
-	render() {
-
-		return (
-
-			<View style={styles.container}>
-				<Text style={[styles.tc, styles.h4]}>Joensuun Kiekko-pojat</Text>
-
-
-			</View>
-
-		);
-
-	}
-
-}
-
-class Kiekkovantaa extends React.Component {
+class Etusivu extends React.Component {
 	constructor(props) {
-
 		super(props);
 		this.state = {
-			news: null,
-			partners: null,
-			games: null,
 			isLoading: true,
+			partners: null,
+			news: null,
+			games: null,
 		};
 	}
+
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/928640177/home')
+		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/home')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -55,13 +34,15 @@ class Kiekkovantaa extends React.Component {
 	render() {
 
 		if (this.state.isLoading) {
+
 			return (
 				<View style={styles.container}>
-					<ActivityIndicator />
+					<ActivityIndicator size="large" color="blue" />
+					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
 				</View>
 			)
 		} else {
-
+			console.log(this.props)
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.item, styles.mb3}>
 					<Button style={[styles.tc, styles.h4]} title={val.title} />
@@ -82,116 +63,26 @@ class Kiekkovantaa extends React.Component {
 				</View>
 
 			});
-
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }}>
+						<Button style={[styles.navigator]} title={"Navigointi"} onPress={() => this.props.navigation.openDrawer()} />
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Uutiset</Text>
 						{news}
 						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>
 						{games}
 						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Yhteistyökumppanit</Text>
 						{partners}
-
 					</ScrollView>
 				</View>
 
 			);
 
 		}
-
 	}
-
 }
 
-
-class Roki extends React.Component {
-
-
-	render() {
-
-
-
-		return (
-
-			<View style={styles.container}>
-				<Text style={[styles.tc, styles.h4]}>RoKi Hockey</Text>
-
-
-			</View>
-
-		);
-
-	}
-
-}
-
-class Kurra extends React.Component {
-
-
-	render() {
-
-
-
-		return (
-
-			<View style={styles.container}>
-				<Text style={[styles.tc, styles.h4]}>Kurra</Text>
-
-
-			</View>
-
-		);
-
-	}
-
-}
-
-class Kapulanpallo extends React.Component {
-
-
-	render() {
-
-
-
-		return (
-
-			<View style={styles.container}>
-				<Text style={[styles.tc, styles.h4]}>Käpylän pallo</Text>
-
-
-			</View>
-
-		);
-
-	}
-
-}
-
-class Pallokerhokeskiuusimaa extends React.Component {
-
-
-	render() {
-
-
-
-		return (
-
-			<View style={styles.container}>
-				<Text style={[styles.tc, styles.h4]}>Pallokerho keski-uusimaa</Text>
-			</View>
-
-		);
-
-	}
-
-}
-
-
-
-
-
-export { Kiekkopojat, Kiekkovantaa, Roki, Kurra, Kapulanpallo, Pallokerhokeskiuusimaa };
+export { Etusivu };
 
 
 
@@ -233,7 +124,9 @@ const styles = StyleSheet.create({
 
 	mb3: {
 		marginBottom: 30,
+	},
+	navigator: {
+		width: 10,
 	}
-
 
 });

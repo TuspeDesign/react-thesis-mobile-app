@@ -1,17 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 
 export default class home extends React.Component {
-
 	constructor(props) {
-
 		super(props);
 		this.state = {
-			teams: null,
 			isLoading: true,
+			teams: null,
 			image_url: null,
 			image_format: null,
-
 		};
 	}
 	componentDidMount() {
@@ -34,7 +31,7 @@ export default class home extends React.Component {
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container}>
-					<ActivityIndicator />
+					<ActivityIndicator size="large" color="blue" />
 				</View>
 			)
 
@@ -44,7 +41,7 @@ export default class home extends React.Component {
 
 			let teams = this.state.teams.map((val, key) => {
 				return <View key={key} style={styles.item}>
-					<Button style={[styles.tc, styles.h4]} title={val.name} onPress={() => this.props.navigation.navigate(val.name)} />
+					<Button style={[styles.tc, styles.h4]} title={val.name} onPress={() => this.props.navigation.navigate(val.name, { id: val.id })} />
 					<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
 				</View>
 
@@ -91,7 +88,8 @@ const styles = StyleSheet.create({
 	h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
-	}
+	},
+
 
 
 });
