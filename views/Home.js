@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { styles } from '../styles/Styles'
 
 export default class home extends React.Component {
 	constructor(props) {
@@ -25,7 +26,6 @@ export default class home extends React.Component {
 			.catch((error) => {
 				console.log(error)
 			});
-
 	}
 	render() {
 		if (this.state.isLoading) {
@@ -61,35 +61,3 @@ export default class home extends React.Component {
 
 }
 
-const styles = StyleSheet.create({
-	container: {
-		display: 'flex',
-		flexDirection: 'column',
-		marginTop: 30,
-		width: '100%',
-		height: '100%',
-		justifyContent: 'center',
-
-
-	},
-
-	tc: {
-		textAlign: 'center',
-	},
-
-
-	logo: {
-		height: 150,
-		width: 150,
-		alignSelf: 'center',
-
-	},
-
-	h4: {
-		fontSize: 22,
-		fontWeight: 'bold',
-	},
-
-
-
-});

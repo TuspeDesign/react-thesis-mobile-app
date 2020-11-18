@@ -1,0 +1,35 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+	container: {
+		display: 'flex',
+		flexDirection: 'column',
+		marginTop: 30,
+		width: '100%',
+		height: '100%',
+		justifyContent: 'center',
+	},
+	tc: {
+		textAlign: 'center',
+	},
+	logo: {
+		alignSelf: 'center',
+		flex: 1,
+		width: 150,
+		height: 150,
+		resizeMode: 'contain'
+	},
+	h4: {
+		fontSize: 22,
+		fontWeight: 'bold',
+	},
+	mt3: {
+		marginTop: 30,
+	},
+	mb3: {
+		marginBottom: 30,
+	},
+	navigator: {
+		width: 10,
+	}
+});
