@@ -66,8 +66,7 @@ class Etusivu extends React.Component {
 			});
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }}>
-						<Button style={[styles.navigator]} title={"Navigointi"} onPress={() => this.props.navigation.openDrawer()} />
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Uutiset</Text>
 						{news}
 						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>

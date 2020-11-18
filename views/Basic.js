@@ -55,10 +55,9 @@ class Basic extends React.Component {
 
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }}>
-						<Button style={[styles.navigator]} title={"Navigointi"} onPress={() => this.props.navigation.openDrawer()} />
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>{title}</Text>
-						<Text style={[styles.tc, styles.mb3]}>{body}</Text>
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+						<Text style={[styles.h4, styles.mb3]}>{title}</Text>
+						<Text style={[styles.mb3]}>{body}</Text>
 					</ScrollView>
 				</View>
 

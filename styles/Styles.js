@@ -4,10 +4,12 @@ export const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
 		flexDirection: 'column',
-		marginTop: 30,
 		width: '100%',
 		height: '100%',
 		justifyContent: 'center',
+		paddingLeft: 10,
+		paddingRight: 10,
+
 	},
 	tc: {
 		textAlign: 'center',
@@ -22,6 +24,7 @@ export const styles = StyleSheet.create({
 	h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
+		marginTop: 20,
 	},
 	mt3: {
 		marginTop: 30,
@@ -30,6 +33,6 @@ export const styles = StyleSheet.create({
 		marginBottom: 30,
 	},
 	navigator: {
-		width: 10,
+		marginTop: 0,
 	}
 });

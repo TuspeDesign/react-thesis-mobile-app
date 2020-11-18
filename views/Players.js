@@ -49,8 +49,7 @@ class Pelaajat extends React.Component {
 
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }}>
-						<Button style={[styles.navigator]} title={"Navigointi"} onPress={() => this.props.navigation.openDrawer()} />
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false} >
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Maalivahdit</Text>
 						{goalies}
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Hyökkääjät</Text>

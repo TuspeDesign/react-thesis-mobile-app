@@ -48,7 +48,7 @@ export default class home extends React.Component {
 			});
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }}>
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
 						{teams}
 					</ScrollView>
 				</View>
