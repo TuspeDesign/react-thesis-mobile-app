@@ -2,6 +2,7 @@ import React from 'react';
 import { View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { styles } from '../styles/Styles'
 
+
 export default class home extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,13 +30,17 @@ export default class home extends React.Component {
 	}
 	render() {
 		if (this.state.isLoading) {
+
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
+
 				</View>
+
 			)
 
-		} else {
+		}
+		else {
 			const url = this.state.image_url
 			const format = this.state.image_format
 

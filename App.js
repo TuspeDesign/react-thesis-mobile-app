@@ -3,6 +3,7 @@ import Home from './views/Home';
 import { Etusivu } from './views/TeamHome'
 import { Basic } from './views/Basic'
 import { Pelaajat } from './views/Players'
+import { Pelaaja_profiili } from './views/Players'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -17,10 +18,15 @@ const Stack = createStackNavigator();
 export default class App extends React.Component {
 
 	createHomeStack = () => {
-
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />
-			<Stack.Screen name='Joensuun Kiekko-Pojat' children={this.createDrawer} />
+			<Stack.Screen name='Joensuun Kiekko-Pojat' children={this.createDrawer} options={({ navigation }) => ({
+				headerLeft: () => (
+					<TouchableOpacity style={{ paddingLeft: 10 }}>
+						<Button title='menu' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
+					</TouchableOpacity>
+				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#c90123' }, headerTitleStyle: { color: 'white' },
+			})} />
 			<Stack.Screen name='Kiekko-Vantaa' children={this.createDrawer} options={({ navigation }) => ({
 				headerLeft: () => (
 					<TouchableOpacity style={{ paddingLeft: 10 }}>
@@ -28,16 +34,18 @@ export default class App extends React.Component {
 					</TouchableOpacity>
 				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#035e96' }, headerTitleStyle: { color: 'white' },
 			})} />
-			<Stack.Screen name='RoKi Hockey' children={this.createDrawer} />
+			<Stack.Screen name='RoKi Hockey' children={this.createDrawer} options={({ navigation }) => ({
+				headerLeft: () => (
+					<TouchableOpacity style={{ paddingLeft: 10 }}>
+						<Button title='menu' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
+					</TouchableOpacity>
+				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#000d37' }, headerTitleStyle: { color: 'white' },
+			})} />
 			<Stack.Screen name='Kurra' children={this.createDrawer} />
 			<Stack.Screen name='Käpylän Pallo' children={this.createDrawer} />
 			<Stack.Screen name='Pallokerho Keski-Uusimaa' children={this.createDrawer} />
 		</Stack.Navigator>
-
-
 	}
-
-
 
 	createDrawer = (props) => {
 		return <Drawer.Navigator>
@@ -45,8 +53,10 @@ export default class App extends React.Component {
 			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ id: props.route.params.id, page_id: '2398' }} />
 			<Drawer.Screen name='Liput' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2400' }} />
 			<Drawer.Screen name='Fanit' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2408' }} />
+			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_id: props.route.params.profile_id, profile_img: props.route.params.profile_img }} />
 		</Drawer.Navigator>
 	}
+
 
 
 
@@ -55,7 +65,6 @@ export default class App extends React.Component {
 			<NavigationContainer>
 				{this.createHomeStack()}
 			</NavigationContainer>
-
 		);
 	}
 }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { styles } from '../styles/Styles'
 
-
 class Basic extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,9 +11,6 @@ class Basic extends React.Component {
 			body: null,
 		};
 	}
-
-
-
 	componentDidMount() {
 
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/' + this.props.route.params.page_id)

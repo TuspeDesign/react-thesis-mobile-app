@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { styles } from '../styles/Styles'
 
-
-
 class Etusivu extends React.Component {
 	constructor(props) {
 		super(props);
@@ -35,6 +33,7 @@ class Etusivu extends React.Component {
 	render() {
 
 		if (this.state.isLoading) {
+			console.log(this.props)
 
 			return (
 				<View style={styles.container}>
@@ -43,6 +42,7 @@ class Etusivu extends React.Component {
 				</View>
 			)
 		} else {
+			let logo = this.props.route.params.logo_url
 			console.log(this.props)
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.item, styles.mb3}>

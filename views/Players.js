@@ -7,8 +7,10 @@ class Pelaajat extends React.Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			forwards: null,
 			goalies: null,
+			defense: null,
+			forwards: null,
+
 		};
 	}
 	componentDidMount() {
@@ -17,8 +19,9 @@ class Pelaajat extends React.Component {
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					forwards: data[0].players,
 					goalies: data[2].players,
+					defense: data[1].players,
+					forwards: data[0].players,
 				})
 			})
 			.catch((error) => {
@@ -34,24 +37,56 @@ class Pelaajat extends React.Component {
 				</View>
 			)
 		} else {
-			let forwards = this.state.forwards.map((val, key) => {
-				return <View key={key} style={styles.item}>
-					<Text style={[styles.tc, styles.mb3]}>{val.name}</Text>
-					<Image style={styles.logo} source={{ uri: val.img }} />
-				</View>
-			});
 			let goalies = this.state.goalies.map((val, key) => {
-				return <View key={key} style={styles.item}>
-					<Button style={[styles.tc, styles.mb3]} title={val.name} />
-					<Image style={styles.logo} source={{ uri: val.img }} />
-				</View>
+				if (val.img == null) {
+					return <View key={key} style={styles.item, styles.mt3}>
+						<Text style={[styles.tc]}>Ei Kuvaa</Text>
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+					</View>
+				} else {
+					return <View key={key} style={styles.item}>
+						<Image style={styles.logo} source={{ uri: val.img }} />
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+					</View>
+				}
 			});
+
+			let defense = this.state.defense.map((val, key) => {
+				if (val.img == null) {
+					return <View key={key} style={styles.item, styles.mt3}>
+						<Text style={[styles.tc]}>Ei Kuvaa</Text>
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+					</View>
+				} else {
+					return <View key={key} style={styles.item}>
+						<Image style={styles.logo} source={{ uri: val.img }} />
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+					</View>
+				}
+			});
+
+			let forwards = this.state.forwards.map((val, key) => {
+				if (val.img == null) {
+					return <View key={key} style={styles.item, styles.mt3}>
+						<Text style={[styles.tc]}>Ei Kuvaa</Text>
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+					</View>
+				} else {
+					return <View key={key} style={styles.item}>
+						<Image style={styles.logo} source={{ uri: val.img }} />
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+					</View>
+				}
+			});
+
 
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false} >
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Maalivahdit</Text>
 						{goalies}
+						<Text style={[styles.tc, styles.h4, styles.mb3]}>Puolustajat</Text>
+						{defense}
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Hyökkääjät</Text>
 						{forwards}
 					</ScrollView>
@@ -62,7 +97,75 @@ class Pelaajat extends React.Component {
 		}
 	}
 }
-export { Pelaajat };
+
+class Pelaaja_profiili extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			isLoading: true,
+			title: null,
+		};
+	}
+	componentDidMount() {
+		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/' + this.props.route.params.profile_id)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					isLoading: false,
+					title: data.title,
+				})
+			})
+			.catch((error) => {
+				console.log(error)
+			});
+	}
+
+	componentDidUpdate(prevProps) {
+		// Typical usage (don't forget to compare props):
+		if (this.props.route.params.profile_id !== prevProps.route.params.profile_id) {
+			fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/' + this.props.route.params.profile_id)
+				.then((response) => response.json())
+				.then((data) => {
+					this.setState({
+						isLoading: false,
+						title: data.title,
+					})
+				})
+				.catch((error) => {
+					console.log(error)
+				});
+		}
+	}
+
+	render() {
+
+		if (this.state.isLoading) {
+			return (
+				<View style={styles.container}>
+					<ActivityIndicator size="large" color="blue" />
+					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
+				</View>
+			)
+		} else {
+
+			if (this.props.route.params.profile_img == null) {
+				return <View style={styles.item, styles.mt3}>
+					<Text style={[styles.tc]}>Ei Kuvaa</Text>
+					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />
+				</View>
+			} else {
+				return <View style={styles.item}>
+					<Image style={styles.logo} source={{ uri: this.props.route.params.profile_img }} />
+					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />
+				</View>
+			}
+		};
+
+	}
+}
+
+export { Pelaajat, Pelaaja_profiili };
 
 
 

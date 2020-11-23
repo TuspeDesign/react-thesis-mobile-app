@@ -19,7 +19,9 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		width: 150,
 		height: 150,
-		resizeMode: 'contain'
+		resizeMode: 'contain',
+		marginTop: 10,
+		marginBottom: 10,
 	},
 	h4: {
 		fontSize: 22,
