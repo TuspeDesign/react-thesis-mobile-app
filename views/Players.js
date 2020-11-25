@@ -40,7 +40,7 @@ class Pelaajat extends React.Component {
 			let goalies = this.state.goalies.map((val, key) => {
 				if (val.img == null) {
 					return <View key={key} style={styles.item, styles.mt3}>
-						<Text style={[styles.tc]}>Ei Kuvaa</Text>
+						<Image style={styles.logo} source={{ uri: this.props.route.params.logo }} />
 						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, data: '1' })} />
 					</View>
 				} else {
@@ -54,7 +54,7 @@ class Pelaajat extends React.Component {
 			let defense = this.state.defense.map((val, key) => {
 				if (val.img == null) {
 					return <View key={key} style={styles.item, styles.mt3}>
-						<Text style={[styles.tc]}>Ei Kuvaa</Text>
+						<Image style={styles.logo} source={{ uri: this.props.route.params.logo }} />
 						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
 					</View>
 				} else {
@@ -68,7 +68,7 @@ class Pelaajat extends React.Component {
 			let forwards = this.state.forwards.map((val, key) => {
 				if (val.img == null) {
 					return <View key={key} style={styles.item, styles.mt3}>
-						<Text style={[styles.tc]}>Ei Kuvaa</Text>
+						<Image style={styles.logo} source={{ uri: this.props.route.params.logo }} />
 						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
 					</View>
 				} else {
@@ -90,7 +90,7 @@ class Pelaajat extends React.Component {
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Hyökkääjät</Text>
 						{forwards}
 					</ScrollView>
-				</View>
+				</View >
 
 			);
 
@@ -156,15 +156,14 @@ class Pelaaja_profiili extends React.Component {
 				</View>
 			)
 		} else {
-			console.log(this.props.route.params.data)
 			if (this.props.route.params.profile_img == null) {
-				return <View style={styles.item, styles.mt3}>
-					<Text style={[styles.tc]}>Ei Kuvaa</Text>
+				return <View style={styles.container}>
+					<Image style={styles.logo} source={{ uri: this.props.route.params.logo }} />
 					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />
-
 				</View>
 			} else {
-				return <View style={styles.item}>
+				console.log(this.props.route.params.profile_img)
+				return <View style={styles.container}>
 					<Image style={styles.logo} source={{ uri: this.props.route.params.profile_img }} />
 					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />
 				</View>

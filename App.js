@@ -11,10 +11,15 @@ import { View, ActivityIndicator, Image, ScrollView, Button } from 'react-native
 import { DrawerActions } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { styles } from './styles/Styles'
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
+
+const kiekkovantaa = 'https://kiekko-vantaa.fi/site/assets/files/1/kiekko-vantaa.png';
+const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
+const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
 
 export default class App extends React.Component {
 
@@ -22,24 +27,32 @@ export default class App extends React.Component {
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />
 			<Stack.Screen name='Joensuun Kiekko-Pojat' children={this.createDrawer} options={({ navigation }) => ({
-				headerLeft: () => (
-					<TouchableOpacity style={{ paddingLeft: 10 }}>
-						<Feather name='menu' size={24} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
+				headerRight: () => (
+					<TouchableOpacity style={{ paddingRight: 10 }}>
+						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
+				), headerLeft: () => (
+					<Image style={styles.logo_top} source={{ uri: joensuunkiekkopojat }} />
 				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#c90123' }, headerTitleStyle: { color: 'white' },
 			})} />
 			<Stack.Screen name='Kiekko-Vantaa' children={this.createDrawer} options={({ navigation }) => ({
-				headerLeft: () => (
-					<TouchableOpacity style={{ paddingLeft: 10 }}>
-						<Feather name='menu' size={24} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
+				headerRight: () => (
+					<TouchableOpacity style={{ paddingRight: 10 }}>
+						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
+				), headerLeft: () => (
+					<Image style={styles.logo_top} source={{ uri: kiekkovantaa }} />
 				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#035e96' }, headerTitleStyle: { color: 'white' },
 			})} />
 			<Stack.Screen name='RoKi Hockey' children={this.createDrawer} options={({ navigation }) => ({
-				headerLeft: () => (
-					<TouchableOpacity style={{ paddingLeft: 10 }}>
-						<Feather name='menu' size={24} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
+				headerRight: () => (
+					<TouchableOpacity style={{ paddingRight: 10 }}>
+						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
+				), headerLeft: () => (
+
+					<Image style={styles.logo_top} source={{ uri: roki }} />
+
 				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#000d37' }, headerTitleStyle: { color: 'white' },
 			})} />
 			<Stack.Screen name='Kurra' children={this.createDrawer} />
@@ -49,10 +62,10 @@ export default class App extends React.Component {
 	}
 
 	createDrawer = (props) => {
-		return <Drawer.Navigator>
+		return <Drawer.Navigator drawerPosition="right">
 			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id, page_id: '1' }} />
-			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ id: props.route.params.id, page_id: '2398' }} />
-			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img }} />
+			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ id: props.route.params.id, page_id: '2398', logo: kiekkovantaa }} />
+			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
 			<Drawer.Screen name='Ottelut' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Liput' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2400' }} />
 			<Drawer.Screen name='Fanit' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2408' }} />
@@ -73,7 +86,7 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<NavigationContainer>
+			<NavigationContainer >
 				{this.createHomeStack()}
 			</NavigationContainer>
 		);

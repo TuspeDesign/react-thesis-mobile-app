@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		paddingLeft: 10,
 		paddingRight: 10,
-
 	},
 	tc: {
 		textAlign: 'center',
@@ -22,6 +21,14 @@ export const styles = StyleSheet.create({
 		resizeMode: 'contain',
 		marginTop: 10,
 		marginBottom: 10,
+	},
+
+	logo_top: {
+		alignSelf: 'center',
+		flex: 1,
+		width: 100,
+		height: 100,
+		resizeMode: 'contain',
 	},
 	h4: {
 		fontSize: 22,
@@ -36,5 +43,10 @@ export const styles = StyleSheet.create({
 	},
 	navigator: {
 		marginTop: 0,
+	},
+
+	up: {
+		textTransform: "uppercase",
 	}
+
 });
