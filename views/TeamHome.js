@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { styles } from '../styles/Styles'
 
+
 class Etusivu extends React.Component {
 	constructor(props) {
 		super(props);

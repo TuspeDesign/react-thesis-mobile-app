@@ -28,6 +28,9 @@ export default class home extends React.Component {
 				console.log(error)
 			});
 	}
+
+
+
 	render() {
 		if (this.state.isLoading) {
 

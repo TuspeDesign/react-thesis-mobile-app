@@ -41,7 +41,7 @@ class Pelaajat extends React.Component {
 				if (val.img == null) {
 					return <View key={key} style={styles.item, styles.mt3}>
 						<Text style={[styles.tc]}>Ei Kuvaa</Text>
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img })} />
+						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, data: '1' })} />
 					</View>
 				} else {
 					return <View key={key} style={styles.item}>
@@ -98,6 +98,14 @@ class Pelaajat extends React.Component {
 	}
 }
 
+
+
+
+
+
+
+
+
 class Pelaaja_profiili extends React.Component {
 
 	constructor(props) {
@@ -148,11 +156,12 @@ class Pelaaja_profiili extends React.Component {
 				</View>
 			)
 		} else {
-
+			console.log(this.props.route.params.data)
 			if (this.props.route.params.profile_img == null) {
 				return <View style={styles.item, styles.mt3}>
 					<Text style={[styles.tc]}>Ei Kuvaa</Text>
 					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />
+
 				</View>
 			} else {
 				return <View style={styles.item}>
