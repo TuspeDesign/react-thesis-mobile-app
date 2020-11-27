@@ -12,7 +12,6 @@ class Basic extends React.Component {
 		};
 	}
 	componentDidMount() {
-
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/' + this.props.route.params.page_id)
 			.then((response) => response.json())
 			.then((data) => {
@@ -25,13 +24,9 @@ class Basic extends React.Component {
 			.catch((error) => {
 				console.log(error)
 			});
-
-
 	}
 	render() {
-
 		if (this.state.isLoading) {
-
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
@@ -41,13 +36,9 @@ class Basic extends React.Component {
 		} else {
 			console.log(this.props.route.params.page_id)
 			const regex = /(<([^>]+)>)/ig;
-
-
 			let title = this.state.title
 			let body1 = this.state.body.replace(regex, '');
 			let body = body1.replace(/&nbsp;/g, '');
-
-
 
 			return (
 				<View style={styles.container}>
@@ -56,10 +47,8 @@ class Basic extends React.Component {
 						<Text style={[styles.mb3]}>{body}</Text>
 					</ScrollView>
 				</View>
-
 			);
 		}
 	}
 }
-
 export { Basic };

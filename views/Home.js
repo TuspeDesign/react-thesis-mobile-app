@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../styles/Styles'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class home extends React.Component {
 	constructor(props) {
@@ -13,7 +13,30 @@ export default class home extends React.Component {
 			image_format: null,
 		};
 	}
+	saveID = async (id, name) => {
+		try {
+			const teamid = JSON.stringify(id)
+			await AsyncStorage.setItem('id', teamid)
+			await AsyncStorage.setItem('name', name)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	getID = async () => {
+		try {
+			const teamid = await AsyncStorage.getItem('id')
+			const name = await AsyncStorage.getItem('name')
+			if (teamid !== null) {
+				this.props.navigation.navigate(name, { id: teamid })
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	componentDidMount() {
+		this.getID();
 		fetch('https://api.sportti.org/sites')
 			.then((response) => response.json())
 			.then((data) => {
@@ -29,19 +52,13 @@ export default class home extends React.Component {
 			});
 	}
 
-
-
 	render() {
 		if (this.state.isLoading) {
-
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
-
 				</View>
-
 			)
-
 		}
 		else {
 			const url = this.state.image_url
@@ -49,11 +66,14 @@ export default class home extends React.Component {
 
 			let teams = this.state.teams.map((val, key) => {
 				return <View key={key} style={styles.item}>
-					<Button style={[styles.tc, styles.h4]} title={val.name} onPress={() => this.props.navigation.navigate(val.name, { id: val.id })} />
+					<Button style={[styles.tc, styles.h4]} title={val.name} onPress={() => {
+						this.saveID(val.id, val.name);
+						this.props.navigation.navigate(val.name, { id: val.id })
+					}} />
 					<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
 				</View>
-
 			});
+
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>

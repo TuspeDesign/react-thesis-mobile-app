@@ -15,8 +15,6 @@ import { styles } from './styles/Styles'
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
-
 const kiekkovantaa = 'https://kiekko-vantaa.fi/site/assets/files/1/kiekko-vantaa.png';
 const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
 const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
@@ -50,9 +48,7 @@ export default class App extends React.Component {
 						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
 				), headerLeft: () => (
-
 					<Image style={styles.logo_top} source={{ uri: roki }} />
-
 				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#000d37' }, headerTitleStyle: { color: 'white' },
 			})} />
 			<Stack.Screen name='Kurra' children={this.createDrawer} />
@@ -80,9 +76,6 @@ export default class App extends React.Component {
 			<Drawer.Screen name='A-nuoret' component={Basic} initialParams={{ id: props.route.params.id }} />
 		</Drawer.Navigator>
 	}
-
-
-
 
 	render() {
 		return (
