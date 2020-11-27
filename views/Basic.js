@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { Text, View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Styles'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 class Basic extends React.Component {
 	constructor(props) {
@@ -51,4 +54,33 @@ class Basic extends React.Component {
 		}
 	}
 }
-export { Basic };
+
+
+
+
+class Delete extends React.Component {
+
+	removeValue = async () => {
+		try {
+			await AsyncStorage.removeItem('id')
+			alert('Valittu joukkue poistettu onnistuneesti. Ohjelma käynnistyy seuraavan kerran valitse joukkue -sivulta')
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	render() {
+
+
+		return (
+			<View style={styles.container}>
+				<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.h4, styles.up, styles.white]}>Poista joukkue</Text></TouchableOpacity>
+			</View >
+		);
+	}
+}
+
+
+
+
+export { Basic, Delete };

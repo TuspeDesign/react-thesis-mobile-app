@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
 	tc: {
 		textAlign: 'center',
 	},
+
+	white: {
+		color: '#fff',
+	},
+
 	logo: {
 		alignSelf: 'center',
 		flex: 1,
@@ -33,7 +38,6 @@ export const styles = StyleSheet.create({
 	h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
-		marginTop: 20,
 	},
 	mt3: {
 		marginTop: 30,
@@ -41,12 +45,14 @@ export const styles = StyleSheet.create({
 	mb3: {
 		marginBottom: 30,
 	},
-	navigator: {
-		marginTop: 0,
-	},
-
 	up: {
 		textTransform: "uppercase",
-	}
+	},
 
+	delete: {
+		padding: 10,
+		backgroundColor: "#db524b",
+		alignSelf: "center",
+		borderRadius: 10,
+	}
 });

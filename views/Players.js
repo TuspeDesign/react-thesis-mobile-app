@@ -31,23 +31,10 @@ class Pelaajat extends React.Component {
 			});
 	}
 
-	removeValue = async () => {
-		try {
-			await AsyncStorage.removeItem('id')
-			alert('Valittu joukkue poistettu onnistuneesti. Ohjelma käynnistyy seuraavan kerran valitse joukkue -sivulta')
-		} catch (e) {
-			// remove error
-		}
-
-
-	}
-
-
 	render() {
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container}>
-					<Button title='Poista id' onPress={() => this.removeValue()}></Button>
 					<ActivityIndicator size="large" color="blue" />
 					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
 				</View>
@@ -99,7 +86,6 @@ class Pelaajat extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false} >
-						<Button title='Poista id' onPress={() => this.removeValue()}></Button>
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Maalivahdit</Text>
 						{goalies}
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Puolustajat</Text>

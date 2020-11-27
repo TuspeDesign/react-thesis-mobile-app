@@ -31,29 +31,12 @@ class Etusivu extends React.Component {
 
 
 	}
-
-	displayData = async () => {
-		try {
-			let user = await AsyncStorage.getItem('name');
-			let id = await AsyncStorage.getItem('id');
-			alert(user + ' ' + id);
-		}
-		catch (error) {
-			alert(error)
-		}
-	}
-
-
 	render() {
 
 		if (this.state.isLoading) {
 			console.log(this.props)
-
 			return (
 				<View style={styles.container}>
-					<TouchableOpacity onPress={this.displayData}>
-						<Text>Click to display data</Text>
-					</TouchableOpacity>
 					<ActivityIndicator size="large" color="blue" />
 					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
 				</View>
@@ -84,9 +67,6 @@ class Etusivu extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<TouchableOpacity onPress={this.displayData}>
-							<Text>Click to display data</Text>
-						</TouchableOpacity>
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Uutiset</Text>
 						{news}
 						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>

@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './views/Home';
 import { Etusivu } from './views/TeamHome'
 import { Basic } from './views/Basic'
+import { Delete } from './views/Basic'
 import { Pelaajat } from './views/Players'
 import { Pelaaja_profiili } from './views/Players'
 import { NavigationContainer } from '@react-navigation/native'
@@ -74,9 +75,9 @@ export default class App extends React.Component {
 			<Drawer.Screen name='Yhteystiedot' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2406' }} />
 			<Drawer.Screen name='Aitio' component={Basic} initialParams={{ id: props.route.params.id, page_id: '10178' }} />
 			<Drawer.Screen name='A-nuoret' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} initialParams={{ id: props.route.params.id }} />
 		</Drawer.Navigator>
 	}
-
 	render() {
 		return (
 			<NavigationContainer >
