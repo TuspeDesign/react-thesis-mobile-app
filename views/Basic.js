@@ -40,17 +40,30 @@ class Basic extends React.Component {
 			console.log(this.props.route.params.page_id)
 			const regex = /(<([^>]+)>)/ig;
 			let title = this.state.title
-			let body1 = this.state.body.replace(regex, '');
-			let body = body1.replace(/&nbsp;/g, '');
+			if (this.state.body != null) {
+				let body1 = this.state.body.replace(regex, '');
+				let body = body1.replace(/&nbsp;/g, '');
+				return (
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.h4, styles.mb3]}>{title}</Text>
+							<Text style={[styles.mb3]}>{body}</Text>
+						</ScrollView>
+					</View>
+				);
+			} else {
+				let body = 'Kaikkea tietoa ei löydy kyseiselle sivulle.'
+				return (
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.h4, styles.mb3]}>{title}</Text>
+							<Text style={[styles.mb3]}>{body}</Text>
+						</ScrollView>
+					</View>
+				);
+			}
 
-			return (
-				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<Text style={[styles.h4, styles.mb3]}>{title}</Text>
-						<Text style={[styles.mb3]}>{body}</Text>
-					</ScrollView>
-				</View>
-			);
+
 		}
 	}
 }

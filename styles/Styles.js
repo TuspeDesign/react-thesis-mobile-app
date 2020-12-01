@@ -14,6 +14,10 @@ export const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 
+	tl: {
+		textAlign: 'left',
+	},
+
 	white: {
 		color: '#fff',
 	},
@@ -42,6 +46,14 @@ export const styles = StyleSheet.create({
 	mt3: {
 		marginTop: 30,
 	},
+
+	pt3: {
+		paddingTop: 30,
+	},
+
+	pl3: {
+		paddingLeft: 30,
+	},
 	mb3: {
 		marginBottom: 30,
 	},
@@ -55,4 +67,5 @@ export const styles = StyleSheet.create({
 		alignSelf: "center",
 		borderRadius: 10,
 	}
+
 });

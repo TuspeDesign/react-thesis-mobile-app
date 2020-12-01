@@ -1,10 +1,9 @@
 import React from 'react';
 import Home from './views/Home';
 import { Etusivu } from './views/TeamHome'
-import { Basic } from './views/Basic'
-import { Delete } from './views/Basic'
-import { Pelaajat } from './views/Players'
-import { Pelaaja_profiili } from './views/Players'
+import { DrawerContent } from './views/DrawerContent'
+import { Basic, Delete } from './views/Basic'
+import { Pelaajat, Pelaaja_profiili } from './views/Players'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -58,26 +57,29 @@ export default class App extends React.Component {
 		</Stack.Navigator>
 	}
 
+
 	createDrawer = (props) => {
-		return <Drawer.Navigator drawerPosition="right">
-			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id, page_id: '1' }} />
-			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ id: props.route.params.id, page_id: '2398', logo: kiekkovantaa }} />
+		return <Drawer.Navigator drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
+			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ id: props.route.params.id, logo: kiekkovantaa }} />
 			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
 			<Drawer.Screen name='Ottelut' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Liput' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2400' }} />
-			<Drawer.Screen name='Fanit' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2408' }} />
+			<Drawer.Screen name='Liput' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Uutiset' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Fanit' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Seura' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Jäädytetyt pelinumerot ja ennätykset' component={Basic} initialParams={{ id: props.route.params.id, page_id: '11385' }} />
-			<Drawer.Screen name='Media' component={Basic} initialParams={{ id: props.route.params.id, page_id: '11386' }} />
-			<Drawer.Screen name='Historia' component={Basic} initialParams={{ id: props.route.params.id, page_id: '11390' }} />
-			<Drawer.Screen name='Trio-Areena' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2410' }} />
+			<Drawer.Screen name='Jäädytetyt pelinumerot & ennätykset' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Media' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Historia' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Trio Areena' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Yhteistyössä' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Yhteystiedot' component={Basic} initialParams={{ id: props.route.params.id, page_id: '2406' }} />
-			<Drawer.Screen name='Aitio' component={Basic} initialParams={{ id: props.route.params.id, page_id: '10178' }} />
+			<Drawer.Screen name='Yhteystiedot' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Aitio' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='A-nuoret' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} />
 		</Drawer.Navigator>
 	}
+
 	render() {
 		return (
 			<NavigationContainer >
