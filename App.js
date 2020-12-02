@@ -4,6 +4,7 @@ import { Etusivu } from './views/TeamHome'
 import { DrawerContent } from './views/DrawerContent'
 import { Basic, Delete } from './views/Basic'
 import { Pelaajat, Pelaaja_profiili } from './views/Players'
+import { Partners } from './views/Partners'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -72,7 +73,7 @@ export default class App extends React.Component {
 			<Drawer.Screen name='Media' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Historia' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Trio Areena' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Yhteistyössä' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Yhteistyössä' component={Partners} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Yhteystiedot' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Aitio' component={Basic} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='A-nuoret' component={Basic} initialParams={{ id: props.route.params.id }} />

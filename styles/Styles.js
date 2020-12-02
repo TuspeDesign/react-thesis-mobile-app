@@ -32,6 +32,15 @@ export const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 
+	news_img: {
+		flex: 1,
+		width: null,
+		height: 300,
+		resizeMode: 'contain',
+		marginTop: 5,
+		marginBottom: 5,
+	},
+
 	logo_top: {
 		alignSelf: 'center',
 		flex: 1,
@@ -66,6 +75,19 @@ export const styles = StyleSheet.create({
 		backgroundColor: "#db524b",
 		alignSelf: "center",
 		borderRadius: 10,
-	}
+	},
 
+	home: {
+		padding: 10,
+		backgroundColor: '#035e96',
+		alignSelf: "center",
+		borderRadius: 10,
+	},
+
+
+	test: {
+		borderRadius: 10,
+		borderColor: 'black',
+		borderWidth: 2,
+	}
 });

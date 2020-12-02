@@ -46,7 +46,7 @@ class Etusivu extends React.Component {
 			console.log(this.props)
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.item, styles.mb3}>
-					<Button style={[styles.tc, styles.h4]} title={val.title} />
+					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Uutiset', { page_id: val.id })} />
 				</View>
 			});
 

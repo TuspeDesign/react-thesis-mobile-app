@@ -3,8 +3,6 @@ import { Text, View, ActivityIndicator, Image, ScrollView, Button, TouchableOpac
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
 class Basic extends React.Component {
 	constructor(props) {
 		super(props);

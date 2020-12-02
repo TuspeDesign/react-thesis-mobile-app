@@ -63,14 +63,20 @@ export default class home extends React.Component {
 		else {
 			const url = this.state.image_url
 			const format = this.state.image_format
+			const kiekkovantaa = 'https://kiekko-vantaa.fi/site/assets/files/1/kiekko-vantaa.png';
+			const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
+			const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
+
 			let teams = this.state.teams.map((val, key) => {
 				if (val.id != null) {
 					return <View key={key} style={styles.item}>
-						<Button style={[styles.tc, styles.h4]} title={val.name} onPress={() => {
+						<TouchableOpacity style={[styles.test, styles.mb3]} onPress={() => {
 							this.saveID(val.id, val.name);
 							this.props.navigation.navigate(val.name, { id: val.id })
-						}} />
-						<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
+						}}>
+							<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
+							<Text style={[styles.tc, styles.h4, styles.home, styles.white, styles.up, styles.mb3]}>{val.name}</Text>
+						</TouchableOpacity>
 					</View>
 				}
 			});

@@ -29,7 +29,9 @@ class DrawerContent extends React.Component {
 		let newArray = [];
 
 		newArray.push(...data1)
-		newArray.push(...data2)
+		if (data2 != null) {
+			newArray.push(...data2)
+		}
 		newArray.push(...data3)
 		return (
 			<View style={{ flex: 1 }}>
@@ -38,7 +40,7 @@ class DrawerContent extends React.Component {
 					keyExtractor={({ id }) => id}
 					renderItem={({ item }) => (
 						<TouchableOpacity onPress={() => this.props.navigation.navigate(item.title, { page_id: item.id })} >
-							<Text style={[styles.up, styles.mt3, styles.pl3]}>{item.title}</Text>
+							<Text style={[styles.up, styles.mt3, styles.pl3, styles.mb3]}>{item.title}</Text>
 						</TouchableOpacity>
 					)}
 				/>
