@@ -32,6 +32,7 @@ The type tells the feed what kind of content is needed.
 | none | List of all available sports clubs with their logos. |
 | menu | Navigation of a specific sports club. |
 | home | Elements needed for the front page. |
+| games | All the upcoming games and the next local game. |
 | players | All the players and their helpers. |
 | partners | Partners with logos and links. |
 | number | All the content of the certain page or player. |
