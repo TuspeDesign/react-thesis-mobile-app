@@ -8,7 +8,7 @@ The visitor selects the desired sport club, after which the club id number is in
 
 ## How the feed works
 
-The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed. All requests are sent in POST format and the query must include an Auth code in the header.
+The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed. All requests are sent in GET format and the query must include an Auth code in the header.
 
 ### Base url
 api.sportti.org/sites (https only)
