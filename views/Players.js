@@ -147,7 +147,7 @@ class Pelaaja_profiili extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
+					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
 				</View>
 			)
 		} else {

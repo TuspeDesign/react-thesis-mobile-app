@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { Text, View, ActivityIndicator, Image, ScrollView, Button, Linking, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Styles'
 
 class Etusivu extends React.Component {
@@ -41,13 +41,17 @@ class Etusivu extends React.Component {
 		} else {
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.item, styles.mb3}>
-					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Uutiset', { page_id: val.id })} />
+					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Uutiset', {
+						team_id: this.props.route.params.id, page_id: val.id
+					})} />
 				</View>
 			});
 
 			let partners = this.state.partners.map((val, key) => {
 				return <View key={key} style={styles.item}>
-					<Image style={styles.logo} source={{ uri: val.img }} />
+					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
+						<Image style={styles.logo} source={{ uri: val.img }} />
+					</TouchableOpacity>
 				</View>
 
 			});

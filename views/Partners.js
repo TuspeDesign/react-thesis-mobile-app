@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView } from 'react-native';
+import { Text, View, ActivityIndicator, Image, ScrollView, Linking, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Styles'
 
 class Partners extends React.Component {
@@ -38,7 +38,9 @@ class Partners extends React.Component {
 			let mainTeam = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyöseura') {
 					return <View key={key} style={styles.item, styles.mb3}>
-						<Image style={styles.logo} source={{ uri: val.img }} />
+						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
+							<Image style={styles.logo} source={{ uri: val.img }} />
+						</TouchableOpacity>
 					</View>
 				}
 			});
@@ -46,7 +48,9 @@ class Partners extends React.Component {
 			let mainPartners = this.state.logos.map((val, key) => {
 				if (val.type == 'Pääyhteistyökumppanit') {
 					return <View key={key} style={styles.item, styles.mb3}>
-						<Image style={styles.logo} source={{ uri: val.img }} />
+						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
+							<Image style={styles.logo} source={{ uri: val.img }} />
+						</TouchableOpacity>
 					</View>
 				}
 			});
@@ -54,7 +58,9 @@ class Partners extends React.Component {
 			let partners = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyökumppanit') {
 					return <View key={key} style={styles.item, styles.mb3}>
-						<Image style={styles.logo} source={{ uri: val.img }} />
+						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
+							<Image style={styles.logo} source={{ uri: val.img }} />
+						</TouchableOpacity>
 					</View>
 				}
 			});

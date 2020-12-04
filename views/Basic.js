@@ -26,6 +26,23 @@ class Basic extends React.Component {
 				console.log(error)
 			});
 	}
+	componentDidUpdate(prevProps) {
+		// Typical usage (don't forget to compare props):
+		if (this.props.route.params.page_id !== prevProps.route.params.page_id) {
+			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.page_id)
+				.then((response) => response.json())
+				.then((data) => {
+					this.setState({
+						isLoading: false,
+						title: data.title,
+						body: data.body,
+					})
+				})
+				.catch((error) => {
+					console.log(error)
+				});
+		}
+	}
 	render() {
 		if (this.state.isLoading) {
 			return (
@@ -43,8 +60,8 @@ class Basic extends React.Component {
 				return (
 					<View style={styles.container}>
 						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.h4, styles.mb3]}>{title}</Text>
-							<Text style={[styles.mb3]}>{body}</Text>
+							<Text style={[styles.h4, styles.up]}>{title}</Text>
+							<Text>{body}</Text>
 						</ScrollView>
 					</View>
 				);
@@ -53,8 +70,8 @@ class Basic extends React.Component {
 				return (
 					<View style={styles.container}>
 						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.h4, styles.mb3]}>{title}</Text>
-							<Text style={[styles.mb3]}>{body}</Text>
+							<Text style={[styles.h4, styles.up]}>{title}</Text>
+							<Text style={[styles.mt3]}>{body}</Text>
 						</ScrollView>
 					</View>
 				);
@@ -79,7 +96,7 @@ class Delete extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.h4, styles.up, styles.white]}>Poista joukkue</Text></TouchableOpacity>
+				<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista joukkue</Text></TouchableOpacity>
 			</View >
 		);
 	}

@@ -5,6 +5,7 @@ import { DrawerContent } from './views/DrawerContent';
 import { Basic, Delete } from './views/Basic';
 import { Pelaajat, Pelaaja_profiili } from './views/Players';
 import { Partners } from './views/Partners';
+import { Games } from './views/Games';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -61,8 +62,8 @@ export default class App extends React.Component {
 		return <Drawer.Navigator drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
 			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ logo: kiekkovantaa }} />
-			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
-			<Drawer.Screen name='Ottelut' component={Basic} />
+			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
+			<Drawer.Screen name='Ottelut' component={Games} />
 			<Drawer.Screen name='Liput' component={Basic} />
 			<Drawer.Screen name='Uutiset' component={Basic} />
 			<Drawer.Screen name='Fanit' component={Basic} />

@@ -51,6 +51,9 @@ export const styles = StyleSheet.create({
 	h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
+		marginTop: 30,
+		marginBottom: 30,
+		textTransform: "uppercase",
 	},
 	mt3: {
 		marginTop: 30,
@@ -75,6 +78,11 @@ export const styles = StyleSheet.create({
 		backgroundColor: "#db524b",
 		alignSelf: "center",
 		borderRadius: 10,
+	},
+
+	delete_h4: {
+		fontSize: 22,
+		fontWeight: 'bold',
 	},
 
 	home: {
