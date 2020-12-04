@@ -11,7 +11,7 @@ class Partners extends React.Component {
 		};
 	}
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/partners')
+		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/partners')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -26,13 +26,11 @@ class Partners extends React.Component {
 
 	}
 	render() {
-
 		if (this.state.isLoading) {
-			console.log(this.props)
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
+					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
 				</View>
 			)
 		} else {

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity } from 'react-native';
+import React from "react";
+import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -13,7 +13,7 @@ class Basic extends React.Component {
 		};
 	}
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/' + this.props.route.params.page_id)
+		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.page_id)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -31,11 +31,10 @@ class Basic extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
+					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
 				</View>
 			)
 		} else {
-			console.log(this.props.route.params.page_id)
 			const regex = /(<([^>]+)>)/ig;
 			let title = this.state.title
 			if (this.state.body != null) {
@@ -66,9 +65,6 @@ class Basic extends React.Component {
 	}
 }
 
-
-
-
 class Delete extends React.Component {
 
 	removeValue = async () => {
@@ -81,8 +77,6 @@ class Delete extends React.Component {
 	}
 
 	render() {
-
-
 		return (
 			<View style={styles.container}>
 				<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.h4, styles.up, styles.white]}>Poista joukkue</Text></TouchableOpacity>
@@ -90,8 +84,5 @@ class Delete extends React.Component {
 		);
 	}
 }
-
-
-
 
 export { Basic, Delete };

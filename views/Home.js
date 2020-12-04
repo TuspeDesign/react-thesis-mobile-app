@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity, Text } from 'react-native';
+import { View, ActivityIndicator, Image, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -63,9 +63,6 @@ export default class home extends React.Component {
 		else {
 			const url = this.state.image_url
 			const format = this.state.image_format
-			const kiekkovantaa = 'https://kiekko-vantaa.fi/site/assets/files/1/kiekko-vantaa.png';
-			const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
-			const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
 
 			let teams = this.state.teams.map((val, key) => {
 				if (val.id != null) {

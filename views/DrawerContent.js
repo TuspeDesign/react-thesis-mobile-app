@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Button, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Styles'
 
 
@@ -39,7 +39,7 @@ class DrawerContent extends React.Component {
 					data={newArray}
 					keyExtractor={({ id }) => id}
 					renderItem={({ item }) => (
-						<TouchableOpacity onPress={() => this.props.navigation.navigate(item.title, { page_id: item.id })} >
+						<TouchableOpacity onPress={() => this.props.navigation.navigate(item.title, { team_id: this.props.state.routes[0].params.id, page_id: item.id })} >
 							<Text style={[styles.up, styles.mt3, styles.pl3, styles.mb3]}>{item.title}</Text>
 						</TouchableOpacity>
 					)}

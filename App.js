@@ -1,18 +1,17 @@
 import React from 'react';
 import Home from './views/Home';
-import { Etusivu } from './views/TeamHome'
-import { DrawerContent } from './views/DrawerContent'
-import { Basic, Delete } from './views/Basic'
-import { Pelaajat, Pelaaja_profiili } from './views/Players'
-import { Partners } from './views/Partners'
-import { NavigationContainer } from '@react-navigation/native'
-import { createDrawerNavigator } from '@react-navigation/drawer'
-import { createStackNavigator } from '@react-navigation/stack'
-import { View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { Etusivu } from './views/TeamHome';
+import { DrawerContent } from './views/DrawerContent';
+import { Basic, Delete } from './views/Basic';
+import { Pelaajat, Pelaaja_profiili } from './views/Players';
+import { Partners } from './views/Partners';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerActions } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { styles } from './styles/Styles'
+import { styles } from './styles/Styles';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -58,25 +57,24 @@ export default class App extends React.Component {
 		</Stack.Navigator>
 	}
 
-
 	createDrawer = (props) => {
 		return <Drawer.Navigator drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
 			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ id: props.route.params.id, logo: kiekkovantaa }} />
-			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
-			<Drawer.Screen name='Ottelut' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Liput' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Uutiset' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Fanit' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Seura' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Jäädytetyt pelinumerot & ennätykset' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Media' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Historia' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Trio Areena' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Yhteistyössä' component={Partners} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Yhteystiedot' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Aitio' component={Basic} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='A-nuoret' component={Basic} initialParams={{ id: props.route.params.id }} />
+			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ logo: kiekkovantaa }} />
+			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
+			<Drawer.Screen name='Ottelut' component={Basic} />
+			<Drawer.Screen name='Liput' component={Basic} />
+			<Drawer.Screen name='Uutiset' component={Basic} />
+			<Drawer.Screen name='Fanit' component={Basic} />
+			<Drawer.Screen name='Seura' component={Basic} />
+			<Drawer.Screen name='Jäädytetyt pelinumerot & ennätykset' component={Basic} />
+			<Drawer.Screen name='Media' component={Basic} />
+			<Drawer.Screen name='Historia' component={Basic} />
+			<Drawer.Screen name='Trio Areena' component={Basic} />
+			<Drawer.Screen name='Yhteistyössä' component={Partners} />
+			<Drawer.Screen name='Yhteystiedot' component={Basic} />
+			<Drawer.Screen name='Aitio' component={Basic} />
+			<Drawer.Screen name='A-nuoret' component={Basic} />
 			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} />
 		</Drawer.Navigator>
 	}

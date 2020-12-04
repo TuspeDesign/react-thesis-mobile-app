@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { styles } from '../styles/Styles'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 class Pelaajat extends React.Component {
@@ -16,7 +15,7 @@ class Pelaajat extends React.Component {
 		};
 	}
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.id + '/players')
+		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/players')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -36,7 +35,7 @@ class Pelaajat extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
+					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
 				</View>
 			)
 		} else {
@@ -102,13 +101,6 @@ class Pelaajat extends React.Component {
 }
 
 
-
-
-
-
-
-
-
 class Pelaaja_profiili extends React.Component {
 
 	constructor(props) {
@@ -165,7 +157,6 @@ class Pelaaja_profiili extends React.Component {
 					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />
 				</View>
 			} else {
-				console.log(this.props.route.params.profile_img)
 				return <View style={styles.container}>
 					<Image style={styles.logo} source={{ uri: this.props.route.params.profile_img }} />
 					<Button style={[styles.tc, styles.mb3]} title={this.state.title} />

@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity } from 'react-native';
+import React from "react";
+import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
 import { styles } from '../styles/Styles'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Etusivu extends React.Component {
 	constructor(props) {
@@ -32,18 +31,14 @@ class Etusivu extends React.Component {
 
 	}
 	render() {
-
 		if (this.state.isLoading) {
-			console.log(this.props)
 			return (
 				<View style={styles.container}>
 					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>ID: {this.props.route.params.id}</Text>
+					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
 				</View>
 			)
 		} else {
-			let logo = this.props.route.params.logo_url
-			console.log(this.props)
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.item, styles.mb3}>
 					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Uutiset', { page_id: val.id })} />
