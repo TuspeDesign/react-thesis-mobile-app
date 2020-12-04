@@ -34,5 +34,6 @@ The type tells the feed what kind of content is needed.
 | home | Elements needed for the front page. |
 | games | All the upcoming games and the next local game. |
 | players | All the players and their helpers. |
+| news | Latest articles, -3 months. |
 | partners | Partners with logos and links. |
 | number | All the content of the certain page or player. |
