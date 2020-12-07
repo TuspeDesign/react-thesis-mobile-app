@@ -41,7 +41,7 @@ class Etusivu extends React.Component {
 		} else {
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.item, styles.mb3}>
-					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Uutiset', {
+					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Sivu', {
 						team_id: this.props.route.params.id, page_id: val.id
 					})} />
 				</View>

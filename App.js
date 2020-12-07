@@ -21,7 +21,6 @@ const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
 const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
 
 export default class App extends React.Component {
-
 	createHomeStack = () => {
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />
@@ -64,18 +63,8 @@ export default class App extends React.Component {
 			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ logo: kiekkovantaa }} />
 			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
 			<Drawer.Screen name='Ottelut' component={Games} />
-			<Drawer.Screen name='Liput' component={Basic} />
-			<Drawer.Screen name='Uutiset' component={Basic} />
-			<Drawer.Screen name='Fanit' component={Basic} />
-			<Drawer.Screen name='Seura' component={Basic} />
-			<Drawer.Screen name='Jäädytetyt pelinumerot & ennätykset' component={Basic} />
-			<Drawer.Screen name='Media' component={Basic} />
-			<Drawer.Screen name='Historia' component={Basic} />
-			<Drawer.Screen name='Trio Areena' component={Basic} />
 			<Drawer.Screen name='Yhteistyössä' component={Partners} />
-			<Drawer.Screen name='Yhteystiedot' component={Basic} />
-			<Drawer.Screen name='Aitio' component={Basic} />
-			<Drawer.Screen name='A-nuoret' component={Basic} />
+			<Drawer.Screen name='Sivu' component={Basic} />
 			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} />
 		</Drawer.Navigator>
 	}

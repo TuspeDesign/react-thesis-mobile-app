@@ -20,9 +20,9 @@ class Pelaajat extends React.Component {
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					goalies: data[2].players,
-					defense: data[1].players,
-					forwards: data[0].players,
+					goalies: data.data[2].players,
+					defense: data.data[1].players,
+					forwards: data.data[0].players,
 				})
 			})
 			.catch((error) => {
