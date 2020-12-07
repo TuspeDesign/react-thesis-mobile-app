@@ -40,6 +40,8 @@ class DrawerContent extends React.Component {
 			this.props.navigation.navigate('Joukkue', { page_id: id, team_id: this.props.state.routes[0].params.id })
 		} else if (temp == 'kumppanit') {
 			this.props.navigation.navigate('Yhteistyössä', { page_id: id, team_id: this.props.state.routes[0].params.id })
+		} else if (temp == 'uutiset') {
+			this.props.navigation.navigate('Uutiset', { page_id: id, team_id: this.props.state.routes[0].params.id })
 		}
 		else {
 			this.props.navigation.navigate('Etusivu', { page_id: id, team_id: this.props.state.routes[0].params.id })

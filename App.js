@@ -6,6 +6,7 @@ import { Basic, Delete } from './views/Basic';
 import { Pelaajat, Pelaaja_profiili } from './views/Players';
 import { Partners } from './views/Partners';
 import { Games } from './views/Games';
+import { News } from './views/News';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,6 +20,7 @@ const Stack = createStackNavigator();
 const kiekkovantaa = 'https://kiekko-vantaa.fi/site/assets/files/1/kiekko-vantaa.png';
 const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
 const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
+
 
 export default class App extends React.Component {
 	createHomeStack = () => {
@@ -60,11 +62,12 @@ export default class App extends React.Component {
 	createDrawer = (props) => {
 		return <Drawer.Navigator drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
 			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Joukkue' component={Pelaajat} initialParams={{ logo: kiekkovantaa }} />
-			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ id: props.route.params.id, profile_img: props.route.params.profile_img, logo: kiekkovantaa }} />
+			<Drawer.Screen name='Joukkue' component={Pelaajat} />
+			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img }} />
 			<Drawer.Screen name='Ottelut' component={Games} />
 			<Drawer.Screen name='Yhteistyössä' component={Partners} />
 			<Drawer.Screen name='Sivu' component={Basic} />
+			<Drawer.Screen name='Uutiset' component={News} />
 			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} />
 		</Drawer.Navigator>
 	}

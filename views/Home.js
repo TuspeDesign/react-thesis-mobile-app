@@ -3,7 +3,7 @@ import { View, ActivityIndicator, Image, ScrollView, TouchableOpacity, Text } fr
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default class home extends React.Component {
+export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
