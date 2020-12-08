@@ -33,8 +33,9 @@ export const styles = StyleSheet.create({
 	},
 
 	news_img: {
+		alignSelf: 'center',
 		flex: 1,
-		width: null,
+		width: 300,
 		height: 300,
 		resizeMode: 'contain',
 		marginTop: 5,

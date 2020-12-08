@@ -64,7 +64,7 @@ class DrawerContent extends React.Component {
 			<View style={{ flex: 1 }}>
 				<FlatList
 					data={newArray}
-					keyExtractor={({ id }) => id}
+					keyExtractor={({ id }) => id.toString()}
 					renderItem={({ item }) => (
 						<TouchableOpacity onPress={() => { this.checkTemplate(item.id); }}>
 							<Text style={[styles.up, styles.mt3, styles.pl3, styles.mb3]}>{item.title}</Text>

@@ -11,9 +11,7 @@ class Pelaajat extends React.Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			goalies: null,
-			defense: null,
-			forwards: null,
+			team: null,
 		};
 	}
 	componentDidMount() {
@@ -22,9 +20,7 @@ class Pelaajat extends React.Component {
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					goalies: data.data[2].players,
-					defense: data.data[1].players,
-					forwards: data.data[0].players,
+					team: data.data,
 				})
 			})
 			.catch((error) => {
@@ -41,72 +37,38 @@ class Pelaajat extends React.Component {
 				</View>
 			)
 		} else {
-			let goalies = this.state.goalies.map((val, key) => {
-				if (val.img == null) {
-					return <View key={key} style={styles.item, styles.mt3}>
-						<Image style={styles.logo} source={{ uri: default_img }} />
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-					</View>
-				} else {
-					return <View key={key} style={styles.item}>
-						<Image style={styles.logo} source={{ uri: val.img }} />
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-					</View>
-				}
+			let team = this.state.team.map((val, key) => {
+				return <View key={key}>
+					<Text style={[styles.tc, styles.h4]}>{val.title}</Text>
+					{val.players.map((val, key) => {
+						if (val.img == null) {
+							return <View key={key} style={styles.item, styles.mt3}>
+								<Image style={styles.news_img} source={{ uri: default_img }} />
+								<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
+							</View>
+						} else {
+							return <View key={key} style={styles.item}>
+								<Image style={styles.news_img} source={{ uri: val.img }} />
+								<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
+							</View>
+						}
+					})}
+				</View>
 			});
-
-			let defense = this.state.defense.map((val, key) => {
-				if (val.img == null) {
-					return <View key={key} style={styles.item, styles.mt3}>
-						<Image style={styles.logo} source={{ uri: default_img }} />
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-					</View>
-				} else {
-					return <View key={key} style={styles.item}>
-						<Image style={styles.logo} source={{ uri: val.img }} />
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-					</View>
-				}
-			});
-
-			let forwards = this.state.forwards.map((val, key) => {
-				if (val.img == null) {
-					return <View key={key} style={styles.item, styles.mt3}>
-						<Image style={styles.logo} source={{ uri: default_img }} />
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-					</View>
-				} else {
-					return <View key={key} style={styles.item}>
-						<Image style={styles.logo} source={{ uri: val.img }} />
-						<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-					</View>
-				}
-			});
-
-
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false} >
 						<Text style={[styles.tc, styles.h4, styles.mb3]}>Joukkue</Text>
 						<Image style={styles.news_img} source={{ uri: team_img }} />
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>Maalivahdit</Text>
-						{goalies}
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>Puolustajat</Text>
-						{defense}
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>Hyökkääjät</Text>
-						{forwards}
+						{team}
 					</ScrollView>
-				</View >
-
+				</View>
 			);
-
 		}
 	}
 }
 
-
 class Pelaaja_profiili extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -201,13 +163,13 @@ class Pelaaja_profiili extends React.Component {
 			if (this.props.route.params.profile_img == null) {
 				return <View style={styles.container}>
 					<Button style={[styles.tc, styles.mb3]} title={number + ' ' + name} />
-					<Image style={styles.logo} source={{ uri: default_img }} />
+					<Image style={styles.news_img} source={{ uri: default_img }} />
 					{info}
 				</View>
 			} else {
 				return <View style={styles.container}>
 					<Button style={[styles.tc, styles.mb3]} title={number + ' ' + name} />
-					<Image style={styles.logo} source={{ uri: this.props.route.params.profile_img }} />
+					<Image style={styles.news_img} source={{ uri: this.props.route.params.profile_img }} />
 					{info}
 				</View>
 			}
