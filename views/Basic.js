@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -10,6 +10,7 @@ class Basic extends React.Component {
 			isLoading: true,
 			title: null,
 			body: null,
+			img: null,
 		};
 	}
 	componentDidMount() {
@@ -20,6 +21,7 @@ class Basic extends React.Component {
 					isLoading: false,
 					title: data.title,
 					body: data.body,
+					img: data.img,
 				})
 			})
 			.catch((error) => {
@@ -36,6 +38,7 @@ class Basic extends React.Component {
 						isLoading: false,
 						title: data.title,
 						body: data.body,
+						img: data.img,
 					})
 				})
 				.catch((error) => {
@@ -52,9 +55,28 @@ class Basic extends React.Component {
 				</View>
 			)
 		} else {
+
+
 			const regex = /(<([^>]+)>)/ig;
 			let title = this.state.title
-			if (this.state.body != null) {
+			if (this.state.img != null) {
+				let images = this.state.img.map((val, key) => {
+					return <View key={key}>
+						<Image style={styles.news_img} source={{ uri: val[0][0] }} />
+					</View>
+				});
+				let body1 = this.state.body.replace(regex, '');
+				let body = body1.replace(/&nbsp;/g, '');
+				return (
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.h4, styles.up, styles.tc]}>{title}</Text>
+							{images}
+							<Text>{body}</Text>
+						</ScrollView>
+					</View>
+				);
+			} else if (this.state.body != null) {
 				let body1 = this.state.body.replace(regex, '');
 				let body = body1.replace(/&nbsp;/g, '');
 				return (

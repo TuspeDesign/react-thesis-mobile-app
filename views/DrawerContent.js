@@ -19,7 +19,7 @@ class DrawerContent extends React.Component {
 				this.setState({ data: data });
 				this.setState({ items: data[6].items });
 			})
-			.catch((error) => console.error(error))
+			.catch((error) => console.log(error))
 	}
 
 	async checkTemplate(id) {
@@ -28,7 +28,7 @@ class DrawerContent extends React.Component {
 			.then((data) => {
 				this.setState({ temp: data.template });
 			})
-			.catch((error) => console.error(error))
+			.catch((error) => console.log(error))
 
 		let temp = this.state.temp
 
