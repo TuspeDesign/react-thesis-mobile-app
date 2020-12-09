@@ -122,7 +122,6 @@ class Pelaaja_profiili extends React.Component {
 						height: data.height,
 						weight: data.weight,
 						catches: data.catches,
-
 					})
 				})
 				.catch((error) => {
@@ -139,8 +138,6 @@ class Pelaaja_profiili extends React.Component {
 		let height = this.state.height;
 		let weight = this.state.weight;
 		let catches = this.state.catches;
-
-
 
 		if (this.state.isLoading) {
 			return (

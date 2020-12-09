@@ -28,7 +28,7 @@ export default class Home extends React.Component {
 			const teamid = await AsyncStorage.getItem('id')
 			const name = await AsyncStorage.getItem('name')
 			if (teamid !== null) {
-				this.props.navigation.navigate(name, { id: teamid })
+				this.props.navigation.navigate(teamid.toString(), { id: teamid })
 			}
 		} catch (error) {
 			console.log(error)
@@ -69,7 +69,7 @@ export default class Home extends React.Component {
 					return <View key={key} style={styles.item}>
 						<TouchableOpacity style={[styles.test, styles.mb3]} onPress={() => {
 							this.saveID(val.id, val.name);
-							this.props.navigation.navigate(val.name, { id: val.id })
+							this.props.navigation.navigate(val.id.toString(), { id: val.id })
 						}}>
 							<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
 							<Text style={[styles.tc, styles.h4, styles.home, styles.white, styles.up, styles.mb3]}>{val.name}</Text>

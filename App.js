@@ -26,32 +26,32 @@ export default class App extends React.Component {
 	createHomeStack = () => {
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />
-			<Stack.Screen name='Joensuun Kiekko-Pojat' children={this.createDrawer} options={({ navigation }) => ({
+			<Stack.Screen name='425114685' children={this.createDrawer} options={({ navigation }) => ({
 				headerRight: () => (
 					<TouchableOpacity style={{ paddingRight: 10 }}>
 						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
 				), headerLeft: () => (
 					<Image style={styles.logo_top} source={{ uri: joensuunkiekkopojat }} />
-				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#c90123' }, headerTitleStyle: { color: 'white' },
+				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#c90123' }, headerTitleStyle: { color: 'white' }, title: 'Joensuun Kiekko-Pojat',
 			})} />
-			<Stack.Screen name='Kiekko-Vantaa' children={this.createDrawer} options={({ navigation }) => ({
+			<Stack.Screen name='928640177' children={this.createDrawer} options={({ navigation }) => ({
 				headerRight: () => (
 					<TouchableOpacity style={{ paddingRight: 10 }}>
 						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
 				), headerLeft: () => (
 					<Image style={styles.logo_top} source={{ uri: kiekkovantaa }} />
-				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#035e96' }, headerTitleStyle: { color: 'white' },
+				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#035e96' }, headerTitleStyle: { color: 'white' }, title: 'Kiekko-Vantaa'
 			})} />
-			<Stack.Screen name='RoKi Hockey' children={this.createDrawer} options={({ navigation }) => ({
+			<Stack.Screen name='253541164' children={this.createDrawer} options={({ navigation }) => ({
 				headerRight: () => (
 					<TouchableOpacity style={{ paddingRight: 10 }}>
 						<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
 					</TouchableOpacity>
 				), headerLeft: () => (
 					<Image style={styles.logo_top} source={{ uri: roki }} />
-				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#000d37' }, headerTitleStyle: { color: 'white' },
+				), headerTitleAlign: 'center', headerStyle: { backgroundColor: '#000d37' }, headerTitleStyle: { color: 'white' }, title: 'RoKi Hockey'
 			})} />
 			<Stack.Screen name='Kurra' children={this.createDrawer} />
 			<Stack.Screen name='Käpylän Pallo' children={this.createDrawer} />

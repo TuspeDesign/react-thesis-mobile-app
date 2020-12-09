@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Button } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
 import { styles } from '../styles/Styles'
 
 
@@ -7,17 +7,18 @@ class DrawerContent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: [],
-			items: [],
-
+			isLoading: true,
+			nav: null,
 		};
 	}
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/menu')
 			.then((response) => response.json())
 			.then((data) => {
-				this.setState({ data: data });
-				this.setState({ items: data[6].items });
+				this.setState({
+					isLoading: false,
+					nav: data,
+				})
 			})
 			.catch((error) => console.log(error))
 	}
@@ -48,33 +49,52 @@ class DrawerContent extends React.Component {
 		}
 	}
 
-
-
 	render() {
-		let data1 = this.state.data;
-		let data2 = this.state.items;
-		let newArray = [];
-
-		newArray.push(...data1)
-		if (data2 != null) {
-			newArray.push(...data2)
-		}
-
-		return (
-			<View style={{ flex: 1 }}>
-				<FlatList
-					data={newArray}
-					keyExtractor={({ id }) => id.toString()}
-					renderItem={({ item }) => (
-						<TouchableOpacity onPress={() => { this.checkTemplate(item.id); }}>
-							<Text style={[styles.up, styles.mt3, styles.pl3, styles.mb3]}>{item.title}</Text>
+		if (this.state.isLoading) {
+			return (
+				<View style={styles.container}>
+					<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
+						<Text style={[styles.up, styles.navlink]}>Poista valittu joukkue</Text>
+					</TouchableOpacity>
+					<ActivityIndicator size="large" color="blue" />
+				</View>
+			)
+		} else {
+			let navigation = this.state.nav.map((val, key) => {
+				if (val.items) {
+					return <View key={key} >
+						<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
+							<Text style={[styles.up, styles.navlink]}>{val.title}</Text>
 						</TouchableOpacity>
-					)}
-				/>
-				<Button title='Poista tallennettu joukkue' onPress={() => this.props.navigation.navigate('Poista tallennettu joukkue')}></Button>
-			</View >
-		);
+						{val.items.map((val, key) => {
+							return <View key={key} >
+								<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
+									<Text style={[styles.up, styles.navlink]}>{val.title}</Text>
+								</TouchableOpacity>
+							</View>
+						})}
+					</View >
+				} else {
+					return <View key={key}>
+						<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
+							<Text style={[styles.up, styles.navlink]}>{val.title}</Text>
+						</TouchableOpacity>
+					</View>
+				}
+			});
+
+			return (
+				<View style={styles.container}>
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+						{navigation}
+						<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
+							<Text style={[styles.up, styles.navlink]}>Poista valittu joukkue</Text>
+						</TouchableOpacity>
+					</ScrollView>
+				</View>
+			);
+		}
 	}
-};
+}
 
 export { DrawerContent }

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 export const styles = StyleSheet.create({
 	container: {
@@ -35,11 +36,12 @@ export const styles = StyleSheet.create({
 	news_img: {
 		alignSelf: 'center',
 		flex: 1,
-		width: 300,
+		width: '100%',
 		height: 300,
 		resizeMode: 'contain',
 		marginTop: 5,
 		marginBottom: 5,
+
 	},
 
 	logo_top: {
@@ -98,5 +100,12 @@ export const styles = StyleSheet.create({
 		borderRadius: 10,
 		borderColor: 'black',
 		borderWidth: 2,
-	}
+	},
+
+	navlink: {
+		paddingLeft: 15,
+		paddingRight: 15,
+		marginTop: 10,
+		marginBottom: 10,
+	},
 });
