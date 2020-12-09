@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { WebView } from 'react-native-webview';
 
 class Basic extends React.Component {
 	constructor(props) {
@@ -57,7 +58,7 @@ class Basic extends React.Component {
 		} else {
 
 
-			const regex = /(<([^>]+)>)/ig;
+
 			let title = this.state.title
 			if (this.state.img != null) {
 				let images = this.state.img.map((val, key) => {
@@ -65,26 +66,22 @@ class Basic extends React.Component {
 						<Image style={styles.news_img} source={{ uri: val[0][0] }} />
 					</View>
 				});
-				let body1 = this.state.body.replace(regex, '');
-				let body = body1.replace(/&nbsp;/g, '');
 				return (
-					<View style={styles.container}>
-						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.h4, styles.up, styles.tc]}>{title}</Text>
-							{images}
-							<Text>{body}</Text>
-						</ScrollView>
+					<View style={{ flex: 1 }}>
+						<WebView style={{ flex: 1 }}
+							originWhitelist={['*']}
+							source={{ html: this.state.body }}
+						/>
 					</View>
+
 				);
 			} else if (this.state.body != null) {
-				let body1 = this.state.body.replace(regex, '');
-				let body = body1.replace(/&nbsp;/g, '');
 				return (
-					<View style={styles.container}>
-						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.h4, styles.up]}>{title}</Text>
-							<Text>{body}</Text>
-						</ScrollView>
+					<View style={{ flex: 1 }}>
+						<WebView style={{ flex: 1 }}
+							originWhitelist={['*']}
+							source={{ html: this.state.body }}
+						/>
 					</View>
 				);
 			} else {
