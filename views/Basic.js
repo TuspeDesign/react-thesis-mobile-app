@@ -58,8 +58,6 @@ class Basic extends React.Component {
 		} else {
 
 
-
-			let title = this.state.title
 			if (this.state.img != null) {
 				let images = this.state.img.map((val, key) => {
 					return <View key={key}>
@@ -70,9 +68,9 @@ class Basic extends React.Component {
 					<View style={{ flex: 1 }}>
 						<WebView style={{ flex: 1 }}
 							originWhitelist={['*']}
-							source={{ html: this.state.body }}
+							source={{ html: '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body>' + this.state.body + '</body></html>' }}
 						/>
-					</View>
+					</View >
 
 				);
 			} else if (this.state.body != null) {
@@ -80,7 +78,7 @@ class Basic extends React.Component {
 					<View style={{ flex: 1 }}>
 						<WebView style={{ flex: 1 }}
 							originWhitelist={['*']}
-							source={{ html: this.state.body }}
+							source={{ html: '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body>' + this.state.body + '</body></html>' }}
 						/>
 					</View>
 				);
