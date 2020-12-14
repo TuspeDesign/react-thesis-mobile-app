@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, Image, Button } from 'react-native';
 import { styles } from '../styles/Styles'
-
+import { Feather } from '@expo/vector-icons';
 
 class DrawerContent extends React.Component {
 	constructor(props) {
@@ -9,6 +9,7 @@ class DrawerContent extends React.Component {
 		this.state = {
 			isLoading: true,
 			nav: null,
+			open: false,
 		};
 	}
 	componentDidMount() {
@@ -50,6 +51,7 @@ class DrawerContent extends React.Component {
 	}
 
 	render() {
+
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container}>
@@ -63,15 +65,20 @@ class DrawerContent extends React.Component {
 			let navigation = this.state.nav.map((val, key) => {
 				if (val.items) {
 					return <View key={key} >
-						<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
-							<Text style={[styles.up, styles.navlink]}>{val.title}</Text>
+						{this.state.open == false ? <Feather style={[styles.up, styles.navtest]} name="plus" size={20} color="black" onPress={() => { this.setState({ open: true }); }}>
+						</Feather> : <Feather style={[styles.up, styles.navtest]} name="minus" size={20} color="black" onPress={() => { this.setState({ open: false }); }}>
+							</Feather>}
+						<TouchableOpacity style={[styles.navlink]} onPress={() => { this.checkTemplate(val.id); }}>
+							<Text style={[styles.up]}>{val.title}</Text>
 						</TouchableOpacity>
 						{val.items.map((val, key) => {
-							return <View key={key} >
-								<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
-									<Text style={[styles.up, styles.navlink]}>{val.title}</Text>
-								</TouchableOpacity>
-							</View>
+							if (this.state.open) {
+								return <View key={key} >
+									<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
+										<Text style={[styles.up, styles.navlink, styles.pl3]}>{val.title}</Text>
+									</TouchableOpacity>
+								</View>
+							}
 						})}
 					</View >
 				} else {
@@ -96,5 +103,8 @@ class DrawerContent extends React.Component {
 		}
 	}
 }
+
+
+
 
 export { DrawerContent }

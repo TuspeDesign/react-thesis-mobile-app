@@ -107,5 +107,12 @@ export const styles = StyleSheet.create({
 		paddingRight: 15,
 		marginTop: 10,
 		marginBottom: 10,
+		width: 250,
+
+	},
+	navtest: {
+		position: 'absolute',
+		right: 0,
+		top: 5,
 	},
 });
