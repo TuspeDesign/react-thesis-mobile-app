@@ -11,6 +11,15 @@ export const styles = StyleSheet.create({
 		paddingLeft: 10,
 		paddingRight: 10,
 	},
+
+	container_news: {
+		display: 'flex',
+		flexDirection: 'column',
+		width: '100%',
+		height: '100%',
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
 	tc: {
 		textAlign: 'center',
 	},

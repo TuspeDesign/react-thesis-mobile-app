@@ -24,6 +24,9 @@ class DrawerContent extends React.Component {
 			.catch((error) => console.log(error))
 	}
 
+
+
+
 	async checkTemplate(id) {
 		await fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/' + id)
 			.then((response) => response.json())
@@ -32,20 +35,18 @@ class DrawerContent extends React.Component {
 			})
 			.catch((error) => console.log(error))
 
-		let temp = this.state.temp
+		let temp1 = this.state.temp;
+		let temp = null;
 
-		if (temp == 'sivu' || temp == 'page' || temp == 'yhteys' || temp == 'tuote_aitio') {
-			this.props.navigation.navigate('Sivu', { page_id: id, team_id: this.props.state.routes[0].params.id })
-		} else if (temp == 'ottelut') {
-			this.props.navigation.navigate('Ottelut', { page_id: id, team_id: this.props.state.routes[0].params.id })
-		} else if (temp == 'pelaajat') {
-			this.props.navigation.navigate('Joukkue', { page_id: id, team_id: this.props.state.routes[0].params.id })
-		} else if (temp == 'kumppanit') {
-			this.props.navigation.navigate('Yhteistyössä', { page_id: id, team_id: this.props.state.routes[0].params.id })
-		} else if (temp == 'uutiset') {
-			this.props.navigation.navigate('Uutiset', { page_id: id, team_id: this.props.state.routes[0].params.id })
+		if (temp1 != null) {
+			temp = temp1.charAt(0).toUpperCase() + temp1.slice(1);
 		}
-		else {
+
+		if (temp == 'Sivu' || temp == 'Page' || temp == 'Yhteys' || temp == 'Tuote_aitio') {
+			this.props.navigation.navigate('Sivu', { page_id: id, team_id: this.props.state.routes[0].params.id })
+		} else if (temp) {
+			this.props.navigation.navigate(temp, { page_id: id, team_id: this.props.state.routes[0].params.id })
+		} else {
 			this.props.navigation.navigate('Etusivu', { page_id: id, team_id: this.props.state.routes[0].params.id })
 		}
 	}
@@ -65,8 +66,8 @@ class DrawerContent extends React.Component {
 			let navigation = this.state.nav.map((val, key) => {
 				if (val.items) {
 					return <View key={key} >
-						{this.state.open == false ? <Feather style={[styles.up, styles.navtest]} name="plus" size={20} color="black" onPress={() => { this.setState({ open: true }); }}>
-						</Feather> : <Feather style={[styles.up, styles.navtest]} name="minus" size={20} color="black" onPress={() => { this.setState({ open: false }); }}>
+						{this.state.open == false ? <Feather style={[styles.up, styles.navtest]} name="plus" size={25} color="black" onPress={() => { this.setState({ open: true }); }}>
+						</Feather> : <Feather style={[styles.up, styles.navtest]} name="minus" size={25} color="black" onPress={() => { this.setState({ open: false }); }}>
 							</Feather>}
 						<TouchableOpacity style={[styles.navlink]} onPress={() => { this.checkTemplate(val.id); }}>
 							<Text style={[styles.up]}>{val.title}</Text>

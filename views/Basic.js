@@ -1,8 +1,8 @@
 import React from "react";
-import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { WebView } from 'react-native-webview';
+import HTML from "react-native-render-html";
 
 class Basic extends React.Component {
 	constructor(props) {
@@ -56,38 +56,35 @@ class Basic extends React.Component {
 				</View>
 			)
 		} else {
-
-
+			let content = this.state.body;
+			let title = this.state.title;
 			if (this.state.img != null) {
 				let images = this.state.img.map((val, key) => {
 					return <View key={key}>
 						<Image style={styles.news_img} source={{ uri: val[0][0] }} />
 					</View>
 				});
+
 				return (
-					<View style={{ flex: 1 }}>
-						<WebView style={{ flex: 1 }}
-							originWhitelist={['*']}
-							source={{ html: '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body>' + this.state.body + '</body></html>' }}
-						/>
-					</View >
+					<ScrollView style={[styles.container_news]}>
+						<Text style={[styles.tc, styles.h4, styles.mb3]}>{title}</Text>
+						{images}
+						<HTML source={{ html: content }} />
+					</ScrollView>
 
 				);
 			} else if (this.state.body != null) {
 				return (
-					<View style={{ flex: 1 }}>
-						<WebView style={{ flex: 1 }}
-							originWhitelist={['*']}
-							source={{ html: '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body>' + this.state.body + '</body></html>' }}
-						/>
-					</View>
+					<ScrollView style={[styles.container_news]}>
+						<Text style={[styles.tc, styles.h4, styles.mb3]}>{title}</Text>
+						<HTML source={{ html: content }} />
+					</ScrollView>
 				);
 			} else {
 				let body = 'Kaikkea tietoa ei löydy kyseiselle sivulle.'
 				return (
 					<View style={styles.container}>
 						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.h4, styles.up]}>{title}</Text>
 							<Text style={[styles.mt3]}>{body}</Text>
 						</ScrollView>
 					</View>

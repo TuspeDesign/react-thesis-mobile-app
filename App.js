@@ -62,10 +62,10 @@ export default class App extends React.Component {
 	createDrawer = (props) => {
 		return <Drawer.Navigator drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
 			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
-			<Drawer.Screen name='Joukkue' component={Pelaajat} />
+			<Drawer.Screen name='Pelaajat' component={Pelaajat} />
 			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img }} />
 			<Drawer.Screen name='Ottelut' component={Games} />
-			<Drawer.Screen name='Yhteistyössä' component={Partners} />
+			<Drawer.Screen name='Kumppanit' component={Partners} />
 			<Drawer.Screen name='Sivu' component={Basic} />
 			<Drawer.Screen name='Uutiset' component={News} />
 			<Drawer.Screen name='Poista tallennettu joukkue' component={Delete} />
