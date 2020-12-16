@@ -67,7 +67,7 @@ class Basic extends React.Component {
 
 				return (
 					<ScrollView style={[styles.container_news]}>
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>{title}</Text>
+						<Text style={[styles.tc, styles.h4, styles.mb3, styles.mt3]}>{title}</Text>
 						{images}
 						<HTML source={{ html: content }} />
 					</ScrollView>
@@ -75,8 +75,8 @@ class Basic extends React.Component {
 				);
 			} else if (this.state.body != null) {
 				return (
-					<ScrollView style={[styles.container_news]}>
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>{title}</Text>
+					<ScrollView style={[styles.container_news, styles.font]}>
+						<Text style={[styles.tc, styles.h4, styles.mb3, styles.mt3]}>{title}</Text>
 						<HTML source={{ html: content }} />
 					</ScrollView>
 				);
@@ -85,7 +85,7 @@ class Basic extends React.Component {
 				return (
 					<View style={styles.container}>
 						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.mt3]}>{body}</Text>
+							<Text style={[styles.mt3], [styles.font]}>{body}</Text>
 						</ScrollView>
 					</View>
 				);

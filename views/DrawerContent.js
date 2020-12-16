@@ -22,6 +22,11 @@ class DrawerContent extends React.Component {
 				})
 			})
 			.catch((error) => console.log(error))
+
+
+		this.props.navigation.setOptions({
+			title: this.props.state.routes[0].params.name,
+		})
 	}
 
 
@@ -66,17 +71,18 @@ class DrawerContent extends React.Component {
 			let navigation = this.state.nav.map((val, key) => {
 				if (val.items) {
 					return <View key={key} >
-						{this.state.open == false ? <Feather style={[styles.up, styles.navtest]} name="plus" size={25} color="black" onPress={() => { this.setState({ open: true }); }}>
-						</Feather> : <Feather style={[styles.up, styles.navtest]} name="minus" size={25} color="black" onPress={() => { this.setState({ open: false }); }}>
+						{this.state.open == false ? <Feather style={[styles.dropdown]} name="plus" size={30} color="white" onPress={() => { this.setState({ open: true }); }}>
+						</Feather> : <Feather style={[styles.dropdown]} name="minus" size={30} color="white" onPress={() => { this.setState({ open: false }); }}>
 							</Feather>}
-						<TouchableOpacity style={[styles.navlink]} onPress={() => { this.checkTemplate(val.id); }}>
-							<Text style={[styles.up]}>{val.title}</Text>
+						<View style={[styles.border]}></View>
+						<TouchableOpacity style={{ width: 300 }} onPress={() => { this.checkTemplate(val.id); }}>
+							<Text style={[styles.up, styles.navlinksub, styles.white]}>{val.title}</Text>
 						</TouchableOpacity>
 						{val.items.map((val, key) => {
 							if (this.state.open) {
 								return <View key={key} >
 									<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
-										<Text style={[styles.up, styles.navlink, styles.pl3]}>{val.title}</Text>
+										<Text style={[styles.up, styles.navlink, styles.pl3, styles.white]}>{val.title}</Text>
 									</TouchableOpacity>
 								</View>
 							}
@@ -85,18 +91,18 @@ class DrawerContent extends React.Component {
 				} else {
 					return <View key={key}>
 						<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
-							<Text style={[styles.up, styles.navlink]}>{val.title}</Text>
+							<Text style={[styles.up, styles.navlink, styles.white]}>{val.title}</Text>
 						</TouchableOpacity>
 					</View>
 				}
 			});
 
 			return (
-				<View style={styles.container}>
+				<View style={[styles.bg]}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
 						{navigation}
 						<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
-							<Text style={[styles.up, styles.navlink]}>Poista valittu joukkue</Text>
+							<Text style={[styles.up, styles.navlink, styles.white]}>Poista valittu joukkue</Text>
 						</TouchableOpacity>
 					</ScrollView>
 				</View>

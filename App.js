@@ -14,6 +14,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { styles } from './styles/Styles';
+import * as Font from 'expo-font';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -23,6 +24,23 @@ const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/
 
 
 export default class App extends React.Component {
+
+	constructor() {
+		super();
+		this.state = {
+			fontLoaded: false
+		};
+	}
+
+	async componentDidMount() {
+		await Font.loadAsync({
+			'Barlow-Regular': require('./assets/fonts/Barlow-Regular.ttf'),
+			'Exo': require('./assets/fonts/Exo-ExtraBoldItalic.ttf'),
+		});
+		this.setState({ fontLoaded: true });
+	}
+
+
 	createHomeStack = () => {
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />
@@ -60,7 +78,9 @@ export default class App extends React.Component {
 	}
 
 	createDrawer = (props) => {
-		return <Drawer.Navigator drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
+		return <Drawer.Navigator drawerStyle={{
+			backgroundColor: null, width: '100%'
+		}} drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
 			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id }} />
 			<Drawer.Screen name='Pelaajat' component={Pelaajat} />
 			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img }} />
@@ -72,14 +92,19 @@ export default class App extends React.Component {
 		</Drawer.Navigator>
 	}
 
+
+
+
 	render() {
 		return (
-			<NavigationContainer >
-				{this.createHomeStack()}
-			</NavigationContainer>
+			< NavigationContainer >
+				{ this.createHomeStack()}
+			</NavigationContainer >
 		);
 	}
 }
+
+
 
 
 

@@ -68,11 +68,11 @@ class Partners extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up]}>Yhteistyöseura</Text>
+						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Yhteistyöseura</Text>
 						{mainTeam}
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up]}>Pääyhteistyökumppanit</Text>
+						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Pääyhteistyökumppanit</Text>
 						{mainPartners}
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up]}>Yhteistyökumppanit</Text>
+						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Yhteistyökumppanit</Text>
 						{partners}
 					</ScrollView>
 				</View>

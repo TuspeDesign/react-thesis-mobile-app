@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { color } from 'react-native-reanimated';
 
 export const styles = StyleSheet.create({
 	container: {
@@ -22,6 +21,13 @@ export const styles = StyleSheet.create({
 	},
 	tc: {
 		textAlign: 'center',
+		fontFamily: 'Barlow-Regular',
+		fontSize: 15,
+	},
+
+	font: {
+		fontFamily: 'Barlow-Regular',
+		fontSize: 15,
 	},
 
 	tl: {
@@ -48,9 +54,6 @@ export const styles = StyleSheet.create({
 		width: '100%',
 		height: 300,
 		resizeMode: 'contain',
-		marginTop: 5,
-		marginBottom: 5,
-
 	},
 
 	logo_top: {
@@ -62,13 +65,23 @@ export const styles = StyleSheet.create({
 	},
 	h4: {
 		fontSize: 22,
-		fontWeight: 'bold',
-		marginTop: 30,
-		marginBottom: 30,
 		textTransform: "uppercase",
+		fontFamily: 'Exo'
 	},
 	mt3: {
 		marginTop: 30,
+	},
+
+	mb3: {
+		marginBottom: 30,
+	},
+
+	p2: {
+		padding: 8,
+	},
+
+	pb1: {
+		paddingTop: 10,
 	},
 
 	pt3: {
@@ -78,9 +91,7 @@ export const styles = StyleSheet.create({
 	pl3: {
 		paddingLeft: 30,
 	},
-	mb3: {
-		marginBottom: 30,
-	},
+
 	up: {
 		textTransform: "uppercase",
 	},
@@ -95,6 +106,7 @@ export const styles = StyleSheet.create({
 	delete_h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
+		fontFamily: 'Exo'
 	},
 
 	home: {
@@ -104,6 +116,15 @@ export const styles = StyleSheet.create({
 		borderRadius: 10,
 	},
 
+	players: {
+		alignSelf: "center",
+		width: '100%',
+	},
+
+	bg: {
+		backgroundColor: '#035e96',
+	},
+
 
 	test: {
 		borderRadius: 10,
@@ -111,17 +132,44 @@ export const styles = StyleSheet.create({
 		borderWidth: 2,
 	},
 
+
+
 	navlink: {
 		paddingLeft: 15,
 		paddingRight: 15,
-		marginTop: 10,
-		marginBottom: 10,
-		width: 250,
+		paddingTop: 10,
+		paddingBottom: 10,
+		fontFamily: 'Exo',
+		fontSize: 16,
+		borderTopWidth: 1,
+		borderColor: '#689fc0',
+	},
 
+	navlinksub: {
+		paddingLeft: 15,
+		paddingRight: 15,
+		paddingTop: 10,
+		paddingBottom: 10,
+		fontFamily: 'Exo',
+		fontSize: 16,
 	},
-	navtest: {
+
+	border: {
+		borderTopWidth: 1,
+		borderColor: '#689fc0',
+		width: '100%',
+	},
+
+
+	dropdown: {
 		position: 'absolute',
-		right: 0,
-		top: 5,
+		right: 5,
+		top: 6,
+		paddingLeft: 20,
 	},
+
+
+
+
+
 });

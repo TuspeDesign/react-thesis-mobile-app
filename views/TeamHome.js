@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button, Linking, TouchableOpacity } from 'react-native';
+import { Text, View, ActivityIndicator, Image, ScrollView, Linking, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Styles'
 
 class Etusivu extends React.Component {
@@ -38,10 +38,11 @@ class Etusivu extends React.Component {
 			)
 		} else {
 			let news = this.state.news.map((val, key) => {
-				return <View key={key} style={styles.item, styles.mb3}>
-					<Button style={[styles.tc, styles.h4]} title={val.title} onPress={() => this.props.navigation.navigate('Sivu', {
+				return <View key={key} style={styles.mb3}>
+					<TouchableOpacity style={[styles.tc, styles.h4]} onPress={() => this.props.navigation.navigate('Sivu', {
 						team_id: this.props.route.params.id, page_id: val.id
-					})} />
+					})}>
+						<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{val.title} </Text></TouchableOpacity>
 				</View>
 			});
 
@@ -64,7 +65,7 @@ class Etusivu extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>Uutiset</Text>
+						<Text style={[styles.tc, styles.h4, styles.mb3, styles.mt3]}>Uutiset</Text>
 						{news}
 						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>
 						{games}

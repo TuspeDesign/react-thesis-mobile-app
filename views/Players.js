@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button } from 'react-native';
+import { Text, View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity } from 'react-native';
 import moment from "moment";
 import { styles } from '../styles/Styles'
+
 
 const default_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/lohi.png';
 const team_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/untitled1-edit-edit.jpg';
@@ -39,26 +40,32 @@ class Pelaajat extends React.Component {
 		} else {
 			let team = this.state.team.map((val, key) => {
 				return <View key={key}>
-					<Text style={[styles.tc, styles.h4]}>{val.title}</Text>
+					<Text style={[styles.tc, styles.h4, styles.bg, styles.white, styles.mt3, styles.mb3, styles.p2]}>{val.title}</Text>
 					{val.players.map((val, key) => {
 						if (val.img == null) {
-							return <View key={key} style={styles.item, styles.mt3}>
-								<Image style={styles.news_img} source={{ uri: default_img }} />
-								<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
+							return <View key={key} style={styles.item}>
+								<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
+									<Image style={styles.news_img} source={{ uri: default_img }} />
+									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{'#' + val.teamId + ' ' + val.name} </Text>
+								</TouchableOpacity>
 							</View>
 						} else {
-							return <View key={key} style={styles.item}>
-								<Image style={styles.news_img} source={{ uri: val.img }} />
-								<Button style={[styles.tc, styles.mb3]} title={val.teamId + ' ' + val.name} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })} />
-							</View>
+							return <View key={key} style={styles.item
+							} >
+								<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
+									<Image style={styles.news_img} source={{ uri: val.img }} />
+									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{'#' + val.teamId + ' ' + val.name} </Text>
+								</TouchableOpacity>
+							</View >
 						}
-					})}
-				</View>
+					})
+					}
+				</View >
 			});
 			return (
 				<View style={styles.container}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false} >
-						<Text style={[styles.tc, styles.h4, styles.mb3]}>Joukkue</Text>
+						<Text style={[styles.tc, styles.h4, styles.bg, styles.white, styles.mt3, styles.mb3, styles.p2]}>Joukkue</Text>
 						<Image style={styles.news_img} source={{ uri: team_img }} />
 						{team}
 					</ScrollView>
@@ -159,13 +166,13 @@ class Pelaaja_profiili extends React.Component {
 
 			if (this.props.route.params.profile_img == null) {
 				return <View style={styles.container}>
-					<Button style={[styles.tc, styles.mb3]} title={number + ' ' + name} />
+					<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{'#' + number + ' ' + name} </Text>
 					<Image style={styles.news_img} source={{ uri: default_img }} />
 					{info}
 				</View>
 			} else {
 				return <View style={styles.container}>
-					<Button style={[styles.tc, styles.mb3]} title={number + ' ' + name} />
+					<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{'#' + number + ' ' + name} </Text>
 					<Image style={styles.news_img} source={{ uri: this.props.route.params.profile_img }} />
 					{info}
 				</View>
