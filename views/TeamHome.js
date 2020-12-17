@@ -53,25 +53,27 @@ class Etusivu extends React.Component {
 
 			let games = this.state.games.map((val, key) => {
 				return <View key={key}>
-					<Text style={[styles.tc, styles.mb3]}>{val.time}</Text>
-					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
+					<Text style={[styles.tc, styles.mb3, styles.font]}>{val.time}</Text>
+					<Text style={[styles.tc, styles.mb3, styles.font]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
 				</View>
 
 			});
 			return (
-				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.mt3]}>Uutiset</Text>
-						{news}
-						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>
-						{games}
-						<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Yhteistyökumppanit</Text>
-						{partners}
-					</ScrollView>
+				<View style={styles.content}>
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.toptitle, styles.mb3]}>Uutiset</Text>
+							<View style={[styles.main]}>
+								{news}
+								<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>
+								{games}
+								<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Yhteistyökumppanit</Text>
+								{partners}
+							</View>
+						</ScrollView>
+					</View>
 				</View>
-
 			);
-
 		}
 	}
 }

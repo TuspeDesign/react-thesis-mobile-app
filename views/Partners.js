@@ -42,7 +42,7 @@ class Partners extends React.Component {
 
 			let mainPartners = this.state.logos.map((val, key) => {
 				if (val.type == 'Pääyhteistyökumppanit') {
-					return <View key={key} style={styles.mb3}>
+					return <View key={key} style={styles.mb3, styles.parent}>
 						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
 							<Image style={styles.logo} source={{ uri: val.img }} />
 						</TouchableOpacity>
@@ -61,15 +61,18 @@ class Partners extends React.Component {
 			});
 
 			return (
-				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Yhteistyöseura</Text>
-						{mainTeam}
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Pääyhteistyökumppanit</Text>
-						{mainPartners}
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Yhteistyökumppanit</Text>
-						{partners}
-					</ScrollView>
+				<View style={styles.content}>
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.toptitle]}>Yhteistyössä</Text>
+							<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Yhteistyöseura</Text>
+							{mainTeam}
+							<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Pääyhteistyökumppanit</Text>
+							{mainPartners}
+							<Text style={[styles.tc, styles.h4, styles.mb3, styles.up, styles.mt3]}>Yhteistyökumppanit</Text>
+							{partners}
+						</ScrollView>
+					</View>
 				</View>
 
 			);

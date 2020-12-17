@@ -10,6 +10,7 @@ class News extends React.Component {
 		this.state = {
 			isLoading: true,
 			news: null,
+			img: null,
 		};
 	}
 	componentDidMount() {
@@ -32,8 +33,8 @@ class News extends React.Component {
 		} else {
 			let news = this.state.news.map((val, key) => {
 				let date = moment(val.date * 1000).format('DD.MM.YYYY')
-				return <View key={key} style={styles.mb3}>
-					<TouchableOpacity onPress onPress={() => this.props.navigation.navigate('Sivu', {
+				return <View key={key} style={styles.mb3, styles.main}>
+					<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', {
 						team_id: this.props.route.params.team_id, page_id: val.id
 					})}>
 						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
@@ -43,16 +44,16 @@ class News extends React.Component {
 			});
 
 			return (
-				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-						<Text style={[styles.h4, styles.up, styles.tc, styles.mt3, styles.mb3]}>Uutiset</Text>
-						{news}
-					</ScrollView>
+				<View style={styles.content}>
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.toptitle]}>Uutiset</Text>
+							{news}
+						</ScrollView>
+					</View>
 				</View>
 			);
 		}
-
-
 	}
 }
 

@@ -62,28 +62,44 @@ class Basic extends React.Component {
 				});
 
 				return (
-					<ScrollView style={[styles.container_news]}>
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.mt3]}>{title}</Text>
-						{images}
-						<HTML source={{ html: content }} />
-					</ScrollView>
-
+					<View style={styles.content}>
+						<View style={styles.container}>
+							<ScrollView showsVerticalScrollIndicator={false} >
+								<Text style={[styles.toptitle]}>{title}</Text>
+								<View style={[styles.main]}>
+									{images}
+									<HTML source={{ html: content }} />
+								</View>
+							</ScrollView>
+						</View>
+					</View>
 				);
 			} else if (this.state.body != null) {
 				return (
-					<ScrollView style={[styles.container_news, styles.font]}>
-						<Text style={[styles.tc, styles.h4, styles.mb3, styles.mt3]}>{title}</Text>
-						<HTML source={{ html: content }} />
-					</ScrollView>
+					<View style={styles.content}>
+						<View style={styles.container}>
+							<ScrollView showsVerticalScrollIndicator={false}>
+								<Text style={[styles.toptitle]}>{title}</Text>
+								<View style={[styles.main]}>
+									<HTML source={{ html: content }} />
+								</View>
+							</ScrollView>
+						</View>
+					</View>
 				);
 			} else {
-				let body = 'Kaikkea tietoa ei löydy kyseiselle sivulle.'
+				let body = ''
 				return (
-					<View style={styles.container}>
-						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.mt3], [styles.font]}>{body}</Text>
-						</ScrollView>
-					</View>
+					<View style={styles.content}>
+						<View style={styles.container}>
+							<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+								<Text style={[styles.toptitle]}>{title}</Text>
+								<View style={styles.main}>
+									<Text style={[styles.mt3], [styles.font]}>{body}</Text>
+								</View>
+							</ScrollView>
+						</View>
+					</View >
 				);
 			}
 
@@ -105,9 +121,15 @@ class Delete extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista joukkue</Text></TouchableOpacity>
-			</View >
+			<View style={styles.content}>
+				<View style={styles.container}>
+					<View style={styles.main}>
+						<Text style={[styles.mb3, styles.tc, styles.h4]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
+						<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
+					</View >
+				</View >
+			</View>
+
 		);
 	}
 }

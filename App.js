@@ -21,6 +21,8 @@ const Stack = createStackNavigator();
 const kiekkovantaa = 'https://kiekko-vantaa.fi/site/assets/files/1/kiekko-vantaa.png';
 const roki = 'https://www.rokihockey.fi/files/logos/roki.png';
 const joensuunkiekkopojat = 'https://joensuunkiekkopojat.fi/site/assets/files/1/jokipojat.png';
+[global.team_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/untitled1-edit-edit.jpg']
+[global.default_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/lohi.png']
 
 
 export default class App extends React.Component {

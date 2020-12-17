@@ -1,14 +1,27 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+
+	content: {
+		backgroundColor: '#000000',
+		width: '100%',
+		height: '100%',
+		padding: 15,
+		paddingBottom: 0,
+	},
+
 	container: {
 		display: 'flex',
 		flexDirection: 'column',
 		width: '100%',
 		height: '100%',
-		justifyContent: 'center',
-		paddingLeft: 10,
-		paddingRight: 10,
+		backgroundColor: '#ffffff',
+		borderTopRightRadius: 5,
+		borderTopLeftRadius: 5,
+	},
+
+	main: {
+		padding: 10,
 	},
 
 	container_news: {
@@ -19,6 +32,7 @@ export const styles = StyleSheet.create({
 		paddingLeft: 10,
 		paddingRight: 10,
 	},
+
 	tc: {
 		textAlign: 'center',
 	},
@@ -52,6 +66,14 @@ export const styles = StyleSheet.create({
 		width: '100%',
 		height: 300,
 		resizeMode: 'contain',
+	},
+
+	players_img: {
+		width: '100%',
+		height: 500,
+		resizeMode: 'cover',
+		flex: 1,
+		marginTop: 20,
 	},
 
 	logo_top: {
@@ -152,22 +174,28 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 	},
 
+	toptitle: {
+		backgroundColor: '#035e96',
+		fontSize: 22,
+		textTransform: "uppercase",
+		fontFamily: 'Exo',
+		color: 'white',
+		textAlign: 'center',
+		paddingTop: 10,
+		paddingBottom: 10,
+		borderTopRightRadius: 5,
+		borderTopLeftRadius: 5,
+	},
+
 	border: {
 		borderTopWidth: 1,
 		borderColor: '#689fc0',
 		width: '100%',
 	},
-
-
 	dropdown: {
 		position: 'absolute',
 		right: 5,
 		top: 6,
 		paddingLeft: 20,
 	},
-
-
-
-
-
 });

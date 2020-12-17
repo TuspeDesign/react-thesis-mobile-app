@@ -61,7 +61,7 @@ class DrawerContent extends React.Component {
 			return (
 				<View style={styles.container, styles.bg}>
 					<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
-						<Text style={[styles.up, styles.navlink]}>Poista valittu joukkue</Text>
+						<Text style={[styles.up, styles.navlink]}>Valittu joukkue</Text>
 					</TouchableOpacity>
 					<Loading />
 				</View>
@@ -101,7 +101,7 @@ class DrawerContent extends React.Component {
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
 						{navigation}
 						<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
-							<Text style={[styles.up, styles.navlink, styles.white]}>Poista valittu joukkue</Text>
+							<Text style={[styles.up, styles.navlink, styles.white]}>Valittu joukkue</Text>
 						</TouchableOpacity>
 					</ScrollView>
 				</View>
