@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ActivityIndicator, Image, ScrollView, TouchableOpacity, Text } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, Text } from 'react-native';
+import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -54,11 +55,7 @@ export default class Home extends React.Component {
 
 	render() {
 		if (this.state.isLoading) {
-			return (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="blue" />
-				</View>
-			)
+			return (<Loading />);
 		}
 		else {
 			const url = this.state.image_url
@@ -66,7 +63,7 @@ export default class Home extends React.Component {
 
 			let teams = this.state.teams.map((val, key) => {
 				if (val.id != null) {
-					return <View key={key} style={styles.item}>
+					return <View key={key}>
 						<TouchableOpacity style={[styles.test, styles.mb3]} onPress={() => {
 							this.saveID(val.id, val.name);
 							this.props.navigation.navigate(val.id.toString(), { id: val.id })

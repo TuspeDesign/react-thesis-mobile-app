@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, ActivityIndicator, ScrollView, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HTML from "react-native-render-html";
@@ -49,12 +50,7 @@ class Basic extends React.Component {
 	}
 	render() {
 		if (this.state.isLoading) {
-			return (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
-				</View>
-			)
+			return (<Loading />);
 		} else {
 			let content = this.state.body;
 			let title = this.state.title;

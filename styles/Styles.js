@@ -21,8 +21,6 @@ export const styles = StyleSheet.create({
 	},
 	tc: {
 		textAlign: 'center',
-		fontFamily: 'Barlow-Regular',
-		fontSize: 15,
 	},
 
 	font: {

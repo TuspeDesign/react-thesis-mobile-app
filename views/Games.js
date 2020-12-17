@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, ActivityIndicator, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 
 class Games extends React.Component {
@@ -25,15 +26,10 @@ class Games extends React.Component {
 	}
 	render() {
 		if (this.state.isLoading) {
-			return (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
-				</View>
-			)
+			return (<Loading />);
 		} else {
 			let games = this.state.games.map((val, key) => {
-				return <View key={key} style={styles.item, styles.mb3}>
+				return <View key={key} style={styles.mb3}>
 					<Text style={[styles.tc, styles.mt3, styles.mb3]}>{val.time}</Text>
 					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
 				</View>

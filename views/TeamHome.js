@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Linking, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, Linking, TouchableOpacity } from 'react-native';
+import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 
 class Etusivu extends React.Component {
@@ -30,12 +31,7 @@ class Etusivu extends React.Component {
 	}
 	render() {
 		if (this.state.isLoading) {
-			return (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
-				</View>
-			)
+			return (<Loading />);
 		} else {
 			let news = this.state.news.map((val, key) => {
 				return <View key={key} style={styles.mb3}>
@@ -47,7 +43,7 @@ class Etusivu extends React.Component {
 			});
 
 			let partners = this.state.partners.map((val, key) => {
-				return <View key={key} style={styles.item}>
+				return <View key={key}>
 					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
 						<Image style={styles.logo} source={{ uri: val.img }} />
 					</TouchableOpacity>
@@ -56,7 +52,7 @@ class Etusivu extends React.Component {
 			});
 
 			let games = this.state.games.map((val, key) => {
-				return <View key={key} style={styles.item}>
+				return <View key={key}>
 					<Text style={[styles.tc, styles.mb3]}>{val.time}</Text>
 					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
 				</View>

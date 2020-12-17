@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, Image, Button } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
 import { styles } from '../styles/Styles'
 import { Feather } from '@expo/vector-icons';
+import Loading from './Loading';
 
 class DrawerContent extends React.Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ class DrawerContent extends React.Component {
 			open: false,
 		};
 	}
+
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/menu')
 			.then((response) => response.json())
@@ -28,9 +30,6 @@ class DrawerContent extends React.Component {
 			title: this.props.state.routes[0].params.name,
 		})
 	}
-
-
-
 
 	async checkTemplate(id) {
 		await fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/' + id)
@@ -60,11 +59,11 @@ class DrawerContent extends React.Component {
 
 		if (this.state.isLoading) {
 			return (
-				<View style={styles.container}>
+				<View style={styles.container, styles.bg}>
 					<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
 						<Text style={[styles.up, styles.navlink]}>Poista valittu joukkue</Text>
 					</TouchableOpacity>
-					<ActivityIndicator size="large" color="blue" />
+					<Loading />
 				</View>
 			)
 		} else {

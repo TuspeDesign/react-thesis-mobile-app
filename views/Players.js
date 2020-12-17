@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, ActivityIndicator, Image, ScrollView, Button, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Loading } from './Loading';
 import moment from "moment";
 import { styles } from '../styles/Styles'
 
@@ -31,27 +32,21 @@ class Pelaajat extends React.Component {
 
 	render() {
 		if (this.state.isLoading) {
-			return (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
-				</View>
-			)
+			return (<Loading />);
 		} else {
 			let team = this.state.team.map((val, key) => {
 				return <View key={key}>
 					<Text style={[styles.tc, styles.h4, styles.bg, styles.white, styles.mt3, styles.mb3, styles.p2]}>{val.title}</Text>
 					{val.players.map((val, key) => {
 						if (val.img == null) {
-							return <View key={key} style={styles.item}>
+							return <View key={key}>
 								<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
 									<Image style={styles.news_img} source={{ uri: default_img }} />
 									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{'#' + val.teamId + ' ' + val.name} </Text>
 								</TouchableOpacity>
 							</View>
 						} else {
-							return <View key={key} style={styles.item
-							} >
+							return <View key={key}>
 								<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
 									<Image style={styles.news_img} source={{ uri: val.img }} />
 									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2]}>{'#' + val.teamId + ' ' + val.name} </Text>
@@ -147,12 +142,7 @@ class Pelaaja_profiili extends React.Component {
 		let catches = this.state.catches;
 
 		if (this.state.isLoading) {
-			return (
-				<View style={styles.container}>
-					<ActivityIndicator size="large" color="blue" />
-					<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
-				</View>
-			)
+			return (<Loading />);
 		} else {
 
 			let info = <View>
