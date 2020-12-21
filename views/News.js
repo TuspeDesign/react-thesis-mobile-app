@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import moment from "moment";
 import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
@@ -10,7 +10,6 @@ class News extends React.Component {
 		this.state = {
 			isLoading: true,
 			news: null,
-			img: null,
 		};
 	}
 	componentDidMount() {
@@ -37,6 +36,7 @@ class News extends React.Component {
 					<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', {
 						team_id: this.props.route.params.team_id, page_id: val.id
 					})}>
+						<Image style={styles.news_img} source={{ uri: val.img }} />
 						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
 						<Text>{date} | Uutiset</Text>
 					</TouchableOpacity>

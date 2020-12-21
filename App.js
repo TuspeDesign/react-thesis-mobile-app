@@ -55,8 +55,7 @@ export default class App extends React.Component {
 
 	createDrawer = (props) => {
 		return <Drawer.Navigator drawerStyle={{ backgroundColor: null, width: '100%' }} drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
-			<Drawer.Screen name='Etusivu' component={Etusivu}
-				initialParams={{ id: props.route.params.id, name: props.route.params.name, logo: props.route.params.logo, color: props.route.params.color }} />
+			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id, name: props.route.params.name, logo: props.route.params.logo, color: props.route.params.color }} />
 			<Drawer.Screen name='Pelaajat' component={Pelaajat} />
 			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img }} />
 			<Drawer.Screen name='Ottelut' component={Games} />
@@ -72,9 +71,9 @@ export default class App extends React.Component {
 			return <Loading />;
 		}
 		return (
-			< NavigationContainer >
+			<NavigationContainer>
 				{ this.createHomeStack()}
-			</NavigationContainer >
+			</NavigationContainer>
 		);
 	}
 }

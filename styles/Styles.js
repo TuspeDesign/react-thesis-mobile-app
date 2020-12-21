@@ -41,11 +41,15 @@ export const styles = StyleSheet.create({
 		color: '#fff',
 	},
 
+	abs: {
+		position: 'absolute',
+	},
+
+
 	logo: {
 		alignSelf: 'center',
-		flex: 1,
-		width: 150,
-		height: 150,
+		width: 120,
+		height: 120,
 		resizeMode: 'contain',
 		marginTop: 10,
 		marginBottom: 10,
@@ -74,10 +78,8 @@ export const styles = StyleSheet.create({
 	},
 
 	logo_top: {
-		alignSelf: 'center',
-		flex: 1,
-		width: 100,
-		height: 100,
+		width: 60,
+		height: 60,
 		resizeMode: 'contain',
 	},
 	h4: {
@@ -93,8 +95,16 @@ export const styles = StyleSheet.create({
 		marginBottom: 30,
 	},
 
+	mr3: {
+		marginLeft: 30,
+	},
+
 	p2: {
 		padding: 8,
+	},
+
+	m2: {
+		margin: 8,
 	},
 
 	pb1: {
@@ -124,6 +134,10 @@ export const styles = StyleSheet.create({
 		fontSize: 22,
 		fontWeight: 'bold',
 		fontFamily: 'Exo'
+	},
+
+	bold: {
+		fontWeight: 'bold',
 	},
 
 	home: {
@@ -205,5 +219,10 @@ export const styles = StyleSheet.create({
 		top: 6,
 		paddingLeft: 20,
 	},
+
+	box: {
+		width: '100%',
+		padding: 30,
+	}
 
 });
