@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -113,7 +113,7 @@ class Delete extends React.Component {
 	removeValue = async () => {
 		try {
 			await AsyncStorage.removeItem('id')
-			alert('Valittu joukkue poistettu onnistuneesti. Ohjelma käynnistyy seuraavan kerran valitse joukkue -sivulta')
+			Alert.alert('Ilmoitus', 'Valittu joukkue poistettu onnistuneesti. Ohjelma käynnistyy seuraavan kerran valitse joukkue -sivulta', [{ text: 'OK' }]);
 		} catch (error) {
 			console.log(error)
 		}
@@ -123,10 +123,8 @@ class Delete extends React.Component {
 		return (
 			<View style={styles.content}>
 				<View style={styles.container}>
-					<View style={styles.main}>
-						<Text style={[styles.mb3, styles.tc, styles.h4]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
-						<TouchableOpacity style={[styles.delete]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
-					</View >
+					<Text style={[styles.toptitle]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
+					<TouchableOpacity style={[styles.delete, styles.mt3]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
 				</View >
 			</View>
 

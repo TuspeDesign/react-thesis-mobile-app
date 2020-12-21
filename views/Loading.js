@@ -5,9 +5,9 @@ import { styles } from '../styles/Styles';
 export default class Loading extends React.Component {
 	render() {
 		return (
-			<View style={styles.container} >
+			<View style={[styles.container, { justifyContent: 'center' }]} >
 				<ActivityIndicator size="large" color="blue" />
-				<Text style={[styles.tc, styles.h4]}>Ladataan...</Text>
+				<Text style={[styles.tc]}>Ladataan...</Text>
 			</View>
 		)
 	}

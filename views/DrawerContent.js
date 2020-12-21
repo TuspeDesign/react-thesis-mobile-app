@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, Image } from 'react-native';
 import { styles } from '../styles/Styles'
 import { Feather } from '@expo/vector-icons';
 import Loading from './Loading';
@@ -27,7 +27,9 @@ class DrawerContent extends React.Component {
 
 
 		this.props.navigation.setOptions({
-			title: this.props.state.routes[0].params.name,
+			headerLeft: () => (<Image style={styles.logo_top} source={{ uri: this.props.state.routes[0].params.logo }} />),
+			headerStyle: { backgroundColor: this.props.state.routes[0].params.color },
+			title: this.props.state.routes[0].params.name, headerTitleAlign: 'center', headerTitleStyle: { color: 'white' }
 		})
 	}
 
@@ -55,8 +57,9 @@ class DrawerContent extends React.Component {
 		}
 	}
 
-	render() {
 
+	render() {
+		[global.color = this.props.state.routes[0].params.color]
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container, styles.bg}>
@@ -66,7 +69,8 @@ class DrawerContent extends React.Component {
 					<Loading />
 				</View>
 			)
-		} else {
+		}
+		else {
 			let navigation = this.state.nav.map((val, key) => {
 				if (val.items) {
 					return <View key={key} >
@@ -95,20 +99,20 @@ class DrawerContent extends React.Component {
 					</View>
 				}
 			});
-
 			return (
-				<View style={[styles.bg]}>
+				<View style={{ backgroundColor: color }}>
 					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
 						{navigation}
 						<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
 							<Text style={[styles.up, styles.navlink, styles.white]}>Valittu joukkue</Text>
 						</TouchableOpacity>
 					</ScrollView>
-				</View>
+				</View >
 			);
 		}
 	}
 }
+
 
 
 

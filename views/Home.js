@@ -14,11 +14,13 @@ export default class Home extends React.Component {
 			image_format: null,
 		};
 	}
-	saveID = async (id, name) => {
+	saveID = async (id, name, logo, color) => {
 		try {
 			const teamid = JSON.stringify(id)
 			await AsyncStorage.setItem('id', teamid)
 			await AsyncStorage.setItem('name', name)
+			await AsyncStorage.setItem('logo', logo)
+			await AsyncStorage.setItem('color', color)
 		} catch (error) {
 			console.log(error)
 		}
@@ -28,8 +30,10 @@ export default class Home extends React.Component {
 		try {
 			const teamid = await AsyncStorage.getItem('id')
 			const name = await AsyncStorage.getItem('name')
+			const logo = await AsyncStorage.getItem('logo')
+			const color = await AsyncStorage.getItem('color')
 			if (teamid !== null) {
-				this.props.navigation.navigate(teamid.toString(), { id: teamid })
+				this.props.navigation.navigate('Header', { id: teamid, name: name, logo: logo, color: color })
 			}
 		} catch (error) {
 			console.log(error)
@@ -46,6 +50,7 @@ export default class Home extends React.Component {
 					teams: data.teams,
 					image_url: data.logo.url,
 					image_format: data.logo.ext,
+
 				})
 			})
 			.catch((error) => {
@@ -65,8 +70,8 @@ export default class Home extends React.Component {
 				if (val.id != null) {
 					return <View key={key}>
 						<TouchableOpacity style={[styles.test, styles.mb3]} onPress={() => {
-							this.saveID(val.id, val.name);
-							this.props.navigation.navigate(val.id.toString(), { id: val.id })
+							this.saveID(val.id, val.name, url + val.img + "." + format, val.colors[0]);
+							this.props.navigation.navigate('Header', { id: val.id, name: val.name, logo: url + val.img + "." + format, color: val.colors[0] })
 						}}>
 							<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
 							<Text style={[styles.tc, styles.h4, styles.home, styles.white, styles.up, styles.mb3]}>{val.name}</Text>

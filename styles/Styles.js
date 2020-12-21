@@ -21,16 +21,7 @@ export const styles = StyleSheet.create({
 	},
 
 	main: {
-		padding: 10,
-	},
-
-	container_news: {
-		display: 'flex',
-		flexDirection: 'column',
-		width: '100%',
-		height: '100%',
-		paddingLeft: 10,
-		paddingRight: 10,
+		padding: 15,
 	},
 
 	tc: {
@@ -60,6 +51,12 @@ export const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 
+	partner_logo: {
+		width: 120,
+		height: 120,
+		resizeMode: 'contain',
+	},
+
 	news_img: {
 		alignSelf: 'center',
 		flex: 1,
@@ -86,7 +83,7 @@ export const styles = StyleSheet.create({
 	h4: {
 		fontSize: 22,
 		textTransform: "uppercase",
-		fontFamily: 'Exo'
+		fontFamily: 'Exo',
 	},
 	mt3: {
 		marginTop: 30,
@@ -192,10 +189,21 @@ export const styles = StyleSheet.create({
 		borderColor: '#689fc0',
 		width: '100%',
 	},
+
+	border_bottom: {
+		borderBottomWidth: 1,
+		borderColor: '#bbb',
+		width: '100%',
+		marginBottom: 10,
+		marginTop: 10,
+	},
+
+
 	dropdown: {
 		position: 'absolute',
 		right: 5,
 		top: 6,
 		paddingLeft: 20,
 	},
+
 });

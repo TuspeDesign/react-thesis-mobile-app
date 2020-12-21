@@ -4,9 +4,6 @@ import { Loading } from './Loading';
 import moment from "moment";
 import { styles } from '../styles/Styles'
 
-
-
-
 class Pelaajat extends React.Component {
 	constructor(props) {
 		super(props);
@@ -103,7 +100,7 @@ class Pelaaja_profiili extends React.Component {
 					height: data.height,
 					weight: data.weight,
 					catches: data.catches,
-
+					/*partner: data.partners.img,*/
 				})
 			})
 			.catch((error) => {
@@ -112,6 +109,7 @@ class Pelaaja_profiili extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
+
 		// Typical usage (don't forget to compare props):
 		if (this.props.route.params.profile_id !== prevProps.route.params.profile_id) {
 			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.profile_id)
@@ -127,6 +125,7 @@ class Pelaaja_profiili extends React.Component {
 						height: data.height,
 						weight: data.weight,
 						catches: data.catches,
+						/*partner: data.partners.img,*/
 					})
 				})
 				.catch((error) => {
@@ -143,37 +142,35 @@ class Pelaaja_profiili extends React.Component {
 		let height = this.state.height;
 		let weight = this.state.weight;
 		let catches = this.state.catches;
+		let partner = this.state.partner;
 
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
+			let info = <View>
+				<Text style={[styles.border_bottom]}>Pelipaikka: {position}</Text>
+				<Text style={styles.border_bottom}>Syntymäaika: {birthDay}</Text>
+				<Text style={styles.border_bottom}>Syntymäpaikka: {birthPlace}</Text>
+				<Text style={styles.border_bottom}>Pituus: {height}</Text>
+				<Text style={styles.border_bottom}>Paino: {weight}</Text>
+				<Text style={styles.border_bottom}>Kätisyys: {catches}</Text>
+			</View >
 
-			let info = <View style={[styles.main]}>
-				<Text>Pelipaikka: {position}</Text>
-				<Text>Syntymäaika: {birthDay}</Text>
-				<Text>Syntymäpaikka: {birthPlace}</Text>
-				<Text>Pituus: {height}</Text>
-				<Text>Paino: {weight}</Text>
-				<Text>Kätisyys: {catches}</Text>
+			return <View style={styles.content}>
+				<View style={styles.container}>
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+						<Text style={[styles.toptitle]}>{'#' + number + ' ' + name} </Text>
+						<View style={styles.main}>
+							{this.props.route.params.profile_img != null ? <Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
+								: <Image style={[styles.players_img]} source={{ uri: default_img }} />}
+							{info}
+							{this.state.partner != null ? <Image style={[styles.partner_logo]} source={{ uri: partner }} />
+								: null}
+						</View>
+					</ScrollView>
+				</View>
 			</View>
 
-			if (this.props.route.params.profile_img == null) {
-				return <View style={styles.content}>
-					<View style={styles.container}>
-						<Text style={[styles.toptitle]}>{'#' + number + ' ' + name} </Text>
-						<Image style={[styles.players_img]} source={{ uri: default_img }} />
-						{info}
-					</View>
-				</View>
-			} else {
-				return <View style={styles.content}>
-					<View style={styles.container}>
-						<Text style={[styles.toptitle]}>{'#' + number + ' ' + name} </Text>
-						<Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
-						{info}
-					</View>
-				</View>
-			}
 		};
 
 	}
