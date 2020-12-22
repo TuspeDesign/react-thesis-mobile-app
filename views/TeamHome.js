@@ -4,6 +4,7 @@ import moment from "moment";
 import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 
+
 class Etusivu extends React.Component {
 	constructor(props) {
 		super(props);
@@ -81,26 +82,17 @@ class Etusivu extends React.Component {
 			let news = this.state.news.map((val, key) => {
 				let date = moment(val.date * 1000).format('DD.MM.YYYY')
 				return <View key={key} style={styles.mb3}>
-					<Image style={styles.news_img} source={{ uri: val.img }} />
 					<TouchableOpacity style={[styles.h4]} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.id, page_id: val.id })}>
-						<Text style={[styles.h4, styles.up]}>{val.title}</Text></TouchableOpacity>
-					<Text>{date}</Text>
+						<Image style={styles.news_img} source={{ uri: val.img }} />
+						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
+						<Text>{date}</Text></TouchableOpacity>
 				</View>
-			});
-
-			let partners = this.state.partners.map((val, key) => {
-				return <View key={key}>
-					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
-						<Image style={styles.logo} source={{ uri: val.img }} />
-					</TouchableOpacity>
-				</View>
-
 			});
 
 			let games = this.state.games.map((val, key) => {
 				var visitLogo = val.teamVist.logo.replace('.png', '');
 				return <View key={key}>
-					<Text style={[styles.tc, styles.mb3, styles.font, styles.bold, styles.mt3]}>{val.time}</Text>
+					<Text style={[styles.tc, styles.mb3, styles.mt3]}>{val.time}</Text>
 					<View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
 						<Image style={[styles.logo_top, styles.m2]} source={{ uri: val.teamHome.logo }} />
 						<Image style={[styles.logo_top, styles.m2]} source={{ uri: visitLogo + val.teamVist[1] + ".png" }} />
@@ -109,26 +101,40 @@ class Etusivu extends React.Component {
 						<Text style={[styles.tc, styles.mb3, styles.font]}>{val.teamHome.title} - </Text>
 						<Text style={[styles.tc, styles.mb3, styles.font]}>{val.teamVist[0]}</Text>
 					</View>
+					<View style={styles.border}></View>
 				</View >
 
 			});
 
+			let partners = this.state.partners.map((val, key) => {
+				<View style={styles.border}></View>
+				return <View key={key} style={{ flexBasis: '50%' }}>
+					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
+						<Image style={styles.logo} source={{ uri: val.img }} />
+					</TouchableOpacity>
+				</View>
+
+			});
+
+
+
 			return (
-				<View style={styles.content}>
-					<View style={[styles.container]}>
-						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.toptitle]}>{this.props.route.params.name}</Text>
-							{featured}
-							<View style={[styles.main]}>
-								{nextGame}
-								{news}
-								<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevat ottelut</Text>
+				<View style={[styles.container]}>
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+						<Text style={[styles.toptitle, { backgroundColor: color }]}>{this.props.route.params.name}</Text>
+						{featured}
+						<View style={[styles.main]}>
+							{nextGame}
+							{news}
+							<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevia otteluita</Text>
+							<View style={styles.box_border}>
 								{games}
-								<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Yhteistyökumppanit</Text>
+							</View>
+							<View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
 								{partners}
 							</View>
-						</ScrollView>
-					</View>
+						</View>
+					</ScrollView>
 				</View>
 			);
 		}

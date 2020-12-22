@@ -11,10 +11,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerActions } from '@react-navigation/native';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import * as Font from 'expo-font';
-import Loading from './views/Loading';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -22,33 +20,13 @@ const Stack = createStackNavigator();
 [global.team_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/untitled1-edit-edit.jpg']
 [global.default_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/lohi.png']
 
-
 export default class App extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			fontLoaded: false
-		};
-	}
-	componentDidMount() {
-		this.loadFonts();
-	}
-
-	async loadFonts() {
-		await Font.loadAsync({
-			'Barlow-Regular': require('./assets/fonts/Barlow-Regular.ttf'),
-			'Exo': require('./assets/fonts/Exo-ExtraBoldItalic.ttf'),
-		});
-		this.setState({ fontLoaded: true });
-	}
-
 	createHomeStack = () => {
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />
 			<Stack.Screen name='Header' children={this.createDrawer} options={({ navigation }) => ({
 				headerRight: () => (<TouchableOpacity style={{ paddingRight: 10 }}>
-					<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
-				</TouchableOpacity>)
+					<Feather name='menu' size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} /></TouchableOpacity>)
 			})} />
 		</Stack.Navigator>
 	}
@@ -67,9 +45,6 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		if (this.state.fontLoaded != true) {
-			return <Loading />;
-		}
 		return (
 			<NavigationContainer>
 				{ this.createHomeStack()}

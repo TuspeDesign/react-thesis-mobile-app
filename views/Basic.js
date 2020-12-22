@@ -62,44 +62,38 @@ class Basic extends React.Component {
 				});
 
 				return (
-					<View style={styles.content}>
-						<View style={styles.container}>
-							<ScrollView showsVerticalScrollIndicator={false} >
-								<Text style={[styles.toptitle]}>{title}</Text>
-								<View style={[styles.main]}>
-									{images}
-									<HTML source={{ html: content }} />
-								</View>
-							</ScrollView>
-						</View>
+					<View style={styles.container}>
+						<ScrollView showsVerticalScrollIndicator={false} >
+							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
+							<View style={[styles.main]}>
+								{images}
+								<HTML source={{ html: content }} />
+							</View>
+						</ScrollView>
 					</View>
 				);
 			} else if (this.state.body != null) {
 				return (
-					<View style={styles.content}>
-						<View style={styles.container}>
-							<ScrollView showsVerticalScrollIndicator={false}>
-								<Text style={[styles.toptitle]}>{title}</Text>
-								<View style={[styles.main]}>
-									<HTML source={{ html: content }} />
-								</View>
-							</ScrollView>
-						</View>
+					<View stye={styles.container}>
+						<ScrollView showsVerticalScrollIndicator={false}>
+							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
+							<View style={[styles.main]}>
+								<HTML source={{ html: content }} />
+							</View>
+						</ScrollView>
 					</View>
 				);
 			} else {
 				let body = ''
 				return (
-					<View style={styles.content}>
-						<View style={styles.container}>
-							<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-								<Text style={[styles.toptitle]}>{title}</Text>
-								<View style={styles.main}>
-									<Text style={[styles.mt3], [styles.font]}>{body}</Text>
-								</View>
-							</ScrollView>
-						</View>
-					</View >
+					<View style={styles.container}>
+						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
+							<View style={styles.main}>
+								<Text style={[styles.mt3], [styles.font]}>{body}</Text>
+							</View>
+						</ScrollView>
+					</View>
 				);
 			}
 
@@ -121,13 +115,10 @@ class Delete extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.content}>
-				<View style={styles.container}>
-					<Text style={[styles.toptitle]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
-					<TouchableOpacity style={[styles.delete, styles.mt3]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
-				</View >
+			<View style={styles.container}>
+				<Text style={[styles.toptitle, { backgroundColor: color }]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
+				<TouchableOpacity style={[styles.delete, styles.mt3]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
 			</View>
-
 		);
 	}
 }

@@ -61,22 +61,20 @@ class Partners extends React.Component {
 			});
 
 			return (
-				<View style={styles.content}>
-					<View style={styles.container}>
-						<ScrollView style={{ width: "100%" }}>
-							<Text style={[styles.toptitle]}>Yhteistyössä</Text>
-							<View style={[styles.main]}>
-								<View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
-									<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Yhteistyöseura</Text>
-									{mainTeam}
-									<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Pääyhteistyökumppanit</Text>
-									{mainPartners}
-									<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Yhteistyökumppanit</Text>
-									{partners}
-								</View>
+				<View style={styles.container}>
+					<ScrollView style={{ width: "100%" }}>
+						<Text style={[styles.toptitle, { backgroundColor: color }]}>Yhteistyössä</Text>
+						<View style={[styles.main]}>
+							<View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+								<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Yhteistyöseura</Text>
+								{mainTeam}
+								<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Pääyhteistyökumppanit</Text>
+								{mainPartners}
+								<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Yhteistyökumppanit</Text>
+								{partners}
 							</View>
-						</ScrollView>
-					</View>
+						</View>
+					</ScrollView>
 				</View>
 			);
 

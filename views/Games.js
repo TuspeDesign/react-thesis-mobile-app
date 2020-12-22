@@ -35,15 +35,13 @@ class Games extends React.Component {
 				</View>
 			});
 			return (
-				<View style={styles.content}>
-					<View style={styles.container}>
-						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.toptitle]}>Ottelut 2020-2021</Text>
-							<View style={styles.main}>
-								{games}
-							</View>
-						</ScrollView>
-					</View>
+				<View style={styles.container}>
+					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+						<Text style={[styles.toptitle, { backgroundColor: color }]}>Ottelut 2020-2021</Text>
+						<View style={styles.main}>
+							{games}
+						</View>
+					</ScrollView>
 				</View>
 			);
 		}

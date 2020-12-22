@@ -16,8 +16,6 @@ export const styles = StyleSheet.create({
 		width: '100%',
 		height: '100%',
 		backgroundColor: '#ffffff',
-		borderTopRightRadius: 5,
-		borderTopLeftRadius: 5,
 	},
 
 	main: {
@@ -29,7 +27,7 @@ export const styles = StyleSheet.create({
 	},
 
 	font: {
-		fontFamily: 'Barlow-Regular',
+
 		fontSize: 15,
 	},
 
@@ -62,8 +60,6 @@ export const styles = StyleSheet.create({
 	},
 
 	news_img: {
-		alignSelf: 'center',
-		flex: 1,
 		width: '100%',
 		height: 300,
 		resizeMode: 'contain',
@@ -73,7 +69,6 @@ export const styles = StyleSheet.create({
 		width: '100%',
 		height: 500,
 		resizeMode: 'cover',
-		flex: 1,
 		marginTop: 20,
 	},
 
@@ -85,7 +80,6 @@ export const styles = StyleSheet.create({
 	h4: {
 		fontSize: 22,
 		textTransform: "uppercase",
-		fontFamily: 'Exo',
 	},
 	mt3: {
 		marginTop: 30,
@@ -133,7 +127,7 @@ export const styles = StyleSheet.create({
 	delete_h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
-		fontFamily: 'Exo'
+
 	},
 
 	bold: {
@@ -170,10 +164,9 @@ export const styles = StyleSheet.create({
 		paddingRight: 15,
 		paddingTop: 10,
 		paddingBottom: 10,
-		fontFamily: 'Exo',
 		fontSize: 16,
 		borderTopWidth: 1,
-		borderColor: '#689fc0',
+		borderColor: '#d6dfe3',
 	},
 
 	navlinksub: {
@@ -181,7 +174,6 @@ export const styles = StyleSheet.create({
 		paddingRight: 15,
 		paddingTop: 10,
 		paddingBottom: 10,
-		fontFamily: 'Exo',
 		fontSize: 16,
 	},
 
@@ -189,19 +181,21 @@ export const styles = StyleSheet.create({
 		backgroundColor: '#035e96',
 		fontSize: 22,
 		textTransform: "uppercase",
-		fontFamily: 'Exo',
 		color: 'white',
 		textAlign: 'center',
 		paddingTop: 10,
 		paddingBottom: 10,
-		borderTopRightRadius: 5,
-		borderTopLeftRadius: 5,
 	},
 
 	border: {
 		borderTopWidth: 1,
-		borderColor: '#689fc0',
+		borderColor: '#d6dfe3',
 		width: '100%',
+	},
+
+	box_border: {
+		borderWidth: 1,
+		borderColor: '#d6dfe3',
 	},
 
 	border_bottom: {

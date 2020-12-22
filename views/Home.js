@@ -14,6 +14,7 @@ export default class Home extends React.Component {
 			image_format: null,
 		};
 	}
+
 	saveID = async (id, name, logo, color) => {
 		try {
 			const teamid = JSON.stringify(id)
@@ -50,7 +51,6 @@ export default class Home extends React.Component {
 					teams: data.teams,
 					image_url: data.logo.url,
 					image_format: data.logo.ext,
-
 				})
 			})
 			.catch((error) => {
