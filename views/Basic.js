@@ -15,6 +15,7 @@ class Basic extends React.Component {
 			img: null,
 		};
 	}
+
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.page_id)
 			.then((response) => response.json())
@@ -30,6 +31,7 @@ class Basic extends React.Component {
 				console.log(error)
 			});
 	}
+
 	componentDidUpdate(prevProps) {
 		// Typical usage (don't forget to compare props):
 		if (this.props.route.params.page_id !== prevProps.route.params.page_id) {
@@ -48,11 +50,12 @@ class Basic extends React.Component {
 				});
 		}
 	}
+
 	render() {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
-			let content = this.state.body;
+			let content = this.state.body != null ? this.state.body : "";
 			let title = this.state.title;
 			if (this.state.img != null) {
 				let images = this.state.img.map((val, key) => {
@@ -60,10 +63,9 @@ class Basic extends React.Component {
 						<Image style={styles.news_img} source={{ uri: val[0][0] }} />
 					</View>
 				});
-
 				return (
 					<View style={styles.container}>
-						<ScrollView showsVerticalScrollIndicator={false} >
+						<ScrollView>
 							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
 							<View style={[styles.main]}>
 								{images}
@@ -72,10 +74,10 @@ class Basic extends React.Component {
 						</ScrollView>
 					</View>
 				);
-			} else if (this.state.body != null) {
+			} else {
 				return (
 					<View stye={styles.container}>
-						<ScrollView showsVerticalScrollIndicator={false}>
+						<ScrollView>
 							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
 							<View style={[styles.main]}>
 								<HTML source={{ html: content }} />
@@ -83,21 +85,7 @@ class Basic extends React.Component {
 						</ScrollView>
 					</View>
 				);
-			} else {
-				let body = ''
-				return (
-					<View style={styles.container}>
-						<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
-							<View style={styles.main}>
-								<Text style={[styles.mt3], [styles.font]}>{body}</Text>
-							</View>
-						</ScrollView>
-					</View>
-				);
 			}
-
-
 		}
 	}
 }

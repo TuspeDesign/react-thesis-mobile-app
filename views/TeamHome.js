@@ -4,7 +4,6 @@ import moment from "moment";
 import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 
-
 class Etusivu extends React.Component {
 	constructor(props) {
 		super(props);
@@ -49,6 +48,7 @@ class Etusivu extends React.Component {
 				console.log(error)
 			});
 	}
+
 	render() {
 		if (this.state.isLoading) {
 			return (<Loading />);
@@ -72,7 +72,7 @@ class Etusivu extends React.Component {
 				<Text style={[styles.h4, styles.up, styles.white, styles.tc]}>Seuraava kotiottelu</Text>
 				<Text style={[styles.h4, styles.up, styles.white, styles.tc, styles.mt3]}>{nextGameTime}</Text>
 				<Text style={[styles.h4, styles.up, styles.white, styles.tc]}>{arena}</Text>
-				<View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }]}>
+				<View style={[styles.row, styles.jcc]}>
 					<Image style={[styles.logo_top, styles.m2]} source={{ uri: nextHomeLogo }} />
 					<Image style={[styles.logo_top, styles.m2]} source={{ uri: nextVisitLogo }} />
 				</View>
@@ -93,13 +93,13 @@ class Etusivu extends React.Component {
 				var visitLogo = val.teamVist.logo.replace('.png', '');
 				return <View key={key}>
 					<Text style={[styles.tc, styles.mb3, styles.mt3]}>{val.time}</Text>
-					<View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
+					<View style={[styles.row, styles.jcc]}>
 						<Image style={[styles.logo_top, styles.m2]} source={{ uri: val.teamHome.logo }} />
 						<Image style={[styles.logo_top, styles.m2]} source={{ uri: visitLogo + val.teamVist[1] + ".png" }} />
 					</View>
-					<View style={[styles.mt3, { flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
-						<Text style={[styles.tc, styles.mb3, styles.font]}>{val.teamHome.title} - </Text>
-						<Text style={[styles.tc, styles.mb3, styles.font]}>{val.teamVist[0]}</Text>
+					<View style={[styles.mt3, styles.row, styles.jcc]}>
+						<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - </Text>
+						<Text style={[styles.tc, styles.mb3]}>{val.teamVist[0]}</Text>
 					</View>
 					<View style={styles.border}></View>
 				</View >
@@ -108,7 +108,7 @@ class Etusivu extends React.Component {
 
 			let partners = this.state.partners.map((val, key) => {
 				<View style={styles.border}></View>
-				return <View key={key} style={{ flexBasis: '50%' }}>
+				return <View key={key} style={styles.col6}>
 					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
 						<Image style={styles.logo} source={{ uri: val.img }} />
 					</TouchableOpacity>
@@ -116,11 +116,9 @@ class Etusivu extends React.Component {
 
 			});
 
-
-
 			return (
 				<View style={[styles.container]}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+					<ScrollView>
 						<Text style={[styles.toptitle, { backgroundColor: color }]}>{this.props.route.params.name}</Text>
 						{featured}
 						<View style={[styles.main]}>
@@ -130,7 +128,7 @@ class Etusivu extends React.Component {
 							<View style={styles.box_border}>
 								{games}
 							</View>
-							<View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+							<View style={styles.row}>
 								{partners}
 							</View>
 						</View>

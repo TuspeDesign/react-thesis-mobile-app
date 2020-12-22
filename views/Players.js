@@ -12,6 +12,7 @@ class Pelaajat extends React.Component {
 			team: null,
 		};
 	}
+
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/players')
 			.then((response) => response.json())
@@ -55,7 +56,7 @@ class Pelaajat extends React.Component {
 			});
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+					<ScrollView>
 						<Text style={[styles.toptitle]}>Joukkue</Text>
 						<View style={styles.main}>
 							<Image style={styles.news_img} source={{ uri: team_img }} />
@@ -84,6 +85,7 @@ class Pelaaja_profiili extends React.Component {
 			partner: null,
 		};
 	}
+
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.profile_id)
 			.then((response) => response.json())
@@ -133,16 +135,16 @@ class Pelaaja_profiili extends React.Component {
 	}
 
 	render() {
+
 		let name = this.state.title;
-		let number = this.state.number;
+		let number = this.state.number != null ? "#" + this.state.number : "";
 		let position = this.state.position;
-		let birthDay = moment(this.state.birthDay * 1000).format('DD.MM.YYYY');
+		let birthDay = this.state.birthDay != null ? moment(this.state.birthDay * 1000).format('DD.MM.YYYY') : "";
 		let birthPlace = this.state.birthPlace;
 		let height = this.state.height;
 		let weight = this.state.weight;
 		let catches = this.state.catches;
 		let partner = this.state.partner;
-
 
 		if (this.state.isLoading) {
 			return (<Loading />);
@@ -157,14 +159,13 @@ class Pelaaja_profiili extends React.Component {
 			</View >
 
 			return <View style={styles.container}>
-				<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
-					<Text style={[styles.toptitle, { backgroundColor: color }]}>{'#' + number + ' ' + name} </Text>
+				<ScrollView>
+					<Text style={[styles.toptitle, { backgroundColor: color }]}>{number + ' ' + name} </Text>
 					<View style={styles.main}>
 						{this.props.route.params.profile_img != null ? <Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
 							: <Image style={[styles.players_img]} source={{ uri: default_img }} />}
 						{info}
-						{this.state.partner != null ? <Image style={[styles.partner_logo]} source={{ uri: partner }} />
-							: null}
+						{this.state.partner != null ? <Image style={[styles.partner_logo]} source={{ uri: partner }} /> : null}
 					</View>
 				</ScrollView>
 			</View>

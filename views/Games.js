@@ -11,6 +11,7 @@ class Games extends React.Component {
 			games: null,
 		};
 	}
+
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/games')
 			.then((response) => response.json())
@@ -24,19 +25,20 @@ class Games extends React.Component {
 				console.log(error)
 			});
 	}
+
 	render() {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
 			let games = this.state.games.map((val, key) => {
 				return <View key={key}>
-					<Text style={[styles.tc, styles.mt3, styles.mb3, styles.font]}>{val.time}</Text>
-					<Text style={[styles.tc, styles.mb3, styles.font]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
+					<Text style={[styles.tc, styles.mt3, styles.mb3]}>{val.time}</Text>
+					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVist[0]}</Text>
 				</View>
 			});
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+					<ScrollView>
 						<Text style={[styles.toptitle, { backgroundColor: color }]}>Ottelut 2020-2021</Text>
 						<View style={styles.main}>
 							{games}

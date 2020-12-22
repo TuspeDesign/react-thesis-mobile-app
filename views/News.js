@@ -44,7 +44,7 @@ class News extends React.Component {
 
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+					<ScrollView>
 						<Text style={[styles.toptitle, { backgroundColor: color }]}>Uutiset</Text>
 						{news}
 					</ScrollView>

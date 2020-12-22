@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { styles } from '../styles/Styles'
 import { Feather } from '@expo/vector-icons';
 import Loading from './Loading';
@@ -24,7 +24,6 @@ class DrawerContent extends React.Component {
 				})
 			})
 			.catch((error) => console.log(error))
-
 
 		this.props.navigation.setOptions({
 			headerLeft: () => (<Image style={styles.logo_top} source={{ uri: this.props.state.routes[0].params.logo }} />),
@@ -57,7 +56,6 @@ class DrawerContent extends React.Component {
 		}
 	}
 
-
 	render() {
 		[global.color = this.props.state.routes[0].params.color]
 		if (this.state.isLoading) {
@@ -75,8 +73,7 @@ class DrawerContent extends React.Component {
 				if (val.items) {
 					return <View key={key} >
 						{this.state.open == false ? <Feather style={[styles.dropdown]} name="plus" size={30} color="white" onPress={() => { this.setState({ open: true }); }}>
-						</Feather> : <Feather style={[styles.dropdown]} name="minus" size={30} color="white" onPress={() => { this.setState({ open: false }); }}>
-							</Feather>}
+						</Feather> : <Feather style={[styles.dropdown]} name="minus" size={30} color="white" onPress={() => { this.setState({ open: false }); }}></Feather>}
 						<View style={[styles.border]}></View>
 						<TouchableOpacity style={{ width: 300 }} onPress={() => { this.checkTemplate(val.id); }}>
 							<Text style={[styles.up, styles.navlinksub, styles.white]}>{val.title}</Text>
@@ -84,6 +81,7 @@ class DrawerContent extends React.Component {
 						{val.items.map((val, key) => {
 							if (this.state.open) {
 								return <View key={key} >
+									<View style={[styles.border]}></View>
 									<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
 										<Text style={[styles.up, styles.navlink, styles.pl3, styles.white]}>{val.title}</Text>
 									</TouchableOpacity>
@@ -93,6 +91,7 @@ class DrawerContent extends React.Component {
 					</View >
 				} else {
 					return <View key={key}>
+						<View style={[styles.border]}></View>
 						<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
 							<Text style={[styles.up, styles.navlink, styles.white]}>{val.title}</Text>
 						</TouchableOpacity>
@@ -101,8 +100,9 @@ class DrawerContent extends React.Component {
 			});
 			return (
 				<View style={{ backgroundColor: color }}>
-					<ScrollView style={{ width: "100%" }} showsVerticalScrollIndicator={false}>
+					<ScrollView>
 						{navigation}
+						<View style={[styles.border]}></View>
 						<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>
 							<Text style={[styles.up, styles.navlink, styles.white]}>Valittu joukkue</Text>
 						</TouchableOpacity>
@@ -112,9 +112,5 @@ class DrawerContent extends React.Component {
 		}
 	}
 }
-
-
-
-
 
 export { DrawerContent }

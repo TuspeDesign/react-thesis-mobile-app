@@ -21,6 +21,7 @@ const Stack = createStackNavigator();
 [global.default_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/lohi.png']
 
 export default class App extends React.Component {
+
 	createHomeStack = () => {
 		return <Stack.Navigator>
 			<Stack.Screen name="Valitse joukkue:" component={Home} options={{ headerTitleAlign: 'center', }} />

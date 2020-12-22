@@ -2,20 +2,27 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 
-	content: {
-		backgroundColor: '#000000',
-		width: '100%',
-		height: '100%',
-		padding: 15,
-		paddingBottom: 0,
-	},
-
 	container: {
 		display: 'flex',
 		flexDirection: 'column',
 		width: '100%',
 		height: '100%',
+		flex: 1,
 		backgroundColor: '#ffffff',
+	},
+
+	row: {
+		flex: 1,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+	},
+
+	col6: {
+		flexBasis: '50%',
+	},
+
+	jcc: {
+		justifyContent: 'center',
 	},
 
 	main: {
@@ -24,11 +31,6 @@ export const styles = StyleSheet.create({
 
 	tc: {
 		textAlign: 'center',
-	},
-
-	font: {
-
-		fontSize: 15,
 	},
 
 	tl: {
@@ -42,7 +44,6 @@ export const styles = StyleSheet.create({
 	abs: {
 		position: 'absolute',
 	},
-
 
 	logo: {
 		alignSelf: 'center',
@@ -141,11 +142,6 @@ export const styles = StyleSheet.create({
 		borderRadius: 10,
 	},
 
-	players: {
-		alignSelf: "center",
-		width: '100%',
-	},
-
 	bg: {
 		backgroundColor: '#035e96',
 	},
@@ -157,16 +153,12 @@ export const styles = StyleSheet.create({
 		borderWidth: 2,
 	},
 
-
-
 	navlink: {
 		paddingLeft: 15,
 		paddingRight: 15,
 		paddingTop: 10,
 		paddingBottom: 10,
 		fontSize: 16,
-		borderTopWidth: 1,
-		borderColor: '#d6dfe3',
 	},
 
 	navlinksub: {

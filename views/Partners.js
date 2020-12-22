@@ -11,6 +11,7 @@ class Partners extends React.Component {
 			logos: null,
 		};
 	}
+
 	componentDidMount() {
 		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/partners')
 			.then((response) => response.json())
@@ -23,16 +24,15 @@ class Partners extends React.Component {
 			.catch((error) => {
 				console.log(error)
 			});
-
-
 	}
+
 	render() {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
 			let mainTeam = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyöseura') {
-					return <View key={key} style={{ flexBasis: '50%' }}>
+					return <View key={key} style={styles.col6}>
 						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
 							<Image style={styles.partner_logo} source={{ uri: val.img }} />
 						</TouchableOpacity>
@@ -42,7 +42,7 @@ class Partners extends React.Component {
 
 			let mainPartners = this.state.logos.map((val, key) => {
 				if (val.type == 'Pääyhteistyökumppanit') {
-					return <View key={key} style={{ flexBasis: '50%' }}>
+					return <View key={key} style={styles.col6}>
 						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
 							<Image style={styles.partner_logo} source={{ uri: val.img }} />
 						</TouchableOpacity>
@@ -52,7 +52,7 @@ class Partners extends React.Component {
 
 			let partners = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyökumppanit') {
-					return <View key={key} style={{ flexBasis: '50%' }}>
+					return <View key={key} style={styles.col6}>
 						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
 							<Image style={styles.partner_logo} source={{ uri: val.img }} />
 						</TouchableOpacity>
@@ -62,10 +62,10 @@ class Partners extends React.Component {
 
 			return (
 				<View style={styles.container}>
-					<ScrollView style={{ width: "100%" }}>
+					<ScrollView>
 						<Text style={[styles.toptitle, { backgroundColor: color }]}>Yhteistyössä</Text>
 						<View style={[styles.main]}>
-							<View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+							<View style={styles.row}>
 								<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Yhteistyöseura</Text>
 								{mainTeam}
 								<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Pääyhteistyökumppanit</Text>
