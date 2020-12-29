@@ -76,7 +76,7 @@ class Basic extends React.Component {
 				);
 			} else {
 				return (
-					<View stye={styles.container}>
+					<View style={styles.container}>
 						<ScrollView>
 							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
 							<View style={[styles.main]}>

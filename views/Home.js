@@ -15,7 +15,7 @@ export default class Home extends React.Component {
 		};
 	}
 
-	saveID = async (id, name, logo, color) => {
+	saveData = async (id, name, logo, color) => {
 		try {
 			const teamid = JSON.stringify(id)
 			await AsyncStorage.setItem('id', teamid)
@@ -27,7 +27,7 @@ export default class Home extends React.Component {
 		}
 	}
 
-	getID = async () => {
+	getData = async () => {
 		try {
 			const teamid = await AsyncStorage.getItem('id')
 			const name = await AsyncStorage.getItem('name')
@@ -42,7 +42,7 @@ export default class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getID();
+		this.getData();
 		fetch('https://api.sportti.org/sites')
 			.then((response) => response.json())
 			.then((data) => {
@@ -70,7 +70,7 @@ export default class Home extends React.Component {
 				if (val.id != null) {
 					return <View key={key}>
 						<TouchableOpacity style={[styles.test, styles.mb3]} onPress={() => {
-							this.saveID(val.id, val.name, url + val.img + "." + format, val.colors[0]);
+							this.saveData(val.id, val.name, url + val.img + "." + format, val.colors[0]);
 							this.props.navigation.navigate('Header', { id: val.id, name: val.name, logo: url + val.img + "." + format, color: val.colors[0] })
 						}}>
 							<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
