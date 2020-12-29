@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { Loading } from './Loading';
 import moment from "moment";
 import { styles } from '../styles/Styles'
@@ -48,7 +48,7 @@ class Pelaajat extends React.Component {
 									<Image style={styles.players_img} source={{ uri: val.img }} />
 									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{val.teamId + ' ' + val.name} </Text>
 								</TouchableOpacity>
-							</View >
+							</View>
 						}
 					})
 					}
@@ -76,12 +76,7 @@ class Pelaaja_profiili extends React.Component {
 			isLoading: true,
 			title: null,
 			number: null,
-			position: null,
-			birthDay: null,
-			birthPlace: null,
-			height: null,
-			weight: null,
-			catches: null,
+			info: null,
 			partner: null,
 		};
 	}
@@ -94,13 +89,8 @@ class Pelaaja_profiili extends React.Component {
 					isLoading: false,
 					title: data.title,
 					number: data.teamId,
-					position: data.position,
-					birthDay: data.birthDay,
-					birthPlace: data.birthPlace,
-					height: data.height,
-					weight: data.weight,
-					catches: data.catches,
-					/*partner: data.partners.img,*/
+					info: data.table,
+					partner: data.partners,
 				})
 			})
 			.catch((error) => {
@@ -109,7 +99,6 @@ class Pelaaja_profiili extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-
 		// Typical usage (don't forget to compare props):
 		if (this.props.route.params.profile_id !== prevProps.route.params.profile_id) {
 			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.profile_id)
@@ -119,13 +108,8 @@ class Pelaaja_profiili extends React.Component {
 						isLoading: false,
 						title: data.title,
 						number: data.teamId,
-						position: data.position,
-						birthDay: data.birthDay,
-						birthPlace: data.birthPlace,
-						height: data.height,
-						weight: data.weight,
-						catches: data.catches,
-						/*partner: data.partners.img,*/
+						info: data.table,
+						partner: data.partners,
 					})
 				})
 				.catch((error) => {
@@ -135,42 +119,40 @@ class Pelaaja_profiili extends React.Component {
 	}
 
 	render() {
-
 		let name = this.state.title;
 		let number = this.state.number != null ? "#" + this.state.number : "";
-		let position = this.state.position;
-		let birthDay = this.state.birthDay != null ? moment(this.state.birthDay * 1000).format('DD.MM.YYYY') : "";
-		let birthPlace = this.state.birthPlace;
-		let height = this.state.height;
-		let weight = this.state.weight;
-		let catches = this.state.catches;
-		let partner = this.state.partner;
-
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
-			let info = <View>
-				<Text style={[styles.border_bottom]}>Pelipaikka: {position}</Text>
-				<Text style={styles.border_bottom}>Syntymäaika: {birthDay}</Text>
-				<Text style={styles.border_bottom}>Syntymäpaikka: {birthPlace}</Text>
-				<Text style={styles.border_bottom}>Pituus: {height}</Text>
-				<Text style={styles.border_bottom}>Paino: {weight}</Text>
-				<Text style={styles.border_bottom}>Kätisyys: {catches}</Text>
-			</View >
+			let info = this.state.info.map((val, key) => {
+				return <View key={key}>
+					{val.name == 'Syntymäaika' ? <Text style={styles.border_bottom}>{val.name}: {moment(val.value * 1000).format('DD.MM.YYYY')}</Text>
+						: <Text style={styles.border_bottom}>{val.name}: {val.value}</Text>}
+				</View>
+			});
 
-			return <View style={styles.container}>
-				<ScrollView>
-					<Text style={[styles.toptitle, { backgroundColor: color }]}>{number + ' ' + name} </Text>
-					<View style={styles.main}>
-						{this.props.route.params.profile_img != null ? <Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
-							: <Image style={[styles.players_img]} source={{ uri: default_img }} />}
-						{info}
-						{this.state.partner != null ? <Image style={[styles.partner_logo]} source={{ uri: partner }} /> : null}
-					</View>
-				</ScrollView>
-			</View>
+			let partner = this.state.partner != null ? this.state.partner.map((val, key) => {
+				return <View key={key}>
+					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
+						<Image style={styles.partner_logo} source={{ uri: val.img }} />
+					</TouchableOpacity>
+				</View>
+			}) : null;
+
+			return (
+				<View style={styles.container} >
+					<ScrollView>
+						<Text style={[styles.toptitle, { backgroundColor: color }]}>{number + ' ' + name} </Text>
+						<View style={styles.main}>
+							{this.props.route.params.profile_img != null ? <Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
+								: <Image style={[styles.players_img]} source={{ uri: default_img }} />}
+							{info}
+							{partner}
+						</View>
+					</ScrollView>
+				</View>
+			);
 		};
-
 	}
 }
 

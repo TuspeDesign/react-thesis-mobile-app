@@ -55,37 +55,25 @@ class Basic extends React.Component {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
-			let content = this.state.body != null ? this.state.body : "";
 			let title = this.state.title;
-			if (this.state.img != null) {
-				let images = this.state.img.map((val, key) => {
-					return <View key={key}>
-						<Image style={styles.news_img} source={{ uri: val[0][0] }} />
-					</View>
-				});
-				return (
-					<View style={styles.container}>
-						<ScrollView>
-							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
-							<View style={[styles.main]}>
-								{images}
-								<HTML source={{ html: content }} />
-							</View>
-						</ScrollView>
-					</View>
-				);
-			} else {
-				return (
-					<View style={styles.container}>
-						<ScrollView>
-							<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
-							<View style={[styles.main]}>
-								<HTML source={{ html: content }} />
-							</View>
-						</ScrollView>
-					</View>
-				);
-			}
+			let images = this.state.img != null ? this.state.img.map((val, key) => {
+				return <View key={key}>
+					<Image style={styles.news_img} source={{ uri: val[0][0] }} />
+				</View>
+			}) : null;
+			let content = this.state.body != null ? this.state.body : "Tietoja ei ole saatavilla.";
+
+			return (
+				<View style={styles.container}>
+					<ScrollView>
+						<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
+						<View style={[styles.main]}>
+							{images}
+							<HTML source={{ html: content }} />
+						</View>
+					</ScrollView>
+				</View>
+			);
 		}
 	}
 }
