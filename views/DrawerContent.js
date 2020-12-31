@@ -10,7 +10,7 @@ class DrawerContent extends React.Component {
 		this.state = {
 			isLoading: true,
 			nav: null,
-			open: false,
+			openedID: null,
 		};
 	}
 
@@ -21,6 +21,7 @@ class DrawerContent extends React.Component {
 				this.setState({
 					isLoading: false,
 					nav: data,
+					openedID: null,
 				})
 			})
 			.catch((error) => console.log(error))
@@ -56,8 +57,11 @@ class DrawerContent extends React.Component {
 		}
 	}
 
+
+
 	render() {
 		[global.color = this.props.state.routes[0].params.color]
+
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container, styles.bg}>
@@ -72,22 +76,20 @@ class DrawerContent extends React.Component {
 			let navigation = this.state.nav.map((val, key) => {
 				if (val.items) {
 					return <View key={key} >
-						{this.state.open == false ? <Feather style={[styles.dropdown]} name="plus" size={30} color="white" onPress={() => { this.setState({ open: true }); }}>
-						</Feather> : <Feather style={[styles.dropdown]} name="minus" size={30} color="white" onPress={() => { this.setState({ open: false }); }}></Feather>}
+						{this.state.openedID == val.id ? <Feather style={[styles.dropdown]} name="minus" size={30} color="white" onPress={() => { this.setState({ openedID: null }) }}>
+						</Feather> : <Feather style={[styles.dropdown]} name="plus" size={30} color="white" onPress={() => { this.setState({ openedID: val.id }) }}></Feather>}
 						<View style={[styles.border]}></View>
 						<TouchableOpacity style={{ width: 300 }} onPress={() => { this.checkTemplate(val.id); }}>
 							<Text style={[styles.up, styles.navlinksub, styles.white]}>{val.title}</Text>
 						</TouchableOpacity>
-						{val.items.map((val, key) => {
-							if (this.state.open) {
-								return <View key={key} >
-									<View style={[styles.border]}></View>
-									<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
-										<Text style={[styles.up, styles.navlink, styles.pl3, styles.white]}>{val.title}</Text>
-									</TouchableOpacity>
-								</View>
-							}
-						})}
+						{this.state.openedID == val.id ? val.items.map((val, key) => {
+							return <View key={key} >
+								<View style={[styles.border]}></View>
+								<TouchableOpacity onPress={() => { this.checkTemplate(val.id); }}>
+									<Text style={[styles.up, styles.navlink, styles.pl3, styles.white]}>{val.title}</Text>
+								</TouchableOpacity>
+							</View>
+						}) : null}
 					</View >
 				} else {
 					return <View key={key}>

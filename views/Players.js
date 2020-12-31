@@ -19,7 +19,7 @@ class Pelaajat extends React.Component {
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					team: data.data,
+					team: data,
 				})
 			})
 			.catch((error) => {
@@ -35,24 +35,15 @@ class Pelaajat extends React.Component {
 				return <View key={key}>
 					<Text style={[styles.toptitle, styles.mt3, { backgroundColor: color }]}>{val.title}</Text>
 					{val.players.map((val, key) => {
-						if (val.img == null) {
-							return <View key={key}>
-								<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
-									<Image style={styles.players_img} source={{ uri: default_img }} />
-									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{val.teamId + ' ' + val.name} </Text>
-								</TouchableOpacity>
-							</View>
-						} else {
-							return <View key={key}>
-								<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
-									<Image style={styles.players_img} source={{ uri: val.img }} />
-									<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{val.teamId + ' ' + val.name} </Text>
-								</TouchableOpacity>
-							</View>
-						}
-					})
-					}
-				</View >
+						let number = val.teamId != null ? "#" + val.teamId : "";
+						return <View key={key}>
+							<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
+								<Image style={styles.players_img} source={{ uri: val.img }} />
+								<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{number + ' ' + val.name} </Text>
+							</TouchableOpacity>
+						</View>
+					})}
+				</View>
 			});
 			return (
 				<View style={styles.container}>

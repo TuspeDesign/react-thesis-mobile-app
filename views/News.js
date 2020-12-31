@@ -42,11 +42,22 @@ class News extends React.Component {
 				</View>
 			});
 
+			let news2 = this.state.news.slice(15).map((val, key) => {
+				let date = moment(val.date * 1000).format('DD.MM.YYYY')
+				return <View key={key} style={styles.mb3, styles.main}>
+					<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.team_id, page_id: val.id })}>
+						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
+						<Text>{date} | Uutiset</Text>
+					</TouchableOpacity>
+				</View>
+			});
+
 			return (
 				<View style={styles.container}>
 					<ScrollView>
 						<Text style={[styles.toptitle, { backgroundColor: color }]}>Uutiset</Text>
 						{news}
+						{news2}
 					</ScrollView>
 				</View>
 			);
