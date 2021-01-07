@@ -39,7 +39,7 @@ class Games extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView>
-						<Text style={[styles.toptitle, { backgroundColor: color }]}>Ottelut 2020-2021</Text>
+						<Text style={[styles.toptitle]}>Ottelut 2020-2021</Text>
 						<View style={styles.main}>
 							{games}
 						</View>

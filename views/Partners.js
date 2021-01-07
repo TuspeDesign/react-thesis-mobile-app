@@ -63,7 +63,7 @@ class Partners extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView>
-						<Text style={[styles.toptitle, { backgroundColor: color }]}>Yhteistyössä</Text>
+						<Text style={[styles.toptitle]}>Yhteistyössä</Text>
 						<View style={[styles.main]}>
 							<View style={styles.row}>
 								<Text style={[styles.h4, styles.mb3, styles.up, styles.mt3, styles.border_bottom]}>Yhteistyöseura</Text>

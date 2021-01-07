@@ -57,7 +57,9 @@ class Etusivu extends React.Component {
 			let featured = <View>
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.id, page_id: this.state.featured_id })}>
 					<Image style={[styles.players_img, { marginTop: 0 }]} source={{ uri: default_img }} />
-					<Text style={[styles.h4, styles.up, styles.abs, styles.white, styles.p2, { bottom: 20 }]}>{this.state.featured_title}</Text>
+					<View style={[styles.main]}>
+						<Text style={[styles.h4, styles.up]}>{this.state.featured_title}</Text>
+					</View>
 				</TouchableOpacity>
 			</View>
 
@@ -119,7 +121,6 @@ class Etusivu extends React.Component {
 			return (
 				<View style={[styles.container]}>
 					<ScrollView>
-						<Text style={[styles.toptitle, { backgroundColor: color }]}>{this.props.route.params.name}</Text>
 						{featured}
 						<View style={[styles.main]}>
 							{nextGame}

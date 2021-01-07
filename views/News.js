@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
 import moment from "moment";
 import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
@@ -27,38 +27,27 @@ class News extends React.Component {
 			});
 	}
 
+	renderNewsItem = (itemData) =>
+		<View style={styles.mb3, styles.main}>
+			<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.team_id, page_id: itemData.item.id })}>
+				<Image style={styles.news_img} source={{ uri: itemData.item.img }} />
+				<Text style={[styles.h4, styles.up]}>{itemData.item.title}</Text>
+				<Text>{moment(itemData.item.date * 1000).format('DD.MM.YYYY')} | Uutiset</Text>
+			</TouchableOpacity>
+		</View>
+
 	render() {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
-			let news = this.state.news.slice(0, 15).map((val, key) => {
-				let date = moment(val.date * 1000).format('DD.MM.YYYY')
-				return <View key={key} style={styles.mb3, styles.main}>
-					<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.team_id, page_id: val.id })}>
-						<Image style={styles.news_img} source={{ uri: val.img }} />
-						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
-						<Text>{date} | Uutiset</Text>
-					</TouchableOpacity>
-				</View>
-			});
-
-			let news2 = this.state.news.slice(15).map((val, key) => {
-				let date = moment(val.date * 1000).format('DD.MM.YYYY')
-				return <View key={key} style={styles.mb3, styles.main}>
-					<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.team_id, page_id: val.id })}>
-						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
-						<Text>{date} | Uutiset</Text>
-					</TouchableOpacity>
-				</View>
-			});
-
 			return (
 				<View style={styles.container}>
-					<ScrollView>
-						<Text style={[styles.toptitle, { backgroundColor: color }]}>Uutiset</Text>
-						{news}
-						{news2}
-					</ScrollView>
+					<FlatList
+						data={this.state.news}
+						renderItem={item => this.renderNewsItem(item)}
+						keyExtractor={item => item.id.toString()}
+						ListHeaderComponent={<Text style={[styles.toptitle]}>Uutiset</Text>}
+					/>
 				</View>
 			);
 		}

@@ -82,6 +82,7 @@ export const styles = StyleSheet.create({
 		fontSize: 22,
 		textTransform: "uppercase",
 	},
+
 	mt3: {
 		marginTop: 30,
 	},
@@ -170,13 +171,10 @@ export const styles = StyleSheet.create({
 	},
 
 	toptitle: {
-		backgroundColor: '#035e96',
-		fontSize: 22,
-		textTransform: "uppercase",
-		color: 'white',
+		fontSize: 30,
 		textAlign: 'center',
-		paddingTop: 10,
-		paddingBottom: 10,
+		paddingTop: 30,
+		paddingBottom: 30,
 	},
 
 	border: {

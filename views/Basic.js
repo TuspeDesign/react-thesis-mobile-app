@@ -66,7 +66,7 @@ class Basic extends React.Component {
 			return (
 				<View style={styles.container}>
 					<ScrollView>
-						<Text style={[styles.toptitle, { backgroundColor: color }]}>{title}</Text>
+						<Text style={[styles.toptitle]}>{title}</Text>
 						<View style={[styles.main]}>
 							{images}
 							<HTML source={{ html: content }} />
@@ -92,7 +92,7 @@ class Delete extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={[styles.toptitle, { backgroundColor: color }]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
+				<Text style={[styles.h4, styles.tc, styles.mt3, styles.mb3]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
 				<TouchableOpacity style={[styles.delete, styles.mt3]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
 			</View>
 		);

@@ -33,7 +33,7 @@ class Pelaajat extends React.Component {
 		} else {
 			let team = this.state.team.map((val, key) => {
 				return <View key={key}>
-					<Text style={[styles.toptitle, styles.mt3, { backgroundColor: color }]}>{val.title}</Text>
+					<Text style={[styles.toptitle, styles.mt3]}>{val.title}</Text>
 					{val.players.map((val, key) => {
 						let number = val.teamId != null ? "#" + val.teamId : "";
 						return <View key={key}>
@@ -133,7 +133,7 @@ class Pelaaja_profiili extends React.Component {
 			return (
 				<View style={styles.container} >
 					<ScrollView>
-						<Text style={[styles.toptitle, { backgroundColor: color }]}>{number + ' ' + name} </Text>
+						<Text style={[styles.toptitle]}>{number + ' ' + name} </Text>
 						<View style={styles.main}>
 							{this.props.route.params.profile_img != null ? <Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
 								: <Image style={[styles.players_img]} source={{ uri: default_img }} />}
