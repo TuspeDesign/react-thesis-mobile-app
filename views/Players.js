@@ -4,7 +4,7 @@ import { Loading } from './Loading';
 import moment from "moment";
 import { styles } from '../styles/Styles'
 
-class Pelaajat extends React.Component {
+class Players extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -37,7 +37,7 @@ class Pelaajat extends React.Component {
 					{val.players.map((val, key) => {
 						let number = val.teamId != null ? "#" + val.teamId : "";
 						return <View key={key}>
-							<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('Pelaaja_Profiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
+							<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('PelaajaProfiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
 								<Image style={styles.players_img} source={{ uri: val.img }} />
 								<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{number + ' ' + val.name} </Text>
 							</TouchableOpacity>
@@ -60,7 +60,7 @@ class Pelaajat extends React.Component {
 	}
 }
 
-class Pelaaja_profiili extends React.Component {
+class PlayerProfile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -147,7 +147,7 @@ class Pelaaja_profiili extends React.Component {
 	}
 }
 
-export { Pelaajat, Pelaaja_profiili };
+export { Players, PlayerProfile };
 
 
 

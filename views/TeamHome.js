@@ -4,7 +4,7 @@ import moment from "moment";
 import { Loading } from './Loading';
 import { styles } from '../styles/Styles'
 
-class Etusivu extends React.Component {
+class TeamHome extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -140,6 +140,6 @@ class Etusivu extends React.Component {
 	}
 }
 
-export { Etusivu };
+export { TeamHome };
 
 

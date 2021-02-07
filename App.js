@@ -1,9 +1,9 @@
 import React from 'react';
 import Home from './views/Home';
-import { Etusivu } from './views/TeamHome';
+import { TeamHome } from './views/TeamHome';
 import { DrawerContent } from './views/DrawerContent';
 import { Basic, Delete } from './views/Basic';
-import { Pelaajat, Pelaaja_profiili } from './views/Players';
+import { Players, PlayerProfile } from './views/Players';
 import { Partners } from './views/Partners';
 import { Games } from './views/Games';
 import { News } from './views/News';
@@ -34,9 +34,9 @@ export default class App extends React.Component {
 
 	createDrawer = (props) => {
 		return <Drawer.Navigator drawerStyle={{ backgroundColor: null, width: '100%' }} drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
-			<Drawer.Screen name='Etusivu' component={Etusivu} initialParams={{ id: props.route.params.id, name: props.route.params.name, logo: props.route.params.logo, color: props.route.params.color }} />
-			<Drawer.Screen name='Pelaajat' component={Pelaajat} />
-			<Drawer.Screen name='Pelaaja_Profiili' component={Pelaaja_profiili} initialParams={{ profile_img: props.route.params.profile_img }} />
+			<Drawer.Screen name='Etusivu' component={TeamHome} initialParams={{ id: props.route.params.id, name: props.route.params.name, logo: props.route.params.logo, color: props.route.params.color }} />
+			<Drawer.Screen name='Pelaajat' component={Players} />
+			<Drawer.Screen name='PelaajaProfiili' component={PlayerProfile} initialParams={{ profile_img: props.route.params.profile_img }} />
 			<Drawer.Screen name='Ottelut' component={Games} />
 			<Drawer.Screen name='Kumppanit' component={Partners} />
 			<Drawer.Screen name='Sivu' component={Basic} />

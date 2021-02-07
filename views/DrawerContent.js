@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { styles } from '../styles/Styles'
 import { Feather } from '@expo/vector-icons';
-import Loading from './Loading';
+import { Loading } from './Loading';
 
 class DrawerContent extends React.Component {
 	constructor(props) {
