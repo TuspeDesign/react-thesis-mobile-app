@@ -90,7 +90,6 @@ class PlayerProfile extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		// Typical usage (don't forget to compare props):
 		if (this.props.route.params.profile_id !== prevProps.route.params.profile_id) {
 			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.profile_id)
 				.then((response) => response.json())

@@ -30,6 +30,7 @@ class Partners extends React.Component {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
+			//Categorize each partners logo into variable based on partner type
 			let mainTeam = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyöseura') {
 					return <View key={key} style={styles.col6}>

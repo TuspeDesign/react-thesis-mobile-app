@@ -33,7 +33,6 @@ class Basic extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		// Typical usage (don't forget to compare props):
 		if (this.props.route.params.page_id !== prevProps.route.params.page_id) {
 			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.page_id)
 				.then((response) => response.json())
@@ -79,7 +78,7 @@ class Basic extends React.Component {
 }
 
 class Delete extends React.Component {
-
+	// Remove team id from AsyncStorage to start the program from home component
 	removeValue = async () => {
 		try {
 			await AsyncStorage.removeItem('id')

@@ -14,7 +14,7 @@ export default class Home extends React.Component {
 			image_format: null,
 		};
 	}
-
+	// Save selected team data to AsyncStorage so user doesn't have to select team each time
 	saveData = async (id, name, logo, color) => {
 		try {
 			const teamid = JSON.stringify(id)
@@ -26,7 +26,7 @@ export default class Home extends React.Component {
 			console.log(error)
 		}
 	}
-
+	// Get selected team data from AsyncStorage to move user directly to selected team homescreen
 	getData = async () => {
 		try {
 			const teamid = await AsyncStorage.getItem('id')
@@ -65,7 +65,7 @@ export default class Home extends React.Component {
 		else {
 			const url = this.state.image_url
 			const format = this.state.image_format
-
+			// Show only teams that does have own id
 			let teams = this.state.teams.map((val, key) => {
 				if (val.id != null) {
 					return <View key={key}>

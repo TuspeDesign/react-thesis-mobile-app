@@ -25,14 +25,14 @@ class DrawerContent extends React.Component {
 				})
 			})
 			.catch((error) => console.log(error))
-
+		//Modifying header based on selected team data
 		this.props.navigation.setOptions({
 			headerLeft: () => (<Image style={styles.logo_top} source={{ uri: this.props.state.routes[0].params.logo }} />),
 			headerStyle: { backgroundColor: this.props.state.routes[0].params.color },
 			title: this.props.state.routes[0].params.name, headerTitleAlign: 'center', headerTitleStyle: { color: 'white' }
 		})
 	}
-
+	// Check page template to move user to matching screen name
 	async checkTemplate(id) {
 		await fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/' + id)
 			.then((response) => response.json())
@@ -41,9 +41,9 @@ class DrawerContent extends React.Component {
 			})
 			.catch((error) => console.log(error))
 
+		//Change first letter of temp variable to uppercase so it matches drawerscreen name
 		let temp1 = this.state.temp;
 		let temp = null;
-
 		if (temp1 != null) {
 			temp = temp1.charAt(0).toUpperCase() + temp1.slice(1);
 		}
@@ -60,7 +60,7 @@ class DrawerContent extends React.Component {
 
 
 	render() {
-		[global.color = this.props.state.routes[0].params.color]
+		[global.color = this.props.state.routes[0].params.color] // Saved team main color to global variable so it can be used in styling
 
 		if (this.state.isLoading) {
 			return (

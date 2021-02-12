@@ -53,7 +53,6 @@ class TeamHome extends React.Component {
 		if (this.state.isLoading) {
 			return (<Loading />);
 		} else {
-
 			let featured = <View>
 				<TouchableOpacity onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.id, page_id: this.state.featured_id })}>
 					<Image style={[styles.players_img, { marginTop: 0 }]} source={{ uri: default_img }} />
@@ -63,7 +62,7 @@ class TeamHome extends React.Component {
 				</TouchableOpacity>
 			</View>
 
-			let nextGameTime = moment(this.state.nextGameTime * 1000).format('DD.MM.YYYY')
+			let nextGameTime = moment(this.state.nextGameTime * 1000).format('DD.MM.YYYY') // Change unix timestamp to DD.MM.YYYY format
 			let arena = this.state.arena;
 			let nextHome = this.state.nextHome;
 			let nextVisit = this.state.nextVisit;
@@ -92,12 +91,12 @@ class TeamHome extends React.Component {
 			});
 
 			let games = this.state.games.map((val, key) => {
-				var visitLogo = val.teamVist.logo.replace('.png', '');
+				var visitLogo = val.teamVist.logo.replace('.png', ''); // Changed url a little bit to show visiting team logo correctly
 				return <View key={key}>
 					<Text style={[styles.tc, styles.mb3, styles.mt3]}>{val.time}</Text>
 					<View style={[styles.row, styles.jcc]}>
 						<Image style={[styles.logo_top, styles.m2]} source={{ uri: val.teamHome.logo }} />
-						<Image style={[styles.logo_top, styles.m2]} source={{ uri: visitLogo + val.teamVist[1] + ".png" }} />
+						<Image style={[styles.logo_top, styles.m2]} source={{ uri: visitLogo + val.teamVist[1] + ".png" }} />{/*Added url,teamname and .png to show visiting team logo*/}
 					</View>
 					<View style={[styles.mt3, styles.row, styles.jcc]}>
 						<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - </Text>
