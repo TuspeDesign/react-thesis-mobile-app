@@ -54,7 +54,7 @@ class TeamHome extends React.Component {
 			return (<Loading />);
 		} else {
 			let featured = <View>
-				<TouchableOpacity onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.id, page_id: this.state.featured_id })}>
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('Sivu', { domain: this.props.route.params.domain, page_id: this.state.featured_id })}>
 					<Image style={[styles.players_img, { marginTop: 0 }]} source={{ uri: this.state.featured_img }} />
 					<View style={[styles.main]}>
 						<Text style={[styles.h4, styles.up]}>{this.state.featured_title}</Text>
@@ -84,7 +84,7 @@ class TeamHome extends React.Component {
 			let news = this.state.news.map((val, key) => {
 				let date = val.created.display;
 				return <View key={key} style={styles.mb3}>
-					<TouchableOpacity style={[styles.h4]} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.id, page_id: val.id })}>
+					<TouchableOpacity style={[styles.h4]} onPress={() => this.props.navigation.navigate('Sivu', { domain: this.props.route.params.domain, page_id: val.id })}>
 						<Image style={styles.news_img} source={{ uri: val.img[0] }} />
 						<Text style={[styles.h4, styles.up]}>{val.title}</Text>
 						<Text>{date}</Text></TouchableOpacity>

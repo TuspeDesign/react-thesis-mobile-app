@@ -13,12 +13,12 @@ class Partners extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/partners')
+		fetch('https://sportti.org/sites/' + this.props.route.params.domain +'/page?id='+ this.props.route.params.page_id)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					logos: data,
+					logos: data.items,
 				})
 			})
 			.catch((error) => {
@@ -34,8 +34,8 @@ class Partners extends React.Component {
 			let mainTeam = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyöseura') {
 					return <View key={key} style={styles.col6}>
-						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
-							<Image style={styles.partner_logo} source={{ uri: val.img }} />
+						<TouchableOpacity onPress={() => { Linking.openURL(val.url) }} >
+							<Image style={styles.partner_logo} source={{ uri: val.img[0] }} />
 						</TouchableOpacity>
 					</View>
 				}
@@ -44,8 +44,8 @@ class Partners extends React.Component {
 			let mainPartners = this.state.logos.map((val, key) => {
 				if (val.type == 'Pääyhteistyökumppanit') {
 					return <View key={key} style={styles.col6}>
-						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
-							<Image style={styles.partner_logo} source={{ uri: val.img }} />
+						<TouchableOpacity onPress={() => { Linking.openURL(val.url) }} >
+							<Image style={styles.partner_logo} source={{ uri: val.img[0] }} />
 						</TouchableOpacity>
 					</View>
 				}
@@ -54,8 +54,8 @@ class Partners extends React.Component {
 			let partners = this.state.logos.map((val, key) => {
 				if (val.type == 'Yhteistyökumppanit') {
 					return <View key={key} style={styles.col6}>
-						<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
-							<Image style={styles.partner_logo} source={{ uri: val.img }} />
+						<TouchableOpacity onPress={() => { Linking.openURL(val.url) }} >
+							<Image style={styles.partner_logo} source={{ uri: val.img[0] }} />
 						</TouchableOpacity>
 					</View>
 				}
