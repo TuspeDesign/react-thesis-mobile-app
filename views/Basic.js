@@ -17,7 +17,7 @@ class Basic extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.page_id)
+		fetch('https://sportti.org/sites/' + this.props.route.params.domain + '/page?id=' + this.props.route.params.page_id)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -34,7 +34,7 @@ class Basic extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (this.props.route.params.page_id !== prevProps.route.params.page_id) {
-			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.page_id)
+			fetch('https://sportti.org/sites/' + this.props.route.params.domain + '/page?id=' + this.props.route.params.page_id)
 				.then((response) => response.json())
 				.then((data) => {
 					this.setState({
@@ -57,7 +57,7 @@ class Basic extends React.Component {
 			let title = this.state.title;
 			let images = this.state.img != null ? this.state.img.map((val, key) => {
 				return <View key={key}>
-					<Image style={styles.news_img} source={{ uri: val[0][0] }} />
+					<Image style={styles.news_img} source={{ uri: val }} />
 				</View>
 			}) : null;
 			let content = this.state.body != null ? this.state.body : "Tietoja ei ole saatavilla.";
@@ -81,7 +81,7 @@ class Delete extends React.Component {
 	// Remove team id from AsyncStorage to start the program from home component
 	removeValue = async () => {
 		try {
-			await AsyncStorage.removeItem('id')
+			await AsyncStorage.removeItem('domain')
 			Alert.alert('Ilmoitus', 'Valittu joukkue poistettu onnistuneesti. Ohjelma käynnistyy seuraavan kerran valitse joukkue -sivulta', [{ text: 'OK' }]);
 		} catch (error) {
 			console.log(error)

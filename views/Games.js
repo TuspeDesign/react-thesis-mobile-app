@@ -37,6 +37,7 @@ class Games extends React.Component {
 				</View>
 			});
 			return (
+				
 				<View style={styles.container}>
 					<ScrollView>
 						<Text style={[styles.toptitle]}>Ottelut 2020-2021</Text>

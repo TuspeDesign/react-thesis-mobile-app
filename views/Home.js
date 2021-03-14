@@ -15,10 +15,9 @@ export default class Home extends React.Component {
 		};
 	}
 	// Save selected team data to AsyncStorage so user doesn't have to select team each time
-	saveData = async (id, name, logo, color) => {
+	saveData = async (domain, name, logo, color) => {
 		try {
-			const teamid = JSON.stringify(id)
-			await AsyncStorage.setItem('id', teamid)
+			await AsyncStorage.setItem('domain', domain)
 			await AsyncStorage.setItem('name', name)
 			await AsyncStorage.setItem('logo', logo)
 			await AsyncStorage.setItem('color', color)
@@ -29,12 +28,12 @@ export default class Home extends React.Component {
 	// Get selected team data from AsyncStorage to move user directly to selected team homescreen
 	getData = async () => {
 		try {
-			const teamid = await AsyncStorage.getItem('id')
+			const domain = await AsyncStorage.getItem('domain')
 			const name = await AsyncStorage.getItem('name')
 			const logo = await AsyncStorage.getItem('logo')
 			const color = await AsyncStorage.getItem('color')
-			if (teamid !== null) {
-				this.props.navigation.navigate('Header', { id: teamid, name: name, logo: logo, color: color })
+			if (domain !== null) {
+				this.props.navigation.navigate('Header', { domain: domain, name: name, logo: logo, color: color })
 			}
 		} catch (error) {
 			console.log(error)
@@ -43,14 +42,12 @@ export default class Home extends React.Component {
 
 	componentDidMount() {
 		this.getData();
-		fetch('https://api.sportti.org/sites')
+		fetch('https://sportti.org')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
 					isLoading: false,
 					teams: data.teams,
-					image_url: data.logo.url,
-					image_format: data.logo.ext,
 				})
 			})
 			.catch((error) => {
@@ -70,8 +67,8 @@ export default class Home extends React.Component {
 				if (val.id != null) {
 					return <View key={key}>
 						<TouchableOpacity style={[styles.test, styles.mb3]} onPress={() => {
-							this.saveData(val.id, val.name, url + val.img + "." + format, val.colors[0]);
-							this.props.navigation.navigate('Header', { id: val.id, name: val.name, logo: url + val.img + "." + format, color: val.colors[0] })
+							this.saveData(val.domain, val.name, url + val.img + "." + format, val.colors[0]);
+							this.props.navigation.navigate('Header', { domain: val.domain, name: val.name, logo: url + val.img + "." + format, color: val.colors[0] })
 						}}>
 							<Image style={styles.logo} source={{ uri: url + val.img + "." + format }} />
 							<Text style={[styles.tc, styles.h4, styles.home, styles.white, styles.up, styles.mb3]}>{val.name}</Text>

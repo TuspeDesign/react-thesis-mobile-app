@@ -15,12 +15,12 @@ class DrawerContent extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/menu')
+		fetch('https://sportti.org/sites/' + this.props.state.routes[0].params.domain + '/menu')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					nav: data,
+					nav: data.menu,
 					openedID: null,
 				})
 			})
@@ -34,7 +34,7 @@ class DrawerContent extends React.Component {
 	}
 	// Check page template to move user to matching screen name
 	async checkTemplate(id) {
-		await fetch('https://api.sportti.org/sites/' + this.props.state.routes[0].params.id + '/' + id)
+		await fetch('https://sportti.org/sites/' + this.props.state.routes[0].params.domain + '/page?id=' + id)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ temp: data.template });
@@ -49,19 +49,18 @@ class DrawerContent extends React.Component {
 		}
 
 		if (temp == 'Sivu' || temp == 'Page' || temp == 'Yhteys' || temp == 'Tuote_aitio') {
-			this.props.navigation.navigate('Sivu', { page_id: id, team_id: this.props.state.routes[0].params.id })
+			this.props.navigation.navigate('Sivu', { page_id: id, domain: this.props.state.routes[0].params.domain })
 		} else if (temp) {
-			this.props.navigation.navigate(temp, { page_id: id, team_id: this.props.state.routes[0].params.id })
+			this.props.navigation.navigate(temp, { page_id: id, domain: this.props.state.routes[0].params.domain })
 		} else {
-			this.props.navigation.navigate('Etusivu', { page_id: id, team_id: this.props.state.routes[0].params.id })
+			this.props.navigation.navigate('Etusivu', { page_id: id, domain: this.props.state.routes[0].params.domain })
 		}
 	}
 
 
 
 	render() {
-		[global.color = this.props.state.routes[0].params.color] // Saved team main color to global variable so it can be used in styling
-
+		[global.color = this.props.state.routes[0].params.color] // Saved team main color to global variable so it can be used in styling;
 		if (this.state.isLoading) {
 			return (
 				<View style={styles.container, styles.bg}>
@@ -103,6 +102,9 @@ class DrawerContent extends React.Component {
 			return (
 				<View style={{ backgroundColor: color }}>
 					<ScrollView>
+						<TouchableOpacity onPress={() => {this.props.navigation.navigate('Etusivu')}}>
+							<Text style={[styles.up, styles.navlink, styles.white]}>Etusivu</Text>
+						</TouchableOpacity>
 						{navigation}
 						<View style={[styles.border]}></View>
 						<TouchableOpacity onPress={() => { this.props.navigation.navigate('Poista tallennettu joukkue') }}>

@@ -34,7 +34,7 @@ export default class App extends React.Component {
 
 	createDrawer = (props) => {
 		return <Drawer.Navigator drawerStyle={{ backgroundColor: null, width: '100%' }} drawerPosition="right" drawerContent={props => <DrawerContent{...props} />}>
-			<Drawer.Screen name='Etusivu' component={TeamHome} initialParams={{ id: props.route.params.id, name: props.route.params.name, logo: props.route.params.logo, color: props.route.params.color }} />
+			<Drawer.Screen name='Etusivu' component={TeamHome} initialParams={{ domain: props.route.params.domain, name: props.route.params.name, logo: props.route.params.logo, color: props.route.params.color }} />
 			<Drawer.Screen name='Pelaajat' component={Players} />
 			<Drawer.Screen name='PelaajaProfiili' component={PlayerProfile} initialParams={{ profile_img: props.route.params.profile_img }} />
 			<Drawer.Screen name='Ottelut' component={Games} />
