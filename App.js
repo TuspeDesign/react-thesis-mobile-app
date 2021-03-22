@@ -16,10 +16,10 @@ import { Feather } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
+/*
 [global.team_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/untitled1-edit-edit.jpg']
 [global.default_img = 'https://kiekko-vantaa.fi/site/assets/files/2398/lohi.png']
-
+*/
 export default class App extends React.Component {
 
 	createHomeStack = () => {

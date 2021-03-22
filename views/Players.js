@@ -10,16 +10,20 @@ class Players extends React.Component {
 		this.state = {
 			isLoading: true,
 			team: null,
+			logo: null,
+			staff: null,
 		};
 	}
 
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/players')
+		fetch('https://sportti.org/sites/' + this.props.route.params.domain + '/players')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					team: data,
+					team: data.players,
+					logo: data.img[0],
+					staff: data.helpers,
 				})
 			})
 			.catch((error) => {
@@ -34,15 +38,25 @@ class Players extends React.Component {
 			let team = this.state.team.map((val, key) => {
 				return <View key={key}>
 					<Text style={[styles.toptitle, styles.mt3]}>{val.title}</Text>
-					{val.players.map((val, key) => {
+					{val.items.map((val, key) => {
 						let number = val.teamId != null ? "#" + val.teamId : "";
 						return <View key={key}>
-							<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('PelaajaProfiili', { profile_id: val.id, profile_img: val.img, team_id: this.props.route.params.team_id })}>
+							<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('PelaajaProfiili', { profile_id: val.id, profile_img: val.img, domain: this.props.route.params.domain, default_img: this.state.logo })}>
 								<Image style={styles.players_img} source={{ uri: val.img }} />
-								<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{number + ' ' + val.name} </Text>
+								<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{number + ' ' + val.firstname + ' ' + val.lastname} </Text>
 							</TouchableOpacity>
 						</View>
 					})}
+				</View>
+			});
+
+			let staff = this.state.staff.map((val, key) => {
+				return <View key={key}>
+					<Text style={[styles.toptitle, styles.mt3]}>{val.position}</Text>
+					<TouchableOpacity style={[styles.pb1]} onPress={() => this.props.navigation.navigate('PelaajaProfiili', { profile_id: val.id, profile_img: val.img, domain: this.props.route.params.domain, default_img: this.state.logo })}>
+						<Image style={styles.players_img} source={{ uri: val.img }} />
+						<Text style={[styles.tc, styles.h4, styles.white, styles.up, styles.bg, styles.p2, { backgroundColor: color }]}>{val.firstname + ' ' + val.lastname} </Text>
+					</TouchableOpacity>
 				</View>
 			});
 			return (
@@ -50,8 +64,9 @@ class Players extends React.Component {
 					<ScrollView>
 						<Text style={[styles.toptitle]}>Joukkue</Text>
 						<View style={styles.main}>
-							<Image style={styles.news_img} source={{ uri: team_img }} />
+							<Image style={styles.news_img} source={{ uri: this.state.logo }} />
 							{team}
+							{staff}
 						</View>
 					</ScrollView>
 				</View>
@@ -73,7 +88,8 @@ class PlayerProfile extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.profile_id)
+		fetch('https://sportti.org/sites/' + this.props.route.params.domain + '/' + 'players?id=' + this.props.route.params.profile_id)
+
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -91,7 +107,7 @@ class PlayerProfile extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (this.props.route.params.profile_id !== prevProps.route.params.profile_id) {
-			fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/' + this.props.route.params.profile_id)
+			fetch('https://sportti.org/sites/' + this.props.route.params.domain + '/' + 'players?id=' + this.props.route.params.profile_id)
 				.then((response) => response.json())
 				.then((data) => {
 					this.setState({
@@ -109,6 +125,7 @@ class PlayerProfile extends React.Component {
 	}
 
 	render() {
+		console.log('https://sportti.org/sites/' + this.props.route.params.domain + '/' + 'players?id=' + this.props.route.params.profile_id)
 		let name = this.state.title;
 		let number = this.state.number != null ? "#" + this.state.number : "";
 		if (this.state.isLoading) {
@@ -116,15 +133,14 @@ class PlayerProfile extends React.Component {
 		} else {
 			let info = this.state.info.map((val, key) => {
 				return <View key={key}>
-					{val.name == 'Syntymäaika' ? <Text style={styles.border_bottom}>{val.name}: {moment(val.value * 1000).format('DD.MM.YYYY')}</Text>
-						: <Text style={styles.border_bottom}>{val.name}: {val.value}</Text>}
+					<Text style={styles.border_bottom}>{val.name}: {val.value}</Text>
 				</View>
 			});
 
 			let partner = this.state.partner != null ? this.state.partner.map((val, key) => {
 				return <View key={key}>
 					<TouchableOpacity onPress={() => { Linking.openURL(val.link) }} >
-						<Image style={styles.partner_logo} source={{ uri: val.img }} />
+						<Image style={styles.partner_logo} source={{ uri: this.state.logo }} />
 					</TouchableOpacity>
 				</View>
 			}) : null;
@@ -135,7 +151,7 @@ class PlayerProfile extends React.Component {
 						<Text style={[styles.toptitle]}>{number + ' ' + name} </Text>
 						<View style={styles.main}>
 							{this.props.route.params.profile_img != null ? <Image style={[styles.players_img]} source={{ uri: this.props.route.params.profile_img }} />
-								: <Image style={[styles.players_img]} source={{ uri: default_img }} />}
+								: <Image style={[styles.news_img]} source={{ uri: this.props.route.params.default_img }} />}
 							{info}
 							{partner}
 						</View>

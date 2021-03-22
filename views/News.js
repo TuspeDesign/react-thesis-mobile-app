@@ -14,12 +14,12 @@ class News extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://api.sportti.org/sites/' + this.props.route.params.team_id + '/news')
+		fetch('https://sportti.org/sites/' + this.props.route.params.domain + '/news?year=2021')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
 					isLoading: false,
-					news: data,
+					news: data.items[0].items,
 				})
 			})
 			.catch((error) => {
@@ -29,10 +29,10 @@ class News extends React.Component {
 
 	renderNewsItem = (itemData) =>
 		<View style={styles.mb3, styles.main}>
-			<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', { team_id: this.props.route.params.team_id, page_id: itemData.item.id })}>
-				<Image style={styles.news_img} source={{ uri: itemData.item.img }} />
+			<TouchableOpacity style={styles.mb3} onPress={() => this.props.navigation.navigate('Sivu', { domain: this.props.route.params.domain, page_id: itemData.item.id })}>
+				<Image style={styles.news_img} source={{ uri: itemData.item.img[0] }} />
 				<Text style={[styles.h4, styles.up]}>{itemData.item.title}</Text>
-				<Text>{moment(itemData.item.date * 1000).format('DD.MM.YYYY')} | Uutiset</Text>
+				<Text>{itemData.item.created.display} | Uutiset</Text>
 			</TouchableOpacity>
 		</View>
 

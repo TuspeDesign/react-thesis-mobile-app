@@ -92,7 +92,7 @@ class Delete extends React.Component {
 		return (
 			<View style={styles.container}>
 				<Text style={[styles.h4, styles.tc, styles.mt3, styles.mb3]}>Poista valittu joukkue laitteen muistista. Poiston jälkeen ohjelma käynnistyy valitse joukkue -sivulta.</Text>
-				<TouchableOpacity style={[styles.delete, styles.mt3]} onPress={() => this.removeValue()}><Text style={[styles.delete_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
+				<TouchableOpacity style={[styles.button, styles.mt3]} onPress={() => this.removeValue()}><Text style={[styles.button_h4, styles.up, styles.white]}>Poista valittu joukkue</Text></TouchableOpacity>
 			</View>
 		);
 	}

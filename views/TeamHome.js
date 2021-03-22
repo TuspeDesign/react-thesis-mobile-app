@@ -124,6 +124,7 @@ class TeamHome extends React.Component {
 						<View style={[styles.main]}>
 							{nextGame}
 							{news}
+							<TouchableOpacity style={[styles.button, { backgroundColor: color }]} onPress={() => this.props.navigation.navigate('Uutiset', {domain: this.props.route.params.domain})}><Text style={[styles.button_h4, styles.up, styles.white]}>Uutisarkisto</Text></TouchableOpacity>
 							<Text style={[styles.tc, styles.h4, styles.mt3, styles.mb3]}>Tulevia otteluita</Text>
 							<View style={styles.box_border}>
 								{games}

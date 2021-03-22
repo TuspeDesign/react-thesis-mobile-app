@@ -41,8 +41,7 @@ class Games extends React.Component {
 					<View style={[styles.mt3, styles.row, styles.jcc]}>
 					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVisit.title}</Text>
 				</View></View>
-			});
-			this.state.past.reverse;
+			}).reverse();
 			let past = this.state.past.map((val, key) => {
 				return <View key={key}>
 						<Text style={[styles.tc, styles.mt3, styles.mb3]}>{val.time.display}</Text>
@@ -54,7 +53,7 @@ class Games extends React.Component {
 					<View style={[styles.mt3, styles.row, styles.jcc]}>
 					<Text style={[styles.tc, styles.mb3]}>{val.teamHome.title} - {val.teamVisit.title}</Text>
 				</View>
-				<TouchableOpacity style={[styles.delete, { backgroundColor: color }]} onPress={() => Linking.openURL(val.link)}><Text style={[styles.delete_h4, styles.up, styles.white]}>Otteluraportti</Text></TouchableOpacity></View>
+				<TouchableOpacity style={[styles.button, { backgroundColor: color }]} onPress={() => Linking.openURL(val.link)}><Text style={[styles.button_h4, styles.up, styles.white]}>Otteluraportti</Text></TouchableOpacity></View>
 			}).reverse();
 			return (
 				<View style={styles.container}>

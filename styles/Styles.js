@@ -119,14 +119,14 @@ export const styles = StyleSheet.create({
 		textTransform: "uppercase",
 	},
 
-	delete: {
+	button: {
 		padding: 10,
 		backgroundColor: "#db524b",
 		alignSelf: "center",
 		borderRadius: 10,
 	},
 
-	delete_h4: {
+	button_h4: {
 		fontSize: 22,
 		fontWeight: 'bold',
 
