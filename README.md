@@ -9,5 +9,3 @@ The visitor selects the desired sport club, after which the club id number is in
 ## How the feed works
 
 The feed is maintained by [Timo Anttila](https://github.com/timoanttila) and is protected by [Cloudflare](https://www.cloudflare.com/), which uses a security cookie for each query. Check out the [Cloudflare Cookie Policy](https://www.cloudflare.com/cookie-policy/) before using the feed.
-
-Documentation can be found at https://doksut.timoanttila.com/
